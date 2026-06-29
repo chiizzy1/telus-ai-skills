@@ -39,7 +39,7 @@ Use junctions so Codex, Gemini/Antigravity, and project-local skill folders all 
 .\scripts\link-windows.ps1 -Target Gemini
 ```
 
-Use `-Force` only after confirming any existing local copies have been backed up or are no longer needed.
+Use `-Force` only when you intentionally want to replace existing copied skill folders with junctions. Existing folders are moved to a timestamped backup folder before the junction is created.
 
 ## Access Model
 

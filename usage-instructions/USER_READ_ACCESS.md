@@ -50,7 +50,7 @@ Link Gemini/Antigravity:
 .\scripts\link-windows.ps1 -Target Gemini
 ```
 
-Use `-Force` only if you are replacing an existing copied skill folder:
+Use `-Force` only if you are replacing an existing copied skill folder. The script moves existing folders into a timestamped backup folder before creating junctions:
 
 ```powershell
 .\scripts\link-windows.ps1 -Target Codex -Force

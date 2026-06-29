@@ -26,6 +26,7 @@ switch ($Target) {
 }
 
 New-Item -ItemType Directory -Path $destRoot -Force | Out-Null
+$backupRoot = Join-Path $destRoot ("_backup_before_junction_" + (Get-Date -Format "yyyyMMdd-HHmmss"))
 
 foreach ($skill in $skillNames) {
     $source = Join-Path $RepoRoot $skill
@@ -36,17 +37,27 @@ foreach ($skill in $skillNames) {
     }
 
     if (Test-Path -LiteralPath $dest) {
+        $item = Get-Item -LiteralPath $dest
+        $resolvedDest = (Resolve-Path -LiteralPath $dest).Path
+
+        if ($item.LinkType -eq "Junction" -and $item.Target -contains $source) {
+            Write-Host "Already linked $dest -> $source"
+            continue
+        }
+
         if (!$Force) {
             Write-Host "Skipping existing path: $dest"
             continue
         }
 
-        $resolvedDest = (Resolve-Path -LiteralPath $dest).Path
         if ($resolvedDest -notlike "$destRoot*") {
-            throw "Refusing to remove path outside destination root: $resolvedDest"
+            throw "Refusing to move path outside destination root: $resolvedDest"
         }
 
-        Remove-Item -LiteralPath $dest -Recurse -Force
+        New-Item -ItemType Directory -Path $backupRoot -Force | Out-Null
+        $backupDest = Join-Path $backupRoot $skill
+        Move-Item -LiteralPath $dest -Destination $backupDest
+        Write-Host "Backed up $dest -> $backupDest"
     }
 
     New-Item -ItemType Junction -Path $dest -Target $source | Out-Null

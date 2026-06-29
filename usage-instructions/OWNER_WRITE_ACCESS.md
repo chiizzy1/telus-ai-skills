@@ -77,7 +77,7 @@ Link a local project TELUS skills folder:
 .\scripts\link-windows.ps1 -Target Project
 ```
 
-Use `-Force` only when you intentionally want to replace an existing copied skill folder with a junction.
+Use `-Force` only when you intentionally want to replace an existing copied skill folder with a junction. The script backs up existing folders before linking.
 
 ## Updating Skills Through Codex
 
