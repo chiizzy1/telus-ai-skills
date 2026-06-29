@@ -1,0 +1,4 @@
+interface:
+  display_name: "Web Images Satisfaction Evaluator"
+  short_description: "Rate web image results and host pages"
+  default_prompt: "Use $web-images-satisfaction-evaluator to evaluate a web image task."

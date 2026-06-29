@@ -1,0 +1,4 @@
+interface:
+  display_name: "TELUS Bot Reply Validator"
+  short_description: "Validate Apple assistant replies"
+  default_prompt: "Evaluate this TELUS bot reply validation task using the Apple assistant rubric."
