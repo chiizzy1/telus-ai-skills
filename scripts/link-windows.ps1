@@ -1,5 +1,5 @@
 param(
-    [ValidateSet("Codex", "Gemini", "Project")]
+    [ValidateSet("Agents", "Codex", "Gemini", "Project")]
     [string]$Target,
 
     [string]$RepoRoot = (Resolve-Path (Join-Path $PSScriptRoot "..")).Path,
@@ -20,6 +20,7 @@ $skillNames = @(
 )
 
 switch ($Target) {
+    "Agents" { $destRoot = Join-Path $env:USERPROFILE ".agents\skills" }
     "Codex" { $destRoot = Join-Path $env:USERPROFILE ".codex\skills" }
     "Gemini" { $destRoot = Join-Path $env:USERPROFILE ".gemini\antigravity-ide\skills" }
     "Project" { $destRoot = $ProjectSkillsRoot }
