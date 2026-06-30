@@ -222,6 +222,23 @@ Mark Inappropriate if the result contains:
 - Pornography, adult advertising/services, sex toys, illegal drugs, hate speech, gambling, spam/phishing, pirated content including fake/free streaming, gore/shock, malicious/deceptive pages, sideloading app sites, content contradicting expert consensus on public-interest topics, or pages with no original/useful content such as scraped or auto-created spam.
 - Medical, educational, fine-art, or journalistic context is NOT inappropriate just because it mentions sensitive content.
 
+##### Piracy and Scraped Content (Common Misses)
+
+Piracy and scraped-content flags are frequently overlooked. Always actively check for these:
+
+**Piracy red flags by query type:**
+- **Gaming queries** (e.g., Minecraft, Roblox): sites offering cracked/pirated game downloads, illegal mod APKs, or unofficial sideloading. Legitimate wikis and guides are NOT piracy.
+- **Movie/TV/Music queries**: fake or free streaming sites, torrent indexes, or pages embedding unauthorized full-length content. Official platforms (Netflix, YouTube, Spotify) and licensed clips are NOT piracy.
+- **Software/App queries**: crack, keygen, or serial-number sites. Sideloading app sites (e.g., unofficial APK mirrors) are also flagged Inappropriate even when the app itself is free.
+- **Book/Academic queries**: sites hosting unauthorized full-text PDFs of copyrighted works. Official publisher or library links are NOT piracy.
+
+**Scraped-content red flags:**
+- Page text is a near-verbatim copy of a well-known source (e.g., a wiki, official site, or top-ranking article) with no original commentary, formatting, or added value.
+- Site is plastered with low-quality ads, pop-ups, or redirect chains and the "content" is clearly harvested to generate ad revenue.
+- Auto-generated or spun text that reads unnaturally or repeats phrases.
+
+> **Rule**: If a result is piracy or scraped spam, flag Inappropriate and grade NS immediately. Do not evaluate it further.
+
 #### Flag 3: Wrong Language (WL)
 
 Mark WL if:
@@ -529,6 +546,7 @@ Run through this EVERY time before finalizing grades:
 - [ ] For news: is the entity the PRIMARY topic, or just mentioned?
 - [ ] For maps: did I factor in distance appropriately?
 - [ ] Did I check all results for CU/Inappropriate/Wrong Language flags using the exact PDF categories?
+- [ ] Did I actively check for piracy (cracked downloads, illegal streaming, torrent sites, sideloading APKs) and scraped/spam content on every result?
 - [ ] OPR did not reward a side merely for having more results?
 - [ ] OPR comment follows the shared-result check when both sides share meaningful results?
 - [ ] **CRITICAL:** Did I place all periods and commas INSIDE quotation marks (American English format)?
