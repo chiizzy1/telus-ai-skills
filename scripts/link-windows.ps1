@@ -4,7 +4,7 @@ param(
 
     [string]$RepoRoot = (Resolve-Path (Join-Path $PSScriptRoot "..")).Path,
 
-    [string]$ProjectSkillsRoot = "C:\Users\DELL\Downloads\train-ai\train-ai\TELUS-TASKS\skills",
+    [string]$ProjectSkillsRoot = "",
 
     [switch]$Force
 )
@@ -23,7 +23,12 @@ switch ($Target) {
     "Agents" { $destRoot = Join-Path $env:USERPROFILE ".agents\skills" }
     "Codex" { $destRoot = Join-Path $env:USERPROFILE ".codex\skills" }
     "Gemini" { $destRoot = Join-Path $env:USERPROFILE ".gemini\antigravity-ide\skills" }
-    "Project" { $destRoot = $ProjectSkillsRoot }
+    "Project" {
+        if ([string]::IsNullOrWhiteSpace($ProjectSkillsRoot)) {
+            throw "Project target requires -ProjectSkillsRoot"
+        }
+        $destRoot = $ProjectSkillsRoot
+    }
 }
 
 New-Item -ItemType Directory -Path $destRoot -Force | Out-Null

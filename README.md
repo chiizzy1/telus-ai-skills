@@ -21,7 +21,7 @@ Included skills:
 Users with read access should update before TELUS task work:
 
 ```powershell
-git -C "C:\Users\DELL\skills-source\telus-skills" pull --ff-only
+git -C "C:\Users\$env:USERNAME\skills-source\telus-ai-skills" pull --ff-only
 ```
 
 Or run:
@@ -32,14 +32,25 @@ Or run:
 
 ## Windows Agent Links
 
-Use junctions so Codex, Gemini/Antigravity, and project-local skill folders all point to this one repo.
+Use junctions so `.agents`, Codex, Gemini/Antigravity, and project-local skill folders all point to this one repo.
 
 ```powershell
+.\scripts\link-windows.ps1 -Target Agents
 .\scripts\link-windows.ps1 -Target Codex
 .\scripts\link-windows.ps1 -Target Gemini
 ```
 
 Use `-Force` only when you intentionally want to replace existing copied skill folders with junctions. Existing folders are moved to a timestamped backup folder before the junction is created.
+
+## Read-Only Setup
+
+For friends or users who should only install and update the skills, send them:
+
+```text
+usage-instructions/USER_READ_ACCESS.md
+```
+
+They should clone this full repo, link their agent skill folders to it, and pull updates. They should not edit local skill files.
 
 ## Access Model
 
