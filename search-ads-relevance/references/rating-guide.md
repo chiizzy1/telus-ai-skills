@@ -104,17 +104,19 @@ Query "gym app":
 
 ## Comment Examples
 
-> The query is for Uber Eats, a food delivery service. This ad is an exact match for the queried app, making it directly relevant to the user's intent. Rated Excellent.
+Every comment uses the single-sentence formula required by `SKILL.md` Section 6: **"This ad is [rating] because [intersection/disconnection point]."**
 
-> The user is looking for DoorDash, a general food delivery app. Pizza Hut's delivery app covers a similar use case but is limited to one restaurant chain, so it's quite likely to interest the user while not being an ideal match. Rated Good.
+> This ad is excellent because it is the Uber Eats app the user searched for by name.
 
-> The query is for Khan Academy, an online learning platform. Elevate's brain training games are vaguely related to learning but serve a very different purpose, so the user wouldn't be surprised to see this ad but probably isn't interested. Rated Acceptable.
+> This ad is good because Pizza Hut delivers food like DoorDash does, but is limited to one restaurant chain.
 
-> The query is for a serene noises app, suggesting the user wants calming audio content. A gun firearm database has no connection to this intent and could be offensive given the user's interest in relaxation. Rated Bad.
+> This ad is acceptable because Elevate's brain training is loosely educational, but it does not teach academic subjects like Khan Academy.
 
-> The query intent is likely the Arno test prep app. iHuman Chinese is a children's app for learning Chinese characters, which has no overlap with the query intent.
+> This ad is bad because a gun firearm database has no connection to the calming audio the user wanted, and could be offensive given that intent.
 
-**Conciseness rule:** State the intent, state the connection (or lack of it), stop. Do not over-explain or list what the ad app does in detail. The comment above is the ideal length and style.
+> This ad is bad because iHuman Chinese teaches children Chinese characters and offers nothing for the Arno test prep the user was looking for.
+
+**Conciseness rule:** Name the query's app or specific feature, state the connection (or lack of it), stop. One sentence. Do not over-explain or list what the ad app does in detail.
 
 ## Decision Checklist
 

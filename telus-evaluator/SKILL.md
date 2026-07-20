@@ -1,9 +1,16 @@
 ---
 name: telus-evaluator
-description: Router and source-of-truth controller for TELUS task work. Use when Codex is asked to rate, audit, verify, or structure TELUS tasks; when task type is unclear; when working from TELUS-TASKS/task.md, TELUS-TASKS PDFs, or TELUS guideline folders; or when deciding which TELUS task-specific evaluator skill/rubric should apply.
+description: Router and source-of-truth controller for TELUS task work. Use when asked to rate, audit, verify, or structure TELUS tasks; when task type is unclear; when working from TELUS-TASKS/task.md, TELUS-TASKS PDFs, or TELUS guideline folders; or when deciding which TELUS task-specific evaluator skill/rubric should apply.
 ---
 
 # TELUS Evaluator
+
+## File Locations
+
+- `references/...` paths are inside this skill's folder.
+- Sibling skills are reached with `../<skill>/SKILL.md`.
+- `TELUS-TASKS/...` is a sibling folder of this skills repo in the workspace root (e.g. `<workspace>/train-ai/TELUS-TASKS/`).
+- If a referenced external file cannot be found, use this skill's reference files as the operative rubric and state that the source was unavailable.
 
 ## Core Rule
 
@@ -32,12 +39,12 @@ If the user or a prior answer conflicts with the TELUS guideline, follow the gui
 
 ## Task Type Map
 
-- Search SBS, Search Satisfaction, side-by-side web search, OPR, or `HS/S/SS/NS`: use `search-sbs-evaluator`.
-- TELUS AI Assistant, Bot Reply Validation, Apple assistant Human Evaluation, or Accuracy/Relevancy/Compliance/Fluency/Safety/Overall Quality: use `telus-bot-reply-validator`.
-- Text Response Evaluation, text-message transcript pass/reject, transcript summary, best reply, or transcript MCQ: use `text-response-evaluator`.
-- Web Images Single Side Image Satisfaction, image side-by-side, image flags, host page flags, near duplicates, or image OPR: use `web-images-satisfaction-evaluator`.
-- Search Ads Relevance, iOS App Store ad relevance, ad-to-query grading, or Excellent/Good/Acceptable/Bad ad ratings: use `search-ads-relevance`.
-- Close Variants, query-variant similarity, spelling/abbreviation/transliteration/synonym evaluation, or Good/Acceptable/Bad variant ratings: use `close-variants-evaluator`.
+- Search SBS, Search Satisfaction, side-by-side web search, OPR, or `HS/S/SS/NS`: use `search-sbs-evaluator` (read `../search-sbs-evaluator/SKILL.md`).
+- TELUS AI Assistant, Bot Reply Validation, Apple assistant Human Evaluation, or Accuracy/Relevancy/Compliance/Fluency/Safety/Overall Quality: use `telus-bot-reply-validator` (read `../telus-bot-reply-validator/SKILL.md`).
+- Text Response Evaluation, text-message transcript pass/reject, transcript summary, best reply, or transcript MCQ: use `text-response-evaluator` (read `../text-response-evaluator/SKILL.md`).
+- Web Images Single Side Image Satisfaction, image side-by-side, image flags, host page flags, near duplicates, or image OPR: use `web-images-satisfaction-evaluator` (read `../web-images-satisfaction-evaluator/SKILL.md`).
+- Search Ads Relevance, iOS App Store ad relevance, ad-to-query grading, or Excellent/Good/Acceptable/Bad ad ratings: use `search-ads-relevance` (read `../search-ads-relevance/SKILL.md`).
+- Close Variants, query-variant similarity, spelling/abbreviation/transliteration/synonym evaluation, or Good/Acceptable/Bad variant ratings: use `close-variants-evaluator` (read `../close-variants-evaluator/SKILL.md`).
 
 ## Known TELUS Task Types Without A Dedicated Skill Yet
 

@@ -152,19 +152,4 @@ Fluency:
 
 ## Compact Output Template
 
-```markdown
-| Metric | Score | Comment Needed? | Notes |
-|---|---|---|---|
-| Accuracy | Correct | No | ... |
-| Relevancy | Pass | No | ... |
-| Compliance | Pass | No | ... |
-| Fluency | 100 | No | ... |
-| Safety | Pass | No | ... |
-| Overall Quality | Very Good | No | ... |
-
-Required comments:
-- Accuracy: ...
-- Safety: ...
-
-Overall: ...
-```
+Output template: see SKILL.md (`## Output Format`). Do not maintain a second copy here.

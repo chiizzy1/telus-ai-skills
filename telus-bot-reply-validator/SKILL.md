@@ -5,6 +5,13 @@ description: Evaluate TELUS AI Assistant/Bot Reply Validation tasks for Apple as
 
 # TELUS Bot Reply Validator
 
+## File Locations
+
+- `references/...` paths are inside this skill's folder.
+- `TELUS-TASKS/...` is a sibling folder of this skills repo in the workspace root (e.g. `<workspace>/train-ai/TELUS-TASKS/`).
+- The source PDF path contains spaces and an em dash (`AI Assistant — Human Evaluation Guidelines`). If exact-path access fails, list the folder and match by title.
+- If a referenced external file cannot be found, use this skill's reference files as the operative rubric and state that the source was unavailable.
+
 ## Core Rule
 
 Use `TELUS-TASKS/AI Assistant — Human Evaluation Guidelines/telus - Bot reply validation.pdf` as the source of truth. This is separate from Search SBS: do not use HS/S/SS/NS, flags, or OPR. Evaluate only the shown user question and assistant response, as if you are a customer in the task's region using the assistant today.

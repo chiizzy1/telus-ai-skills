@@ -23,7 +23,7 @@ Use this before routing any TELUS task.
 
 ### Search SBS / Search Satisfaction
 
-Use `search-sbs-evaluator`.
+Use `search-sbs-evaluator` (read `../../search-sbs-evaluator/SKILL.md`).
 
 Signals:
 
@@ -36,7 +36,7 @@ Do not route Web Images or Search Ads here unless the task UI is clearly Search 
 
 ### Bot Reply Validation / AI Assistant Human Evaluation
 
-Use `telus-bot-reply-validator`.
+Use `telus-bot-reply-validator` (read `../../telus-bot-reply-validator/SKILL.md`).
 
 Signals:
 
@@ -48,7 +48,7 @@ Do not use Search SBS satisfaction labels here.
 
 ### Text Response Evaluation
 
-Use `text-response-evaluator`.
+Use `text-response-evaluator` (read `../../text-response-evaluator/SKILL.md`).
 
 Signals:
 
@@ -63,7 +63,7 @@ Judge response options only after transcript pass/reject rules are applied.
 
 ### Web Images Satisfaction
 
-Use `web-images-satisfaction-evaluator`.
+Use `web-images-satisfaction-evaluator` (read `../../web-images-satisfaction-evaluator/SKILL.md`).
 
 Signals:
 
@@ -74,12 +74,40 @@ Signals:
 
 Do not use Search SBS `HS/S/SS/NS` here.
 
+### Search Ads Relevance
+
+Use `search-ads-relevance` (read `../../search-ads-relevance/SKILL.md`).
+
+Signals:
+
+- iOS App Store ad shown against a user search query.
+- Ad-to-query relevance grading.
+- Rating labels `Excellent`, `Good`, `Acceptable`, `Bad`.
+- App Store listing links for the advertised app.
+
+Guideline source: `TELUS-TASKS/SEARCH-ADS-RELEVANCE/guidelines.txt` and `TELUS-TASKS/SEARCH-ADS-RELEVANCE/telus- SEARCH-ADS-RELEVANCE.pdf`.
+
+Do not use Search SBS `HS/S/SS/NS` here.
+
+### Close Variants
+
+Use `close-variants-evaluator` (read `../../close-variants-evaluator/SKILL.md`).
+
+Signals:
+
+- An original query paired with a query variant.
+- Spelling, abbreviation, reordering, transliteration, synonym, or language-transformation comparison.
+- Rating labels `Good`, `Acceptable`, `Bad`.
+
+Guideline source: `TELUS-TASKS/Close Variants/Telus - Close Variants.pdf`.
+
+Do not confuse this with Search Ads Relevance. Close Variants compares a query to a variant query, not a query to an ad.
+
 ## TELUS Families Without A Dedicated Skill
 
 The workspace contains guidelines for these TELUS task types, but no separate installed skill has been built yet:
 
 - Broad Match: `TELUS-TASKS/BROAD-MATCH/telus-Broad_Match.pdf`
-- Search Ads Relevance: `TELUS-TASKS/SEARCH-ADS-RELEVANCE/guidelines.txt` and `TELUS-TASKS/SEARCH-ADS-RELEVANCE/telus- SEARCH-ADS-RELEVANCE.pdf`
 - Image Themes Rating: `TELUS-TASKS/Image-Themes-Rating/telus-Image_Themes_Rating.pdf`
 
 If one appears, read its official guideline directly and tell the user no dedicated TELUS skill exists yet. Do not force it through a different TELUS skill.

@@ -71,6 +71,7 @@ Highly Satisfying (HS):
 
 HS Disqualifiers:
 
+- Blog posts and less authoritative sources, max S.
 - Advice or recommendation queries, max S.
 - Generic product vendor pages, max S.
 - One-step-away results, max S.
@@ -204,63 +205,8 @@ When one side is empty:
 
 ## OPR Comment Rules
 
-Keep comments human, brief, and submission-ready:
-
-- Target 2-3 sentences and at least 20 words.
-- Start with `The query intent is to...` or `The query intent is...`.
-- Acknowledge both sides before differentiating.
-- State the chosen OPR and why.
-- Use L1, R5, etc. for specific results.
-- Do not mention scripts, tools, status codes, bot-blocking, Playwright, automation, or internal uncertainty.
-- Do not list every source by name unless a specific result drives the verdict.
-- Do not over-explain flags; the grading table carries that evidence.
-- When sides share several results, compare the ranking of the strongest shared results first, then compare each side's unique results by how well they satisfy the query.
-- Required shared-result wording check: if both sides share meaningful results, the comment must say that first in plain language, then say whether the unique results also satisfy the user need.
-- If both sides share most results and only the unique results differ, write that directly.
-- Avoid filler like "moreover", "furthermore", and "it is worth noting".
-- Use simple, plain wording that flows naturally.
-
-Good OPR comments:
-
-> The query intent is to find out whether debt consolidation is a smart financial decision. Both sides are about the same because they equally satisfy the user's need with relevant results from reputable financial sources that directly address the question.
-
-> The query intent is to check the current weather and forecast for Schleswig, Germany. Both sides are about the same because they provide identical, highly relevant weather forecast pages from an authoritative source that fully satisfy the user's need.
-
-> The query intent is to find out whether trumpet vines are invasive. Both sides are about the same because they provide equally relevant results from authoritative sources that directly answer the question, with the same shared results at key positions.
-
-> The query intent is Yahoo News and the user most likely wants the main page of headlines from that site. The first two results are the same on both sides, but the right side is slightly better because R5 is a fresher and more relevant news result.
-
-> The query intent is to find out who sings the original version of Mystical Magical. While both sides share most results, the left side is slightly better because its unique result still confirms the original artist, while the right side's unique result is a thin metadata page.
-
-> The query is ambiguous but dominantly interpreted as a search about salted butter. The left side is better because all its results are relevant informational articles about salted butter, while the right side includes an off-topic recipe and an inaccessible product page.
-
-> The query intent is to learn how to access health inspection reports. Despite both sides having multiple satisfying results, the left side is slightly better because it includes a direct how-to guide while the right side relies entirely on inspection tools.
-
-> The query intent is to know when college usually starts in the fall. Both sides share the same useful general results at the top, but the right side is slightly better because its unique result gives a general answer, while the left side's unique result is only for one college.
-
-> The query intent is to know which states make up New England. Both sides share the same relevant results from credible sources, and their unique results also answer the query, so neither side has a clear overall advantage.
-
-> The query intent is to know how many layers the dermis has. Both sides share the same direct results, but the left side is slightly better because its unique result, L5, answers the question more clearly than R5.
-
-Bad OPR comment pattern:
-
-> Both sides share the same Wikipedia article at position 1 and both have the same broken result at position 4, while the remaining results on each side are articles from specific named sites that all address the question in various ways, so both sides are about the same.
-
-Why bad: too long, too mechanical, includes unnecessary result-by-result detail, and spends the comment on evidence already present in the grading table.
+Authoritative source: `comment-style.md`. Do not maintain a second copy of the comment rules or examples here.
 
 ## Compact Chat Output
 
-Unless the user asks for full reasoning, output only:
-
-```markdown
-Access note: R5 required manual review because the checker could not fully verify the page. Do not mark CU unless manual access also fails.
-
-| Side | Pos | Grade | Brief Reason |
-|------|-----|-------|--------------|
-| L | 1 | HS | Official page, direct match |
-| R | 1 | S | Useful but one step away |
-
-OPR: Left Better
-
-The query intent is to ... Both sides ... The left side is better because ...
-```
+Output contract: see `../SKILL.md` (`Phase 4: Chat Output`). Use `Manual review needed` in the Grade cell when a page could not be verified and the snippet is too thin to judge.

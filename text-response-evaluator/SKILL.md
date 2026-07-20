@@ -1,9 +1,15 @@
 ---
 name: text-response-evaluator
-description: Evaluate TELUS Text Response Evaluation tasks from transcript-based conversations. Use when Codex is asked to summarize a text-message transcript, decide Pass or Reject, choose all transcript rejection reasons, select the best reply to the final message, or answer the task's multiple-choice question using TELUS-TASKS/Text Response Evaluation guidelines.
+description: Evaluate TELUS Text Response Evaluation tasks from transcript-based conversations. Use when asked to summarize a text-message transcript, decide Pass or Reject, choose all transcript rejection reasons, select the best reply to the final message, or answer the task's multiple-choice question using TELUS-TASKS/Text Response Evaluation guidelines.
 ---
 
 # Text Response Evaluator
+
+## File Locations
+
+- `references/...` paths are inside this skill's folder.
+- `TELUS-TASKS/...` is a sibling folder of this skills repo in the workspace root (e.g. `<workspace>/train-ai/TELUS-TASKS/`).
+- If a referenced external file cannot be found, use this skill's reference files as the operative rubric and state that the source was unavailable.
 
 ## Source Of Truth
 
@@ -15,7 +21,7 @@ Read `references/rubric.md` when doing an actual rating or when unsure about a r
 
 1. Confirm the task type is Text Response Evaluation, not SBS or bot reply validation.
 2. Read the full transcript and identify the two participants.
-3. Before deciding Pass/Reject, scan every message for hard rejection issues, especially whether either person mentions the other person's exact name/User ID.
+3. Before deciding Pass/Reject, scan every message for hard rejection issues. Run the 3-step Hard check in `references/rubric.md` (`### Includes Name Of Participant`) for the participant-name rule; it is the authoritative version.
 4. Write a transcript summary in no more than 30 words.
 5. Decide whether the transcript `Passes` or `Rejects`.
 6. If it rejects, select every rejection reason that applies and stop response selection unless the task still requires a separate answer.
@@ -25,22 +31,7 @@ Read `references/rubric.md` when doing an actual rating or when unsure about a r
 
 ## Transcript Summary
 
-Keep the summary short, plain, and factual.
-
-- Maximum 30 words.
-- Mention the main topic or topics.
-- If the conversation has many unrelated topics or does not make sense, say that.
-- Do not add outside assumptions.
-- Do not name participants unless the names help clarity.
-- Prefer the user's natural style: `[Name A] and [Name B] are talking about [topic]. [Name A] says/asks..., while [Name B]...`
-
-Example:
-`My friend is late for their first day of work and asks me for a ride.`
-
-Preferred examples:
-
-- `Chris and Alex are talking about the Egyptian pyramids. Chris claims aliens built them, while Alex argues that ancient Egyptians built them.`
-- `Sailor and Captain are talking about whether to delay sailing because of a storm report. Sailor wants caution, while Captain thinks they can manage it.`
+Maximum 30 words, plain and factual, covering the main topic or topics. Full rules, style pattern, and examples: `references/rubric.md` (`## Summary Rules`).
 
 ## Pass Or Reject
 
@@ -57,48 +48,21 @@ Reject if any rejection reason applies. Select all that apply:
 - `Conversation Could Not Happen Over Text`
 - `Conversation Rhymes`
 
-Important guardrails:
+Hard gates that decide the call:
 
-- Ignore punctuation and grammar for the spelling category. Rate spelling only.
-- Use American English spelling.
 - One person sending two messages in a row is normal and is not a rejection reason.
-- Multiple topics are allowed if the conversation changes naturally.
-- Reject overlapping, random, or robotic topic shifts.
-- Texting participants cannot see, hear, touch, hand objects to, or observe each other unless the text says a photo/audio/video was shared. The PDF says no photos, audio, or video are shared by default.
-- Treat the visible speaker labels as User IDs. This includes names, roles, labels, and pronouns such as `Chris`, `Alex`, `Captain`, `Sailor`, `Person A`, `PersonA`, or `Me`.
-- Reject if one participant writes the other participant's exact speaker label/User ID, even if it sounds natural as a title, such as `Thanks, Captain.`
-- Naming a third person who is not one of the two participants is allowed.
+- Texting participants cannot see, hear, touch, hand objects to, or observe each other unless the text says a photo/audio/video was shared.
+- Treat the visible speaker labels as User IDs, including roles and pronouns such as `Captain`, `Sailor`, `PersonA`, or `Me`.
+
+Per-reason definitions, evidence requirements, and pass/reject examples: `references/rubric.md` (`## Rejection Reasons`).
 
 ## Response Selection
 
-Only select a response if the transcript passes.
-
-Choose the option that:
-
-- Replies to the last message, not an earlier message.
-- Fits the context and tone.
-- Comes from the correct speaker's perspective.
-- Sounds like a casual text response a real person would send.
-- Does not contain spelling mistakes, emojis, offensive language, impossible in-person actions, repetition, rhyming, or other transcript rejection issues.
-
-Do not choose a response that:
-
-- Repeats the previous message without answering it.
-- Talks about a different topic.
-- Uses placeholders like `[topic]`.
-- Assumes the texters are physically together.
-- Contains a spelling error or emoji, even if it otherwise fits.
+Only select a response if the transcript passes. Pick the option that replies to the final message, fits context and speaker, sounds like a real casual text, and carries no rejection issue. Full good/bad criteria: `references/rubric.md` (`## Response Selection Rules`).
 
 ## Multiple-Choice Question
 
-Answer using the original transcript only. Ignore the response option you selected when answering the MCQ.
-
-Read the wording carefully:
-
-- `Who sent the last text?` asks for the last speaker.
-- `Who did not send the last text?` asks for the other participant, unless both/none apply.
-- `Who did not ask any questions?` requires checking every message for question marks or question wording from both participants.
-- Do not answer from memory or from the previous task pattern.
+Answer from the original transcript only, never from the response you selected, and read the question wording literally. Question-by-question handling and the `Both` / `None of them` cases: `references/rubric.md` (`## Multiple-Choice Rule`).
 
 ## Output Format
 

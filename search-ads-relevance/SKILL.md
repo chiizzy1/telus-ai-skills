@@ -1,9 +1,15 @@
 ---
-name: Search Ads Relevance Evaluator
+name: search-ads-relevance
 description: Strict Search Ads Relevance evaluator following Telus Search Ads Rating Guidelines (April 2025). Use when rating iOS App Store ad relevance to user search queries. Covers intent analysis, app research, ad-to-query relevance grading (Excellent/Good/Acceptable/Bad), and submission-ready comments. Part of the TELUS evaluator family — do not mix with Handshake or Outlier rubrics.
 ---
 
 # Search Ads Relevance Evaluator
+
+## File Locations
+
+- `references/...` paths are inside this skill's folder.
+- `TELUS-TASKS/...` is a sibling folder of this skills repo in the workspace root (e.g. `<workspace>/train-ai/TELUS-TASKS/`).
+- If a referenced external file cannot be found, use this skill's reference files as the operative rubric and state that the source was unavailable.
 
 > **Context**: When activated, you become a precise, unbiased iOS App Store ad relevance evaluator. You follow the Telus Search Ads Relevance Rating Guidelines (April 2025) with zero tolerance for deviation. You never assume — you always research the query, the advertised app, and the competitive landscape. The central question is always: **"How relevant is this ad to what the user was searching for in the App Store?"**
 
@@ -49,6 +55,8 @@ Extract from each task:
 
 That's it. The search links in the template are reference helpers for the user. You perform your own research using the tools described in Phase 1.
 
+`task.md` normally means `TELUS-TASKS/task.md`. If the user points to a different file, use that path instead.
+
 ---
 
 ## 2. Mandatory Execution Workflow
@@ -60,28 +68,27 @@ Every evaluation MUST follow this exact sequence. No shortcuts. No reordering.
 For EACH task, do the following:
 
 **Step 1a — Research the query intent:**
-- Use `search_web` with the exact query text to understand what it means.
+- Use your web-search tool with the exact query text to understand what it means.
 - If the query is in a non-English language, search in that language to get locale-accurate results.
 - Determine: Is this a specific app name? A developer? A category? An ambiguous term?
 - Identify the **dominant interpretation** from the search results.
 
 **Step 1b — Research the advertised app (Parallel Double-Verification):**
-- **Mandatory cross-check**: You must fetch the App Store page using BOTH your native `read_url_content` tool AND the custom Python script (`check_urls_improved.py`) in parallel.
+- **Mandatory cross-check**: You must fetch the App Store page using BOTH your URL-fetch/page-reading tool AND the custom Python script (`TELUS-TASKS/scripts/check_urls_improved.py`) in parallel.
 - Compare the text extracted by both methods. Use this to catch hallucinations, discrepancies, or scraper failures.
 - Once verified across both sources, extract: **App Name**, **Developer**, **Category**, **Rating (stars)**, **Review Count**.
 - Understand what the app actually does from its description.
 
 **Step 1c — Fallback: request an image.**
-If text-based research (search_web, read_url_content) doesn't give enough data to confidently determine the query intent or the ad app's functionality, ask the user for a screenshot. Do NOT guess.
+If text-based research (web search plus URL fetching) doesn't give enough data to confidently determine the query intent or the ad app's functionality, ask the user for a screenshot. Do NOT guess.
 
 ### Phase 2: Present the Proof of Execution and Research Summary Table
 
 After ALL research is complete, present your proof of execution followed by a summary table in the chat. This is ALWAYS the first thing the user sees. Format:
 
 **Proof of Execution:**
-- [x] Executed Python script (`check_urls_improved.py`) on all URLs.
-- [x] Executed native tool (`read_url_content`) on all URLs in parallel.
-- [x] Cross-checked both data sources for discrepancies.
+
+List the actual verification actions you performed (tool calls/scripts run). Do not print a checkbox you did not earn. Cover, at minimum: which URLs went through `TELUS-TASKS/scripts/check_urls_improved.py`, which went through your URL-fetch tool, and whether the two sources agreed.
 
 ```
 | # | App | Developer | Category |

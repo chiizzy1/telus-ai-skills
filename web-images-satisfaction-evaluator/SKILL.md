@@ -1,9 +1,15 @@
 ---
 name: web-images-satisfaction-evaluator
-description: Evaluate TELUS Web Images Single Side Image Satisfaction and image side-by-side tasks. Use when Codex is asked to rate image results, host pages, image flags, near duplicates, image satisfaction, host page satisfaction, source credibility, or overall preference for TELUS web image tasks.
+description: Evaluate TELUS Web Images Single Side Image Satisfaction and image side-by-side tasks. Use when asked to rate image results, host pages, image flags, near duplicates, image satisfaction, host page satisfaction, source credibility, or overall preference for TELUS web image tasks.
 ---
 
 # Web Images Satisfaction Evaluator
+
+## File Locations
+
+- `references/...` paths are inside this skill's folder.
+- `TELUS-TASKS/...` is a sibling folder of this skills repo in the workspace root (e.g. `<workspace>/train-ai/TELUS-TASKS/`).
+- If a referenced external file cannot be found, use this skill's reference files as the operative rubric and state that the source was unavailable.
 
 ## Core Rule
 
@@ -47,17 +53,31 @@ Host page flags:
 
 Host page satisfaction:
 
-- Use the task UI's host-page satisfaction labels. If the UI uses the same four-level scale, apply `Highly`, `Moderately`, `Slightly`, and `Not` based on relevance, authenticity, credibility, trustworthiness, and presentation.
+- Use the task UI's host-page satisfaction labels. If the UI uses the same four-level scale, apply `Highly`, `Moderately`, `Slightly`, and `Not` based on relevance, authenticity, credibility, trustworthiness, and presentation. Otherwise use the labels the UI shows and map by severity, keeping the same order from most to least satisfying.
+
+Overall preference (OPR):
+
+The guideline specifies 7 options. Use the exact labels shown by the task UI; the standard set is:
+
+- `Left Much Better`
+- `Left Better`
+- `Left Slightly Better`
+- `About the Same`
+- `Right Slightly Better`
+- `Right Better`
+- `Right Much Better`
+
+Never import the Search SBS scale or its `HS/S/SS/NS` grades into this task.
 
 ## Host Page Verification
 
 For every host page URL, verify the exact page when possible. Use the repo checker when useful:
 
-```powershell
-python TELUS-TASKS/scripts/check_urls.py --query "<image query>" --run-id "<run-id>" <host URLs>
+```bash
+python3 TELUS-TASKS/scripts/check_urls_improved.py --query "<image query>" --run-id "<run-id>" <host URLs>
 ```
 
-Inspect the generated `report.json` and extracted text. If the checker fails because of bot-blocking, CAPTCHA, JavaScript-only pages, or connection issues, treat it as manual-review needed, not an automatic grade. If normal/manual access confirms the host page does not load, flag `Did not load`.
+The script writes its report to `TELUS-TASKS/url_content/<run-id>/report.json`, alongside the extracted page text for each URL. Inspect both. If the checker fails because of bot-blocking, CAPTCHA, JavaScript-only pages, or connection issues, treat it as manual-review needed, not an automatic grade. If normal/manual access confirms the host page does not load, flag `Did not load`.
 
 ## Overall Preference
 
@@ -69,9 +89,9 @@ Prefer the side with:
 4. More useful diversity and fewer redundant near duplicates.
 5. Fewer `Did not load` or `Unsafe` results.
 
-If both lists are identical, choose `About the Same` and comment `Identical.`
+If both result lists are identical, choose `About the Same` and comment exactly `Identical.` This overrides the standard comment template below. Do not add a query-intent sentence or any further reasoning.
 
-If the difference is unclear or balanced, choose `About the Same`.
+If the difference is unclear or balanced, choose `About the Same` and use the standard comment template.
 
 ## Output Format
 
