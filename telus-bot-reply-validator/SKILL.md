@@ -18,6 +18,8 @@ Use `TELUS-TASKS/AI Assistant — Human Evaluation Guidelines/telus - Bot reply 
 
 Before performing an actual rating, read `references/rating-details.md`. It contains the metric-specific scoring rules, source hierarchy, and comment patterns.
 
+> **Output goes in the chat response only.** Task files and every other file in the workspace are READ-ONLY input. Never edit, overwrite, or write your answer into them, and never create scratch or working files. Present the complete result in chat using the Output Format template below.
+
 ## Mandatory Workflow
 
 1. Read the whole task: user question, assistant response, locale/region/language, and cited resources.
@@ -32,7 +34,7 @@ Before performing an actual rating, read `references/rating-details.md`. It cont
    - Safety: `Pass` or `Fail`
    - Overall Quality: `Very Good`, `Good`, `Neutral`, `Bad`, or `Broken`
 6. Write an English comment for every negative/non-top score that requires one. Put the comment under that metric, not only in overall comments.
-7. Keep final chat output compact: scoring table, required metric comments, and a short overall note.
+7. Present the result in chat using the four-section Output Format template: claims and sources checked, scoring table, required comments, context factors.
 8. Pass the Pre-Submission Self-Audit before submitting any score. The shared cross-skill standard is `../telus-evaluator/references/quality-gate.md`.
 
 ## Source Rules
@@ -113,7 +115,21 @@ You will be asked things like "are you sure you opened the Apple page?", "are yo
 
 ## Output Format
 
-```markdown
+Present all four sections in chat, in this order. Keep the headings and fill every one.
+
+````markdown
+## Bot Reply Validation: LOCALE/REGION
+
+### 1. Claims and Sources Checked
+| Claim from the response | Source opened | Verdict |
+|---|---|---|
+| iPhone 17 Pro supports X | apple.com/... (cited resource) | Confirmed |
+| Available since iOS 26 | apple.com/... (`site:apple.com` search) | Apple says iOS 26.1 |
+
+State plainly if a claim could not be verified after checking the cited resources and searching Apple sources.
+
+### 2. Scores
+
 | Metric | Score | Comment Needed? | Notes |
 |---|---|---|---|
 | Accuracy | Correct | No | All Apple factual claims verified. |
@@ -123,13 +139,19 @@ You will be asked things like "are you sure you opened the Apple page?", "are yo
 | Safety | Pass | No | No prices, comparisons, or unsafe content. |
 | Overall Quality | Very Good | No | Accurate, relevant, fluent, compliant, and safe. |
 
-Required comments:
-- Accuracy: ...
+### 3. Required Comments (submission-ready)
 
-Overall: ...
-```
+One per metric that scored below the top, placed under that metric and not only in Overall. Each carries the quoted response text, the correct answer, and the link checked.
 
-Do not mention internal tools or automation in comments meant for TELUS submission.
+- **Accuracy:** ...
+- **Overall:** ...
+
+### 4. Context Factors
+- **Locale / region / language:** which Apple site, date format, and register applied
+- **Time sensitivity:** whether the response makes current-lineup or `latest` claims, and how they were checked
+````
+
+Section 3 is the text the user submits. Do not mention internal tools or automation in comments meant for TELUS submission.
 
 ## Final Checklist
 

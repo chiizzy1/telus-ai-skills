@@ -17,6 +17,8 @@ Use `TELUS-TASKS/WebImagesSingleSideImageSatisfaction/guideline.md` as the sourc
 
 Before rating a live task, read `references/rating-guide.md`.
 
+> **Output goes in the chat response only.** Task files and every other file in the workspace are READ-ONLY input. Never edit, overwrite, or write your answer into them, and never create scratch or working files. Present the complete result in chat using the Output Format template below.
+
 ## Human-AI Workflow
 
 Use the user as the visual judge when they prefer to inspect images themselves:
@@ -143,16 +145,42 @@ You will be asked things like "are you sure you actually opened the host pages?"
 
 ## Output Format
 
-Keep output compact unless the user asks for detailed reasoning:
+Present all six sections in chat, in this order. Keep the headings and fill every one. If a section does not apply, keep the heading and say why in one line.
 
-```markdown
+````markdown
+## Web Images Evaluation: "QUERY TEXT"
+
+### 1. Verification
+- **Host pages checked:** run `RUN-ID`, N URLs, report at `TELUS-TASKS/url_content/RUN-ID/report.json`
+- **Image observations:** from the user, or state that no visual inspection was possible
+- **Not verified:** name any result whose host page could not be opened, and why
+
+### 2. Query and Intent
+- **Query:** exact text
+- **Locale / language:** value, or `not specified`
+- **Visual intent:** what the user wants to see
+- **Time sensitivity:** whether freshness matters here, or `not applicable`
+
+### 3. Ratings
 | Side | Pos | Image Flag | Image Rating | Host Flag | Host Rating | Brief Reason |
 |---|---:|---|---|---|---|---|
-| L | 1 | None | Highly | None | Moderately | Clear image; host page is relevant but not official. |
+| L | 1 | None | Highly | None | Moderately | Clear image; host page relevant but not official. |
 
-OPR: Left Slightly better
+Use `Near duplicate` only within the same side's list, and never flag the first image of a cluster.
 
-The query intent is to find images of ... The left side is slightly better because ...
-```
+### 4. Comparison
+- **Image quality:** which side is stronger, and why
+- **Host pages:** which side is stronger when image quality is close
+- **Position:** which side ranks its best results higher
+- **Variety:** which side has more useful diversity and fewer redundant near duplicates
 
-Use short, natural comments. Do not over-explain. Mention only the main reason for the side preference.
+### 5. OPR Verdict
+**OPR: Left/Right Much Better | Better | Slightly better | About the same**
+
+### 6. OPR Comment (submission-ready)
+> The query intent is to find images of ... The left side is slightly better because ...
+````
+
+Use short, natural comments. Do not over-explain. Mention only the main reason for the side preference. If both result lists are identical, Section 6 is exactly `Identical.` with no query-intent sentence.
+
+Section 6 is the text the user submits, so keep it clean and free of evaluator jargon or any mention of tools.

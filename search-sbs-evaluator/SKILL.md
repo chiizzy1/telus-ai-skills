@@ -24,7 +24,7 @@ description: Strict Search SBS (Search Satisfaction) evaluator following Telus D
 8. Grade each result against the Grade Anchors (Section 2, Step 4), respecting the HS Disqualifiers.
 9. Decide OPR (Section 2, Step 5), then write the comment per `references/comment-style.md`.
 10. Pass the Pre-Submission Self-Audit (Phase 3.5) with evidence for all six questions. No grade goes to chat until it passes.
-11. Build the full evaluation in a local scratch file, not in chat. Chat gets only: proof of execution, access note, grading cap check, compact grading table, OPR verdict, OPR comment.
+11. Present the complete evaluation in chat using the nine-section template in Phase 4. Never write to or edit any file; `task.md` is read-only input.
 
 ---
 
@@ -45,6 +45,7 @@ description: Strict Search SBS (Search Satisfaction) evaluator following Telus D
 7. **NEVER guess a grade from just the URL or title alone.** If a page is bot-blocked and the provided snippet in the task is too thin to judge, put **`Manual review needed`** in the Grade cell. HOWEVER, if the provided snippet contains SUFFICIENT content to confidently grade the result (e.g. it clearly shows an irrelevant topic, or provides the exact answer), you MUST assign the proper grade based on the snippet.
 8. **Platform isolation.** Do not use Handshake or Outlier rubrics for this task. Do not use Bot Reply, Text Response, or Web Images scales. HS/S/SS/NS belongs to Search SBS only.
 9. **NEVER invent grading criteria.** Do not punish results for arbitrary reasons not in the guidelines (e.g., article word count, layout ugliness, or "too long"). If it satisfies the user's need according to the Grade Anchors, grade it accordingly.
+10. **`TELUS-TASKS/task.md` is READ-ONLY input.** You NEVER edit, overwrite, or modify it or any other file. It is the user's template. Your output goes ONLY in the chat response, using the Phase 4 template. Violating this rule destroys the user's work.
 
 Before rating a live task, read `references/rating-details.md` for the full checklist, grade anchors, and common-mistake examples.
 
@@ -109,19 +110,21 @@ Always separate these two ideas in the user-facing answer:
 
 Never downgrade an unverified-but-plausible page to SS just because the checker could not extract content. Manual-review procedure and the full CU trigger list: `references/rating-details.md` (`## Flag Rules` → `Manual Review`).
 
-### Phase 2: Build the Evaluation (WORKING FILE — DO NOT SHOW IN CHAT)
+### Phase 2: Build the Evaluation (PRESENTED IN CHAT)
 
-After Phase 1 completes, produce the FULL evaluation following the 5-step process below. Write it to a local scratch file named `sbs-work-table.md` in the current working directory. Do NOT paste the full evaluation into chat.
+After Phase 1 completes, work through the full 5-step process below and present the result in chat using the Phase 4 template.
 
-The working file must contain, in order: the query text, Step 1 intent analysis with research findings, the Step 2/3 URL verification table and shared-results map, the Step 4 per-result grading table with full justifications, the Step 5 OPR comparison and verdict, the submission-ready OPR comment, and the completed Common Mistakes Checklist.
+> **NEVER write to or edit any file.** `TELUS-TASKS/task.md` and every other file in the workspace are READ-ONLY input. Do not create scratch files, working files, or notes on disk, and do not write your answer into the user's task file. The chat response is the entire deliverable. Writing into the user's files destroys their work.
+
+The only files you may create are the checker's own output under `TELUS-TASKS/url_content/`, which the script writes for you.
 
 ### Phase 3: Checklist Verification
 
-Before finalizing, verify every item on the Common Mistakes Checklist (Section 5). Mark each as checked inside the working file.
+Before finalizing, verify every item on the Common Mistakes Checklist (Section 5), and report the outcome in the checklist line of the Phase 4 output.
 
 ### Phase 3.5: Pre-Submission Self-Audit (MANDATORY GATE)
 
-Answer all six questions **in writing, in the working file, with the evidence named**, before any grade reaches chat. A tick mark is not an answer. If you cannot produce the evidence for an item, you have not finished that step: stop, go do it, then return.
+Work through all six questions **with the evidence named** before any grade reaches chat, and report the outcome in Section 9 of the Phase 4 output. A tick mark is not an answer. If you cannot produce the evidence for an item, you have not finished that step: stop, go do it, then return.
 
 Assume every one of these will be asked out loud. Passing this gate is what makes the answer defensible.
 
@@ -161,42 +164,72 @@ Treat each challenge as an instruction to re-run this audit against the guidelin
 - If you cannot produce the evidence, say that directly and go do the work. Never write a justification after the fact to cover a step you skipped.
 - The guideline is the single source of truth. Neither the user's preference nor your own earlier answer outranks it.
 
-### Phase 4: Chat Output (THE ONLY THING THE USER SEES)
+### Phase 4: Chat Output (THE COMPLETE DELIVERABLE)
 
-In chat, present ONLY these items:
+Present all nine sections below, in this order, in the chat response. This is the presentation template: keep the headings, keep the order, and fill every section. If a section genuinely does not apply, keep the heading and write one line saying why.
 
-**1. Proof of Execution:**
-Name the run-id folder the checker wrote, how many unique URLs went through it, and what you searched to determine query intent. Any result you graded without opening its saved content must be listed here as `Manual review needed`. Do not print a checkbox you did not earn.
-> **Proof of Execution:** Checker run `RUN-ID` covering N unique URLs; content read from `TELUS-TASKS/url_content/RUN-ID/`. Intent confirmed via Google and Bing for the query text.
+Keep each section tight. Completeness matters more than brevity, but nothing here needs a paragraph where a line will do.
 
-**2. Access Note (ALWAYS REQUIRED):**
-If all links are fully accessible, explicitly state: "All links were successfully checked and are fully accessible." If any links fail or need manual review, name those result labels and indicate their status (e.g., CU, `Manual review needed`).
+````markdown
+## Search SBS Evaluation: "QUERY TEXT"
 
-**3. Grading Cap Check (MANDATORY):**
-Before generating the table, explicitly state the maximum allowed grade based on the query classification and HS Disqualifiers.
-> **Grading Cap Check:**
-> - **Query Type:** [e.g., Advice / Recommendation]
-> - **Disqualifier Applied:** [e.g., Blogs and advice queries cannot be Highly Satisfying.]
-> - **Max Allowed Grade:** [e.g., Satisfying (S)]
+### 1. Proof of Execution
+- **Checker run:** `RUN-ID`, N unique URLs, content in `TELUS-TASKS/url_content/RUN-ID/`
+- **Intent research:** Google and Bing reviewed for the query text
+- **Graded from saved content:** L1-L5, R1-R5 (list any result graded from the task snippet instead)
 
-**4. Compact Grading Table (with Source Type / Max Allowed):**
+### 2. Access Note
+All links were successfully checked and are fully accessible.
+(Or: name each result label that failed and its status, e.g. `R3: Content Unavailable (404)`, `L2: Manual review needed (bot-blocked)`.)
 
-| Side | Pos | Source Type & Max Allowed | Actual Grade | Flag | Brief Reason |
-|------|-----|---------------------------|--------------|------|-------------|
+### 3. Query and Intent
+- **Query:** exact text
+- **Locale / language:** value, or `not specified`
+- **Query date / time sensitivity:** date, and whether freshness is required
+- **Dominant interpretation:** what users actually want, confirmed on both engines
+- **Minor interpretations:** any valid secondary reading, or `none`
+- **Query type:** e.g. navigational, informational, advice, local
+
+### 4. Result Verification
+| Result | URL | Status | Notes |
+|---|---|---|---|
+| L1 | example.com/page | 200, content read | Live, matches snippet |
+| R3 | example.org/gone | 404 | Confirmed Content Unavailable |
+
+Shared results: list the labels that appear on both sides, with the count, or `none`.
+
+### 5. Grading Cap Check
+- **Query type:** e.g. Advice / Recommendation
+- **Disqualifier applied:** e.g. Blogs and advice queries cannot be Highly Satisfying
+- **Max allowed grade:** e.g. Satisfying (S)
+
+### 6. Grading
+| Side | Pos | Source Type & Max Allowed | Grade | Flag | Brief Reason |
+|---|---|---|---|---|---|
 | L | 1 | Blog / Advice (Max S) | **S** | | Direct, highly relevant guide |
 | R | 1 | Official Site (Max HS) | **HS** | | Official navigation target |
 
-Keep "Brief Reason" to ~5-10 words max. No full justifications in chat. Those live in the working file. Use `Manual review needed` in the Actual Grade cell when the page could not be verified and the snippet is too thin.
+Keep "Brief Reason" to 5-10 words. Use `Manual review needed` in the Grade cell when the page could not be verified and the snippet is too thin.
 
-**5. OPR Verdict:**
-```
-OPR: [Left/Right] [Much Better / Better / Slightly Better / About the Same]
-```
+**Justifications**, one or two sentences per result, naming the anchor applied and quoting the line from the saved content that supports it:
+- **L1 (S):** anchor applied, plus the quoted evidence.
+- **R1 (HS):** anchor applied, plus the quoted evidence.
 
-**6. OPR Comment (submission-ready):**
-> The query intent is... [2-3 sentence comment following `references/comment-style.md`]
+### 7. OPR Verdict
+**OPR: Left/Right Much Better | Better | Slightly Better | About the Same**
 
-> **NOTHING ELSE goes in chat.** No intent analysis blocks, no URL verification reports, no research findings, no checklist. All of that is in the working file.
+Deciding factors, in order applied: grades, then position, then variety.
+
+### 8. OPR Comment (submission-ready)
+> The query intent is ... [2-3 sentences, at least 20 words, per `references/comment-style.md`]
+
+### 9. Verification Summary
+- **Self-audit:** all six questions passed (note any that needed rework)
+- **Context factors:** locale, time sensitivity, position, variety. State each, including any that do not apply
+- **Common Mistakes Checklist:** all items verified (name any that failed and what you changed)
+````
+
+Section 8 is the text the user submits, so it must be clean, final, and free of evaluator jargon. Everything else is the supporting record.
 
 ---
 

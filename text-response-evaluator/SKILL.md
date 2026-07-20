@@ -17,6 +17,8 @@ Use `TELUS-TASKS/Text Response Evaluation/telus - Text_Response_Evaluation.pdf` 
 
 Read `references/rubric.md` when doing an actual rating or when unsure about a rejection reason.
 
+> **Output goes in the chat response only.** Task files and every other file in the workspace are READ-ONLY input. Never edit, overwrite, or write your answer into them, and never create scratch or working files. Present the complete result in chat using the Output Format template below.
+
 ## Workflow
 
 1. Confirm the task type is Text Response Evaluation, not SBS or bot reply validation.
@@ -105,20 +107,32 @@ You will be asked things like "are you sure you read every message?", "are you s
 
 ## Output Format
 
-Keep answers compact and practical:
+Present all five sections in chat, in this order. Keep the headings and fill every one. If a section does not apply (for example, response selection after a reject), keep the heading and say why in one line.
 
-```markdown
-Summary: ...
+````markdown
+## Text Response Evaluation
 
-Transcript: Pass/Reject
-Reasons: ...
+### 1. Transcript
+- **Participants:** speaker A and speaker B labels as shown
+- **Messages read:** N, in full
 
-Best response: ...
+### 2. Summary
+30 words maximum, covering what both participants discuss.
 
-MCQ answer: ...
-```
+### 3. Verdict
+**Transcript: Pass** or **Reject**
 
-If the user asks for reasoning, add one short sentence per decision. Avoid long commentary.
+Reasons, one line each, quoting the exact text so the user can verify it:
+- `Spelling Mistake - "bannana" should be "banana".`
+
+### 4. Best Response
+The chosen reply, plus one line on why it fits the final message and the correct speaker's perspective.
+
+### 5. MCQ Answer
+The selected option, plus the line from the transcript it comes from.
+````
+
+Keep it practical. One short sentence per decision is enough; avoid long commentary.
 
 When a rejection reason is traceable, include the exact word or phrase so the user can verify it:
 

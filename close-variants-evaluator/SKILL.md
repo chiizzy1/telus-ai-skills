@@ -34,7 +34,7 @@ description: Strict Close Variants evaluator following Telus Close Variants Rati
 
 ## 1. How to Read the Input
 
-The user provides `TELUS-TASKS/task.md` (or pastes its content). A Close Variants task template also ships at `TELUS-TASKS/Close Variants/task.md`; if the working file is not where you expect, check both. It contains N tasks in this structure:
+The user provides `TELUS-TASKS/task.md` (or pastes its content). A Close Variants task template also ships at `TELUS-TASKS/Close Variants/task.md`; if the task file is not where you expect, check both. It contains N tasks in this structure:
 
 ```
 # CLOSE VARIANTS Task [N]:

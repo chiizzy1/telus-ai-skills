@@ -18,6 +18,8 @@ Use TELUS rules only for TELUS tasks. Keep TELUS separate from Handshake, Outlie
 
 Before routing a task, read `references/task-router.md`.
 
+> **Output goes in the chat response only.** Task files and every other file in the workspace are READ-ONLY input. Never edit, overwrite, or write results into them, and never create scratch or working files. Every task skill defines an output template; present the complete result in chat using it.
+
 ## Quality Gate (applies to every TELUS task)
 
 `references/quality-gate.md` is mandatory for all TELUS work, whichever task skill you route to. Read it before submitting any rating. In short:
@@ -48,7 +50,7 @@ If the user or a prior answer conflicts with the TELUS guideline, follow the gui
 4. Read that skill's `SKILL.md` and required reference file before rating.
 5. Apply the task-specific hard gates before choosing scores.
 6. Verify facts, pages, URLs, images, or cited sources when the task type requires it.
-7. Keep the answer short, plain, and evidence-based.
+7. Present the result in chat using the routed skill's output template, filling every section it defines.
 
 ## Task Type Map
 
@@ -96,4 +98,4 @@ If the TELUS task type is unclear:
 - Wrong-platform and wrong-task rubrics avoided.
 - Current task UI and official guideline used over memory.
 - Verification done when required.
-- Output kept concise and natural.
+- Output presented in chat using the routed skill's template, with every required section filled.
