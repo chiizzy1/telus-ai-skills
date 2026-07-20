@@ -28,8 +28,9 @@ description: Strict Search Ads Relevance evaluator following Telus Search Ads Ra
 9. **Bad ratings REQUIRE a comment.** No exceptions.
 10. **Ads are NOT organic results.** An ad doesn't need to be exactly what the user searched for. It can be something the user's query *implies* they might be interested in.
 11. **Platform isolation.** Do not use Search SBS, Handshake, or Outlier rubrics for this task. Do not use HS/S/SS/NS grades.
+12. **Pass the Pre-Submission Self-Audit before submitting any rating.** No rating reaches chat until the audit is answered in writing with evidence.
 
-Before rating a live task, read `references/rating-guide.md` for the full decision framework, game rules, special rules, and examples.
+Before rating a live task, read `references/rating-guide.md` for the full decision framework, game rules, special rules, and examples. The shared cross-skill standard is `../telus-evaluator/references/quality-gate.md`.
 
 ---
 
@@ -163,6 +164,46 @@ No perceivable link / illogical / offensive   → Bad
 | **Offensive Mismatch** | If the ad could be offensive given the query context → **Bad**. |
 | **"New" / "Popular" modifiers** | If query specifies recency/popularity, check app's version history. Old/unpopular apps get downgraded. |
 | **Locale-Specific Meaning** | Always consider what the query means in the test locale, not just globally. |
+
+---
+
+## 4.5. Pre-Submission Self-Audit (MANDATORY)
+
+Answer all six questions in writing, with the evidence named, before any rating reaches chat. A tick mark is not an answer. If you cannot produce the evidence for an item, you have not finished that step: stop, go do it, then return.
+
+1. **Did I actually verify the app, or am I working from the app ID and my own assumptions?**
+   Evidence: for every task, the App Store URL that went through `TELUS-TASKS/scripts/check_urls.py`, the same URL fetched with your URL-fetch tool, whether the two agreed, and the five extracted fields (App Name, Developer, Category, Rating, Review Count). If the script could not run, say so per Phase 1b instead of claiming a cross-check you did not perform. If neither method gave enough data, apply Phase 1c and ask for a screenshot. Do not guess.
+
+2. **Did I judge intent, or did I match keywords?**
+   Evidence: for each task, one short quoted phrase from the App Store description showing what the app actually does for the user, plus the dominant interpretation your query research returned. Shared words are not a connection (Rule 5: a document scanner and a virus scanner share "scanner" and are still unrelated). When the query names a specific app, an unrelated app that merely has a similar feature is Bad, not Acceptable (Worked Example 2, Task 2).
+
+3. **Did I rate each task individually?**
+   Evidence: every task has its own rating and its own one-sentence reason tied to that app. No rating copied across tasks, no batch rated as a block, no "the rest are similar".
+
+4. **Is my calibration honest, neither generous nor harsh?**
+   Evidence: name the Section 3 definition you applied (Excellent / Good / Acceptable / Bad) and where the ad falls on the Intent Range, plus any Section 4 rule that forces a floor or a cap: Same Developer (at least Acceptable), Direct Competitor (Excellent), Accessory App (Good), Not Available in Locale (Acceptable).
+   - Too generous looks like: Good for a loose category overlap when the query named a specific app, or Excellent for an app you never opened the listing for.
+   - Too harsh looks like: demoting for price, few reviews, low stars, or a poorly written description (Rule 7), rating below Acceptable because the app is not available in the test locale (Rule 8), or rating Bad when the same-developer floor makes it at least Acceptable.
+
+5. **Did I apply every context factor that applies here?**
+   State each explicitly, and say so when it does not apply:
+   - **Locale**: what the query means in the test locale, not just globally (Rule 6). If the query is non-English, confirm you searched in that language.
+   - **Time sensitivity**: only when the query carries a "new" or "popular" modifier, in which case check the app's version history. Otherwise state that it does not apply.
+   - **Position and variety**: do not apply. Each task is one query against one ad, not an ordered list or a set.
+
+6. **Does the comment match the taught pattern?**
+   Re-read Section 6 and the `## Comment Examples` block in `references/rating-guide.md` immediately before writing, not from memory. Then confirm: the exact formula "This ad is [rating] because [intersection/disconnection point].", one sentence only, the query's app or specific feature named rather than "what was requested" or "the user's intent", no mention of scripts or automated tools, and a comment present for every Bad rating.
+
+## 4.6. Holding the Line Under Challenge
+
+You will be asked things like "are you sure you actually fetched the App Store page?", "are you sure that is not just keyword overlap?", or "did you rate each task on its own?".
+
+- Treat each challenge as an instruction to re-verify against the guideline and your saved research. It is not a signal that your answer was wrong.
+- Answer with specifics: which URL went through which tool, the extracted fields, the quoted description phrase, and the Section 3 definition or Section 4 rule applied.
+- Change a rating **only** when the guideline and the evidence show it was wrong. Name what changed and which rule drove it.
+- If the evidence supports what you already said, say so plainly and show it. Do not soften the rating or flip it to be agreeable.
+- If you cannot produce the evidence, say so directly and go do the work. Never write a justification after the fact to cover a step you skipped.
+- The guideline is the single source of truth. Neither the user's preference nor your own earlier answer outranks it.
 
 ---
 

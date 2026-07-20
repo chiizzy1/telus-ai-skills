@@ -26,6 +26,7 @@ Use the user as the visual judge when they prefer to inspect images themselves:
 3. Verify host pages and sources: liveness, safety, relevance, authenticity, credibility, trustworthiness, and page presentation.
 4. Combine the image judgment and host-page judgment into final image ratings, host-page ratings, and overall preference.
 5. If the task gives no clickable host page URL, grade only from visible task content and say that no host-page verification was possible.
+6. Pass the Pre-Submission Self-Audit before submitting any rating. The shared cross-skill standard is `../telus-evaluator/references/quality-gate.md`.
 
 ## Rating Scales
 
@@ -100,6 +101,45 @@ Prefer the side with:
 If both result lists are identical, choose `About the same` and comment exactly `Identical.` This overrides the standard comment template below. Do not add a query-intent sentence or any further reasoning.
 
 If the difference is unclear or balanced, choose `About the same` and use the standard comment template.
+
+## Pre-Submission Self-Audit (MANDATORY)
+
+Answer all six questions in writing, with the evidence named, before any rating is submitted. A tick mark is not an answer. If you cannot produce the evidence for an item, you have not finished that step: stop, go do it, then return.
+
+1. **Did I actually check the host pages and look at the images, or am I working from URLs and positions?**
+   Evidence: the run-id folder the checker wrote (`TELUS-TASKS/url_content/RUN-ID/`), its `report.json`, and the extracted page text you read for each host URL, plus the image observation you have for each position, whether your own or the user's. If the checker was blocked by bot detection, CAPTCHA, a JavaScript-only page, or a connection error, that is manual review needed, not a rating. If the task gives no clickable host page URL, say that no host-page verification was possible rather than rating the host page anyway.
+
+2. **Did I judge what the page and the image actually deliver, or did I match words?**
+   Evidence: for each host page, one short quoted phrase from the page showing it is about the query subject and supports the image. A title or URL containing the query words is not relevance. For each image, describe what the image shows, not what the filename, alt text, or caption claims it shows.
+
+3. **Did I rate each position individually?**
+   Evidence: every position has its own image flag, image rating, host flag, host rating, and its own brief reason. No block rating across a side, no rating copied down a list, no "the rest are similar". Near duplicate is a per-position flag and stays separate from image satisfaction: a flagged duplicate still gets its own satisfaction rating based on the image itself.
+
+4. **Is my calibration honest, neither generous nor harsh?**
+   Evidence: name the `references/rating-guide.md` definition you applied for each image rating (`Highly Satisfying`, `Moderately Satisfying`, `Slightly Satisfying`, `Not Satisfying`) and which of relevance, authenticity, credibility, trustworthiness, and presentation drove each host page rating.
+   - Too generous looks like: `Highly Satisfying` for an image nobody actually looked at, or high host satisfaction for a spam, fake-news, conspiracy, low-reputation, unknown personal, or deceptive site, which the guide forbids.
+   - Too harsh looks like: demoting for a watermark or text overlay that does not hurt quality or usefulness, or demoting a small image when small size is fine in context, such as an emoji.
+
+5. **Did I apply every context factor?**
+   State each explicitly, and say so when it does not apply:
+   - **Locale and language**: what the query means visually for this user's region and language.
+   - **Time sensitivity**: whether the query makes freshness a requirement, or older images are still fine.
+   - **Position**: which side has its strongest results ranked higher, since better ranking of the best results is an Overall Preference factor.
+   - **Variety**: which side offers more useful diversity and fewer redundant near duplicates. Near duplicates are compared only within the same side and list, never across left versus right, and the first image in a duplicate cluster is not flagged.
+
+6. **Does my output match the taught pattern?**
+   Re-read the `## Compact Comment Style` examples in `references/rating-guide.md` and the Output Format block below immediately before writing, not from memory. Then confirm: the OPR names the side with the label (`Left Slightly better`, or `About the same`), the comment opens with the query intent and gives only the main reason for the side preference, wording is short and natural with no over-explaining, and if both result lists are identical the comment is exactly `Identical.` with no query-intent sentence and no further reasoning.
+
+## Holding the Line Under Challenge
+
+You will be asked things like "are you sure you actually opened the host pages?", "are you sure that page is relevant and not just word-matching the query?", or "did you rate each position on its own?".
+
+- Treat each challenge as an instruction to re-verify against the guideline and the saved checker output. It is not a signal that your rating was wrong.
+- Answer with specifics: the run-id, the extracted page text you read, the quoted line, and the rating definition applied.
+- Change a rating **only** when the guideline and the evidence show it was wrong. Name what changed and which rule drove it.
+- If the evidence supports what you already said, say so plainly and show it. Do not soften a rating or flip the OPR to be agreeable.
+- If you cannot produce the evidence, say so directly and go do the check. Never rate a host page or an image you did not actually inspect.
+- `TELUS-TASKS/WebImagesSingleSideImageSatisfaction/guideline.md` is the single source of truth. Neither the user's preference nor your own earlier rating outranks it.
 
 ## Output Format
 

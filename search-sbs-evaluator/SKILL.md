@@ -23,7 +23,8 @@ description: Strict Search SBS (Search Satisfaction) evaluator following Telus D
 7. Check the three flags (Section 2, Step 3). Any flag forces NS.
 8. Grade each result against the Grade Anchors (Section 2, Step 4), respecting the HS Disqualifiers.
 9. Decide OPR (Section 2, Step 5), then write the comment per `references/comment-style.md`.
-10. Build the full evaluation in a local scratch file, not in chat. Chat gets only: proof of execution, access note, grading cap check, compact grading table, OPR verdict, OPR comment.
+10. Pass the Pre-Submission Self-Audit (Phase 3.5) with evidence for all six questions. No grade goes to chat until it passes.
+11. Build the full evaluation in a local scratch file, not in chat. Chat gets only: proof of execution, access note, grading cap check, compact grading table, OPR verdict, OPR comment.
 
 ---
 
@@ -46,6 +47,8 @@ description: Strict Search SBS (Search Satisfaction) evaluator following Telus D
 9. **NEVER invent grading criteria.** Do not punish results for arbitrary reasons not in the guidelines (e.g., article word count, layout ugliness, or "too long"). If it satisfies the user's need according to the Grade Anchors, grade it accordingly.
 
 Before rating a live task, read `references/rating-details.md` for the full checklist, grade anchors, and common-mistake examples.
+
+The standard that applies to every TELUS task, not just this one, is `../telus-evaluator/references/quality-gate.md`.
 
 ---
 
@@ -116,12 +119,55 @@ The working file must contain, in order: the query text, Step 1 intent analysis 
 
 Before finalizing, verify every item on the Common Mistakes Checklist (Section 5). Mark each as checked inside the working file.
 
+### Phase 3.5: Pre-Submission Self-Audit (MANDATORY GATE)
+
+Answer all six questions **in writing, in the working file, with the evidence named**, before any grade reaches chat. A tick mark is not an answer. If you cannot produce the evidence for an item, you have not finished that step: stop, go do it, then return.
+
+Assume every one of these will be asked out loud. Passing this gate is what makes the answer defensible.
+
+1. **Did I actually run the checker, or am I working from titles and snippets?**
+   Evidence: the run-id folder path, plus the content filename behind *every* graded result. A result whose saved content you never opened cannot carry any grade except `Manual review needed`.
+
+2. **Did I judge meaning, or did I word-match?**
+   Evidence: for each result, one short quoted phrase (5-15 words) from the saved content showing what the page actually does for this user. A grep hit list is not evidence. If the only thing you can quote is the query terms appearing on the page, the result fails the Meaning-Match Gate (Section 0.5).
+
+3. **Did I grade each result individually?**
+   Evidence: every result has its own grade and its own reason. No grade copied across positions, no side graded as a block, no "the rest are similar".
+
+4. **Is my calibration honest, neither generous nor harsh?**
+   Evidence: name the Grade Anchor you applied for each grade, plus the HS Disqualifier check.
+   - Too generous looks like: SS for a page you could not verify, HS for a blog or advice result, S for a page that merely mentions the topic.
+   - Too harsh looks like: NS for a page that satisfies a valid minor interpretation, or downgrades for length, layout, or age that the guideline does not call for.
+
+5. **Did I apply every context factor?**
+   State each one explicitly, and say so when it does not apply:
+   - **Locale**: user location, language, and any locale intent inside the query itself.
+   - **Time sensitivity**: does the query date make freshness a requirement, or is an older page still fine?
+   - **Position**: which side has its helpful results closer to the top (a difference at position 1 outweighs one at position 4).
+   - **Variety**: which side offers more useful diversity of sources, result types, and interpretations.
+
+6. **Does the OPR comment match the taught pattern?**
+   Re-read the examples in `references/comment-style.md` immediately before writing the comment, not from memory. Then confirm: opens with the exact phrase "The query intent is...", 2-3 sentences and at least 20 words, intent in plain English, both sides acknowledged, shared-result count stated when results overlap, no em dashes, no AI filler, no named sources, no mention of scripts or status codes, American punctuation.
+
+### Holding the Line Under Challenge
+
+You will be asked things like "are you sure you actually used the script?", "are you sure you are not just word matching?", or "did you really grade each result individually?".
+
+Treat each challenge as an instruction to re-run this audit against the guideline and the saved evidence. It is not a signal that your answer was wrong.
+
+- Re-open the saved content and the guideline, then answer with specifics: run-id, filename, quoted line, anchor applied.
+- Change a grade **only** when the guideline and the evidence show it was wrong. Name what changed and which rule drove it.
+- If the evidence supports what you already said, say so plainly and show the evidence. Do not soften it, hedge it, or flip a grade to be accommodating.
+- If you cannot produce the evidence, say that directly and go do the work. Never write a justification after the fact to cover a step you skipped.
+- The guideline is the single source of truth. Neither the user's preference nor your own earlier answer outranks it.
+
 ### Phase 4: Chat Output (THE ONLY THING THE USER SEES)
 
 In chat, present ONLY these items:
 
 **1. Proof of Execution:**
-List the actual verification actions you performed: which URLs went through `TELUS-TASKS/scripts/check_urls.py`, and what you searched to determine query intent. Do not print a checkbox you did not earn.
+Name the run-id folder the checker wrote, how many unique URLs went through it, and what you searched to determine query intent. Any result you graded without opening its saved content must be listed here as `Manual review needed`. Do not print a checkbox you did not earn.
+> **Proof of Execution:** Checker run `RUN-ID` covering N unique URLs; content read from `TELUS-TASKS/url_content/RUN-ID/`. Intent confirmed via Google and Bing for the query text.
 
 **2. Access Note (ALWAYS REQUIRED):**
 If all links are fully accessible, explicitly state: "All links were successfully checked and are fully accessible." If any links fail or need manual review, name those result labels and indicate their status (e.g., CU, `Manual review needed`).

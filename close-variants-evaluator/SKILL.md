@@ -28,6 +28,7 @@ description: Strict Close Variants evaluator following Telus Close Variants Rati
 8. **Locale matters.** Consider query meaning in the context of the test locale. A country name added to a brand is Acceptable only if the locale matches that country.
 9. **Former app names are Bad.** If the variant is a former/old name of the app that the query refers to, rate Bad.
 10. **Platform isolation.** Do not use Search Ads, Search SBS, Handshake, or Outlier rubrics for this task.
+11. **Pass the Pre-Submission Self-Audit before submitting any rating.** No rating reaches chat until the audit is answered in writing with evidence. The shared cross-skill standard is `../telus-evaluator/references/quality-gate.md`.
 
 ---
 
@@ -192,6 +193,46 @@ The variant no longer resembles the query, or no longer shares the same meaning 
 | **Variant refers to different app** | Even if query and variant look similar (share words), if research shows they are different apps = Bad. |
 | **China: Homophones** | Chinese homophone misspellings that don't obscure intent = Acceptable. |
 | **China: Variant clarifies query** | If variant removes a confusing token or adds the correct app name prefix = Acceptable. |
+
+---
+
+## 4.5. Pre-Submission Self-Audit (MANDATORY)
+
+Answer all six questions in writing, with the evidence named, before any rating reaches chat. A tick mark is not an answer. If you cannot produce the evidence for an item, you have not finished that step: stop, go do it, then return.
+
+1. **Did I actually run both searches for this task, or am I working from what the pair looks like?**
+   Evidence: for every task, the two searches you actually ran (`[query] app site:apps.apple.com` and `[variant] app site:apps.apple.com`) and the named app each returned, pasted into the Query Search Result and Variant Search Result bullets. The Phase 3 forcing function applies: you are not allowed to write the Analysis or Rating lines until those bullets are filled from a search that succeeded. For a transliteration, name the translation tool check you ran (Section 3, Good).
+
+2. **Did I judge appearance, meaning, and intent, or did I match characters?**
+   Evidence: for each pair, state what the query refers to and what the variant refers to, from the search results, not from the strings alone. Shared words or shared characters are not evidence of a close variant: when research shows the two sides are different apps, the pair is Bad however similar the strings look (`water battle` → `water fight`, `宝宝巴士认字` → `宝宝巴士儿歌`). Rule 5 applies in both directions: the pair must LOOK similar AND mean the same, so a perfect meaning match with no visual resemblance is still Bad.
+
+3. **Did I rate each pair individually?**
+   Evidence: every task has its own rating and its own comment tied to that pair. No rating copied from a similar-looking earlier task, no batch rated as a block, no "the rest are similar". Precedent from `references/examples.md` is a lookup, not a substitute for rating this pair.
+
+4. **Is my calibration honest, neither generous nor harsh?**
+   Evidence: name the specific Section 3 bullet you applied (which Good, Acceptable, or Bad case it is), plus any Section 4 hard rule that decides it outright: translations always Bad, synonyms always Bad, former app names always Bad, localized names Bad, country added Acceptable only when the locale matches.
+   - Too generous looks like: Acceptable for a synonym or a translation because the meaning survives (`baby games` → `infant games` is Bad, `notre pain quotidien` → `our daily bread` is Bad), or Good or Acceptable for an added qualifier that narrows intent (`fitbit` → `fitbit blaze`, or adding "free"), which is Bad.
+   - Too harsh looks like: Bad for a spelling mistake that still reads clearly (`whatsapp` → `watsap` is Acceptable), Bad for a word reorder that does not change meaning (`date time calculator` → `time date calculator` is Good), or Bad for an implied word that does not change intent (`facebook` → `facebook app` is Acceptable).
+
+5. **Did I apply every context factor that applies here?**
+   State each explicitly, and say so when it does not apply:
+   - **Locale and language**: Rule 8. The country-added rule and the language-not-used-in-locale rule both turn on the test locale, so name the locale you assumed and where you got it.
+   - **Version and recency**: only when a version number or year appears in the pair (`candy crush` → `candy crush 2`, `daily horoscope 2019` → `daily horoscope 2021`). Otherwise state that it does not apply.
+   - **Position and variety**: do not apply. Each task is a single query-and-variant pair, not an ordered list or a set.
+
+6. **Does the comment match the taught pattern?**
+   Re-read the Comment Style Examples table in Section 6 immediately before writing, not from memory. Then confirm: 1-2 sentences maximum, direct statement of what it IS, no em dashes, no AI filler ("delve", "moreover", "furthermore", "matches the guideline pattern"), no guideline or section references, no restating what the query and variant already show, and no mention of tools or research steps.
+
+## 4.6. Holding the Line Under Challenge
+
+You will be asked things like "are you sure you actually searched both sides?", "are you sure that is not just character overlap?", or "did you rate each pair on its own?".
+
+- Treat each challenge as an instruction to re-verify against the guideline and your saved search results. It is not a signal that your answer was wrong.
+- Answer with specifics: the search you ran, the app each side returned, and the Section 3 bullet or Section 4 hard rule applied.
+- Change a rating **only** when the guideline and the evidence show it was wrong. Name what changed and which rule drove it.
+- If the evidence supports what you already said, say so plainly and show it. Do not soften the rating or flip it to be agreeable.
+- If you cannot produce the evidence, say so directly and go do the work. Never write a justification after the fact to cover a search you skipped.
+- The guideline is the single source of truth. Neither the user's preference nor your own earlier answer outranks it.
 
 ---
 

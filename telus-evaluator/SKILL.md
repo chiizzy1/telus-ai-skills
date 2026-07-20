@@ -18,6 +18,19 @@ Use TELUS rules only for TELUS tasks. Keep TELUS separate from Handshake, Outlie
 
 Before routing a task, read `references/task-router.md`.
 
+## Quality Gate (applies to every TELUS task)
+
+`references/quality-gate.md` is mandatory for all TELUS work, whichever task skill you route to. Read it before submitting any rating. In short:
+
+1. The guideline is the single source of truth, above instinct, prior answers, and what the user seems to want.
+2. Never claim a check you did not run. Say plainly what was skipped or blocked.
+3. Judge meaning, not word overlap. Text search locates content; it never justifies a rating by itself.
+4. Rate every item individually, with its own reason and its own evidence.
+5. Calibrate honestly, neither generous nor harsh, and name the rule behind each rating.
+6. Apply locale, time sensitivity, position, and variety wherever the task type allows, and say so when one does not apply.
+7. Re-read the skill's output examples before writing a comment, and match the pattern they teach.
+8. When challenged, re-verify against the guideline and answer with evidence. Change a rating only if the guideline supports it, never to be agreeable.
+
 ## Source Hierarchy
 
 1. The current TELUS task UI and matching official TELUS guideline/PDF.

@@ -28,6 +28,7 @@ Read `references/rubric.md` when doing an actual rating or when unsure about a r
 7. If it passes, evaluate all response options as replies to the final message only.
 8. Choose the best response that is natural, context-aware, from the correct speaker's perspective, and free of rejection issues.
 9. Answer the multiple-choice question using only the original transcript, not the selected response. Read the question wording exactly.
+10. Pass the Pre-Submission Self-Audit before submitting any rating. The shared cross-skill standard is `../telus-evaluator/references/quality-gate.md`.
 
 ## Transcript Summary
 
@@ -63,6 +64,44 @@ Only select a response if the transcript passes. Pick the option that replies to
 ## Multiple-Choice Question
 
 Answer from the original transcript only, never from the response you selected, and read the question wording literally. Question-by-question handling and the `Both` / `None of them` cases: `references/rubric.md` (`## Multiple-Choice Rule`).
+
+## Pre-Submission Self-Audit (MANDATORY)
+
+Answer all six questions in writing, with the evidence named, before any decision is submitted. A tick mark is not an answer. If you cannot produce the evidence for an item, you have not finished that step: stop, go do it, then return.
+
+1. **Did I actually read the whole transcript, or am I working from the first few lines?**
+   Evidence: the two exact speaker labels listed before grading, the count of messages, and the final message quoted. The 3-step Hard check in `references/rubric.md` (`### Includes Name Of Participant`) must be run against those exact labels, not from memory of the names. If you have not read every message, you cannot make a Pass or Reject call yet.
+
+2. **Did I read the lines in context, or did I pattern-match on a word?**
+   Evidence: for every rejection reason you select, the exact word or phrase quoted from the transcript, read in its sentence. A doubled word is not automatically Unnecessary Repetition (`I know that that is not true` passes, `going to to Iceland` rejects). A shared ending word is not a rhyme; the rhyming words must be different and must end consecutive messages. If the only thing you can point to is that something looked odd, that is not evidence.
+
+3. **Did I check every rejection reason on its own?**
+   Evidence: all eight reasons named, each with its own verdict and its own evidence or an explicit "checked, none found". No block clearing, no "the rest are fine". The response selection and the MCQ each get their own reasoning, and the MCQ is answered from the original transcript only.
+
+4. **Is my calibration honest, neither generous nor harsh?**
+   Evidence: for each selected reason, name the `references/rubric.md` definition you applied.
+   - Too generous looks like: passing a transcript that contains a real American-English spelling mistake because the intent was clear, or passing an in-person cue such as "Did you get your hair cut? It looks great!" which is a Conversation Could Not Happen Over Text reject.
+   - Too harsh looks like: rejecting because one person sent two messages in a row (explicitly not a rejection reason), rejecting sensible repetition (`When I last saw it, it was...`), rejecting on punctuation or grammar when the rule is to rate spelling only, or rejecting for naming a third person who is not in the conversation.
+
+5. **Did I apply every context factor that applies here?**
+   State each explicitly, and say so when it does not apply:
+   - **Language standard**: spelling and offensive language are judged in American English (`### Spelling Mistake`, `### Offensive Language`).
+   - **The text medium**: the participants cannot see, hear, touch, hand objects to, or observe each other unless the text says a photo, audio, or video was shared.
+   - **Time sensitivity, position, and variety**: do not apply. This task judges one transcript against fixed reasons, not dated or ordered results.
+
+6. **Does my output match the taught pattern?**
+   Re-read the `## Summary Rules` examples in `references/rubric.md` and the Output Format block below immediately before writing, not from memory. Then confirm: the summary is 30 words or fewer with the count actually counted, it uses plain language and the natural two-person style where it fits (`[Name A] and [Name B] are talking about [topic]...`), and every traceable rejection reason is written in the taught form, such as `Spelling Mistake - "bannana" should be "banana".`
+
+## Holding the Line Under Challenge
+
+You will be asked things like "are you sure you read every message?", "are you sure that word is actually misspelled?", or "did you check all eight reasons?".
+
+- Treat each challenge as an instruction to re-verify against the rubric and the transcript. It is not a signal that your answer was wrong.
+- Answer with specifics: the speaker labels, the quoted line, and the rubric definition applied.
+- Change a Pass/Reject call, a reason, a response choice, or an MCQ answer **only** when the rubric and the transcript show it was wrong. Name what changed and which rule drove it.
+- If the transcript supports what you already said, say so plainly and quote it. Do not soften the call or add a reason you cannot evidence just to look thorough.
+- If you cannot produce the quote, say so directly and go re-read the transcript. Never write a justification after the fact.
+- The rubric and the source PDF are the single source of truth. Neither the user's preference nor your own earlier answer outranks them.
 
 ## Output Format
 
