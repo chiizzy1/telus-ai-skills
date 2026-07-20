@@ -15,7 +15,7 @@ description: Strict Search SBS (Search Satisfaction) evaluator following Telus D
 ## Quick Contract
 
 1. Read `TELUS-TASKS/task.md` in full with your file-reading tool. Never work from the chat snippet alone.
-2. Run `TELUS-TASKS/scripts/check_urls_improved.py` on every unique URL from both sides.
+2. Run `TELUS-TASKS/scripts/check_urls.py` on every unique URL from both sides.
 3. Research the query with your web-search tool and review the Google and Bing SERP links the script prints.
 4. Locate query terms inside the saved content files, then read the surrounding paragraphs before judging anything.
 5. Separate `Manual review needed` (checker could not verify) from Content Unavailable (confirmed inaccessible).
@@ -72,9 +72,9 @@ Run these THREE actions IN PARALLEL immediately when a new task arrives:
 
 0. **Read `task.md` directly**: ALWAYS use your file-reading tool to open and read the local `TELUS-TASKS/task.md` file to see the full list of URLs and the query. NEVER rely on the chat prompt snippet, as it may be truncated and hide results (like R6-R10).
 
-1. **Run `check_urls_improved.py`** — Pass ALL unique URLs from both sides:
+1. **Run `check_urls.py`** — Pass ALL unique URLs from both sides:
    ```bash
-   python3 TELUS-TASKS/scripts/check_urls_improved.py --query "<query>" <all unique result URLs>
+   python3 TELUS-TASKS/scripts/check_urls.py --query "<query>" <all unique result URLs>
    ```
    The script does three things per URL: liveness status, content preview, and full content saved to `TELUS-TASKS/url_content/<run-id>/` (with a `report.json` in the same folder).
 
@@ -119,7 +119,7 @@ Before finalizing, verify every item on the Common Mistakes Checklist (Section 5
 In chat, present ONLY these items:
 
 **1. Proof of Execution:**
-List the actual verification actions you performed: which URLs went through `TELUS-TASKS/scripts/check_urls_improved.py`, and what you searched to determine query intent. Do not print a checkbox you did not earn.
+List the actual verification actions you performed: which URLs went through `TELUS-TASKS/scripts/check_urls.py`, and what you searched to determine query intent. Do not print a checkbox you did not earn.
 
 **2. Access Note (ALWAYS REQUIRED):**
 If all links are fully accessible, explicitly state: "All links were successfully checked and are fully accessible." If any links fail or need manual review, name those result labels and indicate their status (e.g., CU, `Manual review needed`).
@@ -307,7 +307,7 @@ Run through this EVERY time before finalizing grades:
 - [ ] Did I research on Google AND Bing? (Never skip)
 - [ ] Did I verify the dominant interpretation, not assume?
 - [ ] **CRITICAL: Did I read the actual paragraphs to confirm it answers the underlying intent, rather than just matching words from the query using a script?**
-- [ ] Did I review the content summaries from `check_urls_improved.py` for all accessible pages?
+- [ ] Did I review the content summaries from `check_urls.py` for all accessible pages?
 - [ ] Did I search the extracted content files for query-relevant terms?
 - [ ] Did I cross-reference task snippets against actual page content?
 - [ ] Any checker/manual-review issue was called out in an Access note before the rating table, with affected result labels named?

@@ -75,7 +75,7 @@ Prefer:
 
 Also consider ranking, diversity, duplicates, freshness for time-sensitive queries, and fewer unsafe/did-not-load results.
 
-Choose `About the Same` if the sides are identical, balanced, or the difference is not clear. If identical, comment exactly: `Identical.`
+Choose `About the same` if the sides are identical, balanced, or the difference is not clear. If identical, comment exactly: `Identical.`
 
 ## Compact Comment Style
 

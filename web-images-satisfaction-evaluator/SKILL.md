@@ -57,15 +57,23 @@ Host page satisfaction:
 
 Overall preference (OPR):
 
-The guideline specifies 7 options. Use the exact labels shown by the task UI; the standard set is:
+The UI groups the options by side. `About the same` appears in both groups and means the same thing either way.
 
-- `Left Much Better`
-- `Left Better`
-- `Left Slightly Better`
-- `About the Same`
-- `Right Slightly Better`
-- `Right Better`
-- `Right Much Better`
+LEFT:
+
+- `Much Better`
+- `Better`
+- `Slightly better`
+- `About the same`
+
+RIGHT:
+
+- `Slightly better`
+- `Better`
+- `Much Better`
+- `About the same`
+
+State the side with the label when you report the rating, for example `Left Slightly better` or `About the same`.
 
 Never import the Search SBS scale or its `HS/S/SS/NS` grades into this task.
 
@@ -74,7 +82,7 @@ Never import the Search SBS scale or its `HS/S/SS/NS` grades into this task.
 For every host page URL, verify the exact page when possible. Use the repo checker when useful:
 
 ```bash
-python3 TELUS-TASKS/scripts/check_urls_improved.py --query "<image query>" --run-id "<run-id>" <host URLs>
+python3 TELUS-TASKS/scripts/check_urls.py --query "<image query>" --run-id "<run-id>" <host URLs>
 ```
 
 The script writes its report to `TELUS-TASKS/url_content/<run-id>/report.json`, alongside the extracted page text for each URL. Inspect both. If the checker fails because of bot-blocking, CAPTCHA, JavaScript-only pages, or connection issues, treat it as manual-review needed, not an automatic grade. If normal/manual access confirms the host page does not load, flag `Did not load`.
@@ -89,9 +97,9 @@ Prefer the side with:
 4. More useful diversity and fewer redundant near duplicates.
 5. Fewer `Did not load` or `Unsafe` results.
 
-If both result lists are identical, choose `About the Same` and comment exactly `Identical.` This overrides the standard comment template below. Do not add a query-intent sentence or any further reasoning.
+If both result lists are identical, choose `About the same` and comment exactly `Identical.` This overrides the standard comment template below. Do not add a query-intent sentence or any further reasoning.
 
-If the difference is unclear or balanced, choose `About the Same` and use the standard comment template.
+If the difference is unclear or balanced, choose `About the same` and use the standard comment template.
 
 ## Output Format
 
@@ -102,7 +110,7 @@ Keep output compact unless the user asks for detailed reasoning:
 |---|---:|---|---|---|---|---|
 | L | 1 | None | Highly | None | Moderately | Clear image; host page is relevant but not official. |
 
-OPR: Left Slightly Better
+OPR: Left Slightly better
 
 The query intent is to find images of ... The left side is slightly better because ...
 ```

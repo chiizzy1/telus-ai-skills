@@ -74,7 +74,7 @@ For EACH task, do the following:
 - Identify the **dominant interpretation** from the search results.
 
 **Step 1b — Research the advertised app (Parallel Double-Verification):**
-- **Mandatory cross-check**: You must fetch the App Store page using BOTH your URL-fetch/page-reading tool AND the custom Python script (`TELUS-TASKS/scripts/check_urls_improved.py`) in parallel.
+- **Mandatory cross-check**: You must fetch the App Store page using BOTH your URL-fetch/page-reading tool AND the custom Python script (`TELUS-TASKS/scripts/check_urls.py`) in parallel.
 - Compare the text extracted by both methods. Use this to catch hallucinations, discrepancies, or scraper failures.
 - Once verified across both sources, extract: **App Name**, **Developer**, **Category**, **Rating (stars)**, **Review Count**.
 - Understand what the app actually does from its description.
@@ -88,7 +88,7 @@ After ALL research is complete, present your proof of execution followed by a su
 
 **Proof of Execution:**
 
-List the actual verification actions you performed (tool calls/scripts run). Do not print a checkbox you did not earn. Cover, at minimum: which URLs went through `TELUS-TASKS/scripts/check_urls_improved.py`, which went through your URL-fetch tool, and whether the two sources agreed.
+List the actual verification actions you performed (tool calls/scripts run). Do not print a checkbox you did not earn. Cover, at minimum: which URLs went through `TELUS-TASKS/scripts/check_urls.py`, which went through your URL-fetch tool, and whether the two sources agreed.
 
 ```
 | # | App | Developer | Category |
