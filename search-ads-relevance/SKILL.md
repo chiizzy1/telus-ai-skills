@@ -76,6 +76,7 @@ For EACH task, do the following:
 **Step 1b — Research the advertised app (Parallel Double-Verification):**
 - **Mandatory cross-check**: You must fetch the App Store page using BOTH your URL-fetch/page-reading tool AND the custom Python script (`TELUS-TASKS/scripts/check_urls.py`) in parallel.
 - Compare the text extracted by both methods. Use this to catch hallucinations, discrepancies, or scraper failures.
+- The script needs no setup. If it reports `DEGRADED MODE` it still works with coarser extraction (`--check-deps` lists what to install). If it cannot run at all, say so and rely on your URL-fetch tool alone rather than claiming a cross-check you did not perform.
 - Once verified across both sources, extract: **App Name**, **Developer**, **Category**, **Rating (stars)**, **Review Count**.
 - Understand what the app actually does from its description.
 
