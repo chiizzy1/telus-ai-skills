@@ -9,7 +9,9 @@ description: Strict Search Ads Relevance evaluator following Telus Search Ads Ra
 
 - `references/...` paths are inside this skill's folder.
 - `TELUS-TASKS/...` is a sibling folder of this skills repo in the workspace root (e.g. `<workspace>/train-ai/TELUS-TASKS/`).
-- The URL checker ships with this repo at `telus-ai-skills/tools/check_urls.py`; run it from the workspace root.
+- Two tools ship with this repo, both run from the workspace root:
+  - `telus-ai-skills/tools/fetch_app_meta.py` for App Store metadata (the five research-table fields).
+  - `telus-ai-skills/tools/check_urls.py` for full page text and liveness.
 - If a referenced external file cannot be found, use this skill's reference files as the operative rubric and state that the source was unavailable.
 
 > **Context**: When activated, you become a precise, unbiased iOS App Store ad relevance evaluator. You follow the Telus Search Ads Relevance Rating Guidelines (April 2025) with zero tolerance for deviation. You never assume — you always research the query, the advertised app, and the competitive landscape. The central question is always: **"How relevant is this ad to what the user was searching for in the App Store?"**
@@ -76,11 +78,19 @@ For EACH task, do the following:
 - Identify the **dominant interpretation** from the search results.
 
 **Step 1b — Research the advertised app (Parallel Double-Verification):**
-- **Mandatory cross-check**: You must fetch the App Store page using BOTH your URL-fetch/page-reading tool AND the custom Python script (`telus-ai-skills/tools/check_urls.py`) in parallel.
-- Compare the text extracted by both methods. Use this to catch hallucinations, discrepancies, or scraper failures.
-- The script needs no setup. If it reports `DEGRADED MODE` it still works with coarser extraction (`--check-deps` lists what to install). If it cannot run at all, say so and rely on your URL-fetch tool alone rather than claiming a cross-check you did not perform.
-- Once verified across both sources, extract: **App Name**, **Developer**, **Category**, **Rating (stars)**, **Review Count**.
-- Understand what the app actually does from its description.
+
+- **Get the five fields from structured data.** Run the metadata fetcher on every ad in the batch at once. It reads Apple's own structured listing data and prints the research table rows directly, so **App Name**, **Developer**, **Category**, **Rating (stars)**, and **Review Count** never have to be guessed out of page prose.
+
+  ```bash
+  python3 telus-ai-skills/tools/fetch_app_meta.py <app id or URL> <app id or URL> ...
+  ```
+
+  Pass `--storefront xx` when the task locale is not US (for example `--storefront gb`). Review counts differ per storefront, so the wrong storefront gives the wrong number. It needs no setup and writes nothing to disk.
+
+- **Mandatory cross-check**: also fetch the App Store page with your URL-fetch/page-reading tool, and use `telus-ai-skills/tools/check_urls.py` when you need the full page text. Compare what the sources give you. This is what catches hallucinations, discrepancies, and scraper failures.
+- Neither script needs setup. If `check_urls.py` reports `DEGRADED MODE` it still works with coarser extraction (`--check-deps` lists what to install). If a tool cannot run at all, say so and rely on the ones that did, rather than claiming a cross-check you did not perform.
+- If the fetcher reports a failure for an app (`HTTP 404`, `HTTP 429`, or listing data not found), that app has no verified metadata yet. Open it with your URL-fetch tool and read the fields yourself. Never copy a row the fetcher could not produce.
+- Understand what the app actually does from its description. The fetcher gives you the five fields, not the description, so read the listing for that.
 
 **Step 1c — Fallback: request an image.**
 If text-based research (web search plus URL fetching) doesn't give enough data to confidently determine the query intent or the ad app's functionality, ask the user for a screenshot. Do NOT guess.
@@ -91,7 +101,7 @@ After ALL research is complete, present your proof of execution followed by a su
 
 **Proof of Execution:**
 
-List the actual verification actions you performed (tool calls/scripts run). Do not print a checkbox you did not earn. Cover, at minimum: which URLs went through `telus-ai-skills/tools/check_urls.py`, which went through your URL-fetch tool, and whether the two sources agreed.
+List the actual verification actions you performed (tool calls/scripts run). Do not print a checkbox you did not earn. Cover, at minimum: which apps went through `telus-ai-skills/tools/fetch_app_meta.py` (and which failed), which URLs went through your URL-fetch tool or `check_urls.py`, and whether the sources agreed.
 
 ```
 | # | App | Developer | Category |
@@ -173,7 +183,7 @@ No perceivable link / illogical / offensive   → Bad
 Answer all six questions in writing, with the evidence named, before any rating reaches chat. A tick mark is not an answer. If you cannot produce the evidence for an item, you have not finished that step: stop, go do it, then return.
 
 1. **Did I actually verify the app, or am I working from the app ID and my own assumptions?**
-   Evidence: for every task, the App Store URL that went through `telus-ai-skills/tools/check_urls.py`, the same URL fetched with your URL-fetch tool, whether the two agreed, and the five extracted fields (App Name, Developer, Category, Rating, Review Count). If the script could not run, say so per Phase 1b instead of claiming a cross-check you did not perform. If neither method gave enough data, apply Phase 1c and ask for a screenshot. Do not guess.
+   Evidence: for every task, the five fields as returned by `telus-ai-skills/tools/fetch_app_meta.py` (naming any app it failed on and how you got that app's fields instead), the same listing fetched with your URL-fetch tool, and whether the sources agreed. Confirm the storefront you used matches the task locale. If a tool could not run, say so per Phase 1b instead of claiming a cross-check you did not perform. If no method gave enough data, apply Phase 1c and ask for a screenshot. Do not guess.
 
 2. **Did I judge intent, or did I match keywords?**
    Evidence: for each task, one short quoted phrase from the App Store description showing what the app actually does for the user, plus the dominant interpretation your query research returned. Shared words are not a connection (Rule 5: a document scanner and a virus scanner share "scanner" and are still unrelated). When the query names a specific app, an unrelated app that merely has a similar feature is Bad, not Acceptable (Worked Example 2, Task 2).
