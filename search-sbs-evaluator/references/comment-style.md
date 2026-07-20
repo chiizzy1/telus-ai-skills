@@ -7,7 +7,7 @@ Use with `../SKILL.md`. This file is the authoritative source for how the submis
 
 ## Golden Rule: Brief, Precise, Human
 
-- **2-3 sentences is the target.** That's it. Don't write a paragraph when a sentence will do.
+- **1-3 sentences.** That's it. Don't write a paragraph when a sentence will do, and don't pad a clear call into three sentences just to fill the range.
 - **Write like a human.** Flow naturally. No robotic structure. Avoid highly formulaic or repetitive templates (e.g., "The left side fails to X and only provides Y, while the right side successfully Z, making it better despite W"). Instead, use conversational but professional phrasing (e.g., "The right side is better because it recognizes the misspelling..., while the left side completely misses the mark by...").
 - **Do not add unnecessary details.** For example, if a query is a misspelling, you don't need to explain the mechanics of voice-dictation errors. Just state the likely intent.
   - **BAD:** *"The query contains voice-dictation errors for 'Olipop' and 'Poppi' sodas, and the intent is to compare their sugar content. The right side is better because it is fully accessible and features a highly authoritative article that explicitly answers the question by directly comparing the sugar grams of both brands. In contrast, the left side is heavily weighed down by three inaccessible results that require manual review, making it a much poorer experience."*
@@ -28,7 +28,12 @@ Use with `../SKILL.md`. This file is the authoritative source for how the submis
 
 1. **State the intent** in one clause using plain English. You MUST ALWAYS start the entire comment with the exact phrase "The query intent is..." — no exceptions.
 2. **Acknowledge both sides** — recognize overall quality before differentiating.
-3. **State the OPR and why** in one or two sentences.
+3. **State the OPR and why.**
+
+These are the beats the comment must hit, not a sentence count. Combine them freely: when the call is simple, all three fit in one natural sentence, and that is better than stretching it. Use the second and third sentence only when the difference genuinely needs them.
+
+- **One sentence:** *"The query intent is to find the official Nike store, and the right side is better because it leads with the official site while the left side only offers resellers."*
+- **Two sentences:** *"The query intent is to compare 'Olipop' and 'Poppi' sodas sugar content. The right side is better because it features an authoritative article that directly compares both brands, while the left side is bogged down by inaccessible results."*
 
 ## Required Shared-Result Check
 
@@ -45,11 +50,13 @@ If the two sides simply have identical URLs but they are NOT explicitly grouped 
 - "Both sides have two similar results, but..."
 
 ## OPR Comment Structure
-Every OPR comment must follow this exact 4-part structure:
+Every OPR comment covers these parts, in this order:
 1. **State the query intent** ("The query intent is to...").
-2. **Acknowledge shared results accurately** (e.g., "Both sides share two results").
+2. **Acknowledge shared results accurately** (e.g., "Both sides share two results") — only when the sides actually share results.
 3. **State which side is better** ("but the [left/right] side is [rating]").
 4. **State exactly why the better side is better** ("because...").
+
+Parts, not sentences. Parts 2 through 4 usually read best as a single sentence, and with no shared results the whole comment can be one.
 
 Example pattern:
 > `The query intent is to [plain user need]. Both sides share [number] results, but the [left/right] side is [rating] because [exact reason why it is better].`

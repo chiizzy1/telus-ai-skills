@@ -150,7 +150,7 @@ Assume every one of these will be asked out loud. Passing this gate is what make
    - **Variety**: which side offers more useful diversity of sources, result types, and interpretations.
 
 6. **Does the OPR comment match the taught pattern?**
-   Re-read the examples in `references/comment-style.md` immediately before writing the comment, not from memory. Then confirm: opens with the exact phrase "The query intent is...", 2-3 sentences and at least 20 words, intent in plain English, both sides acknowledged, shared-result count stated when results overlap, no em dashes, no AI filler, no named sources, no mention of scripts or status codes, American punctuation.
+   Re-read the examples in `references/comment-style.md` immediately before writing the comment, not from memory. Then confirm: opens with the exact phrase "The query intent is...", 1-3 sentences, aiming for at least 20 words, intent in plain English, both sides acknowledged, shared-result count stated when results overlap, no em dashes, no AI filler, no named sources, no mention of scripts or status codes, American punctuation.
 
 ### Holding the Line Under Challenge
 
@@ -221,7 +221,7 @@ Keep "Brief Reason" to 5-10 words. Use `Manual review needed` in the Grade cell 
 Deciding factors, in order applied: grades, then position, then variety.
 
 ### 8. OPR Comment (submission-ready)
-> The query intent is ... [2-3 sentences, at least 20 words, per `references/comment-style.md`]
+> The query intent is ... [1-3 sentences, concise and natural, per `references/comment-style.md`]
 
 ### 9. Verification Summary
 - **Self-audit:** all six questions passed (note any that needed rework)
@@ -367,7 +367,7 @@ Read `references/comment-style.md` before writing any OPR comment. It is the aut
 
 Non-negotiable essentials:
 
-- Target 2-3 sentences, at least 20 words. Always open with the exact phrase "The query intent is...".
+- 1-3 sentences, aiming for at least 20 words. Always open with the exact phrase "The query intent is...".
 - State the intent in plain English, acknowledge both sides, then state the OPR and why.
 - If both sides share meaningful results, say so first, with the exact number shared.
 - No em dashes, no AI filler, no named sources, no mention of scripts, tools, status codes, or automation.

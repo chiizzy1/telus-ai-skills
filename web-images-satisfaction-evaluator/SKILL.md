@@ -130,7 +130,7 @@ Answer all six questions in writing, with the evidence named, before any rating 
    - **Variety**: which side offers more useful diversity and fewer redundant near duplicates. Near duplicates are compared only within the same side and list, never across left versus right, and the first image in a duplicate cluster is not flagged.
 
 6. **Does my output match the taught pattern?**
-   Re-read the `## Compact Comment Style` examples in `references/rating-guide.md` and the Output Format block below immediately before writing, not from memory. Then confirm: the OPR names the side with the label (`Left Slightly better`, or `About the same`), the comment opens with the query intent and gives only the main reason for the side preference, wording is short and natural with no over-explaining, and if both result lists are identical the comment is exactly `Identical.` with no query-intent sentence and no further reasoning.
+   Re-read the `## Compact Comment Style` examples in `references/rating-guide.md` and the Output Format block below immediately before writing, not from memory. Then confirm: the OPR names the side with the label (`Left Slightly better`, or `About the same`), the comment is 1-3 sentences, opens with the query intent, and gives only the main reason for the side preference, wording short and natural with no over-explaining, and if both result lists are identical the comment is exactly `Identical.` with no query-intent sentence and no further reasoning.
 
 ## Holding the Line Under Challenge
 
@@ -179,6 +179,8 @@ Use `Near duplicate` only within the same side's list, and never flag the first 
 
 ### 6. OPR Comment (submission-ready)
 > The query intent is to find images of ... The left side is slightly better because ...
+
+1-3 sentences, concise and natural. One sentence is fine when the difference is simple.
 ````
 
 Use short, natural comments. Do not over-explain. Mention only the main reason for the side preference. If both result lists are identical, Section 6 is exactly `Identical.` with no query-intent sentence.
