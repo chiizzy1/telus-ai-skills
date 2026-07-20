@@ -36,6 +36,7 @@ Content Unavailable:
 
 - Confirmed normal-user inaccessibility: blank page, parked domain, 404, 410, removed content, country unavailable page, or anything else where the content has been removed or is inaccessible after refreshing twice.
 - Browser privacy/security warning for the exact result URL, including a `Not Secure` warning or label in the browser address/search bar. If the warning remains after normal refresh/checking, flag Content Unavailable and grade NS. Do not fix the task result by substituting a different official-looking URL.
+  - The checker reports two different signals here. `security_warning_detected` means it hit a real certificate or TLS failure and is a strong CU signal. `insecure_http` only means the result URL is plain `http://`, so a browser will label it `Not Secure`; open it yourself and confirm that label before flagging CU on that basis alone.
 - Log-in/password/subscription wall that blocks useful content for some users after trying to close or bypass it. Exception: for navigational queries such as `go to facebook.com`, if the result is the exact requested website, do not flag CU just because log-in is required; grade the navigational match.
 - Banner or pop-up indicating a limit on number of visits, even if the limit has not yet been reached.
 - Required result context missing, such as a Maps card with no distance.
