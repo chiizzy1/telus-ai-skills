@@ -1,0 +1,27 @@
+# Dependencies for check_urls.py
+#
+# The script runs without any of these (it falls back to the standard library),
+# but extraction quality is much better with them installed.
+#
+#   python3 -m pip install --user -r requirements.txt
+#   python3 -m playwright install chromium
+#
+# Check what is currently available with:
+#   python3 check_urls.py --check-deps
+
+requests
+beautifulsoup4
+lxml
+pypdf
+
+# Browser-like TLS fingerprint; gets past some bot blocking on the fast pass.
+curl_cffi
+
+# Fallback browser for JavaScript-heavy or bot-protected pages. Needs the
+# chromium download above as a separate step.
+playwright
+playwright-stealth
+
+# macOS system Python ships with LibreSSL, which urllib3 v2 does not support.
+# v2 prints a NotOpenSSLWarning on every run and can fail some HTTPS requests.
+urllib3<2

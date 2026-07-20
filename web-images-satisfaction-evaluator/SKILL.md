@@ -9,6 +9,7 @@ description: Evaluate TELUS Web Images Single Side Image Satisfaction and image 
 
 - `references/...` paths are inside this skill's folder.
 - `TELUS-TASKS/...` is a sibling folder of this skills repo in the workspace root (e.g. `<workspace>/train-ai/TELUS-TASKS/`).
+- The URL checker ships with this repo at `telus-ai-skills/tools/check_urls.py`; run it from the workspace root.
 - If a referenced external file cannot be found, use this skill's reference files as the operative rubric and state that the source was unavailable.
 
 ## Core Rule
@@ -85,7 +86,7 @@ Never import the Search SBS scale or its `HS/S/SS/NS` grades into this task.
 For every host page URL, verify the exact page when possible. Use the repo checker when useful:
 
 ```bash
-python3 TELUS-TASKS/scripts/check_urls.py --query "<image query>" --run-id "<run-id>" <host URLs>
+python3 telus-ai-skills/tools/check_urls.py --query "<image query>" --run-id "<run-id>" <host URLs>
 ```
 
 The script writes its report to `TELUS-TASKS/url_content/<run-id>/report.json`, alongside the extracted page text for each URL. Inspect both. If the checker fails because of bot-blocking, CAPTCHA, JavaScript-only pages, or connection issues, treat it as manual-review needed, not an automatic grade. If normal/manual access confirms the host page does not load, flag `Did not load`.

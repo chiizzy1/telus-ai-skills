@@ -6,3 +6,8 @@ Thumbs.db
 .env
 local.env
 node_modules/
+
+# Checker run evidence. Written to the workspace TELUS-TASKS folder by default;
+# this is a safety net in case the checker is ever run with the repo as its base.
+url_content/
+__pycache__/
