@@ -122,19 +122,19 @@ After linking, check that the skill folders exist at the target location.
 For `.agents`:
 
 ```powershell
-Get-ChildItem "$env:USERPROFILE\.agents\skills" | Where-Object { $_.Name -like "telus-*" -or $_.Name -in @("search-sbs-evaluator","search-ads-relevance","close-variants-evaluator","text-response-evaluator","web-images-satisfaction-evaluator") }
+Get-ChildItem "$env:USERPROFILE\.agents\skills" | Where-Object { $_.Name -like "telus-*" -or $_.Name -in @("search-sbs-evaluator","search-ads-relevance","close-variants-evaluator","text-response-evaluator","web-images-satisfaction-evaluator","maps-search-evaluator") }
 ```
 
 For Codex:
 
 ```powershell
-Get-ChildItem "$env:USERPROFILE\.codex\skills" | Where-Object { $_.Name -like "telus-*" -or $_.Name -in @("search-sbs-evaluator","search-ads-relevance","close-variants-evaluator","text-response-evaluator","web-images-satisfaction-evaluator") }
+Get-ChildItem "$env:USERPROFILE\.codex\skills" | Where-Object { $_.Name -like "telus-*" -or $_.Name -in @("search-sbs-evaluator","search-ads-relevance","close-variants-evaluator","text-response-evaluator","web-images-satisfaction-evaluator","maps-search-evaluator") }
 ```
 
 For Gemini / Antigravity:
 
 ```powershell
-Get-ChildItem "$env:USERPROFILE\.gemini\antigravity-ide\skills" | Where-Object { $_.Name -like "telus-*" -or $_.Name -in @("search-sbs-evaluator","search-ads-relevance","close-variants-evaluator","text-response-evaluator","web-images-satisfaction-evaluator") }
+Get-ChildItem "$env:USERPROFILE\.gemini\antigravity-ide\skills" | Where-Object { $_.Name -like "telus-*" -or $_.Name -in @("search-sbs-evaluator","search-ads-relevance","close-variants-evaluator","text-response-evaluator","web-images-satisfaction-evaluator","maps-search-evaluator") }
 ```
 
 You should see folders such as:
@@ -146,6 +146,7 @@ You should see folders such as:
 - `web-images-satisfaction-evaluator`
 - `close-variants-evaluator`
 - `search-ads-relevance`
+- `maps-search-evaluator`
 
 Restart the agent after linking so it can discover the skills.
 
@@ -181,6 +182,10 @@ Use the TELUS Search SBS evaluator for this result.
 
 ```text
 Use the TELUS Close Variants evaluator for this query pair.
+```
+
+```text
+Use the TELUS Maps Search evaluator for this Search 2.0 task.
 ```
 
 Expected routing flow:

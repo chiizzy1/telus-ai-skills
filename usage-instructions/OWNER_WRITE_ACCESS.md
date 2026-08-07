@@ -59,6 +59,8 @@ Only give write access to someone you trust to directly modify the canonical ski
 
 Use junction links so each agent reads this canonical repo instead of stale copied folders.
 
+The linking script installs every canonical TELUS skill, including `maps-search-evaluator`.
+
 Link Codex:
 
 ```powershell

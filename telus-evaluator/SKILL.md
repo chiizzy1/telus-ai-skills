@@ -60,6 +60,7 @@ If the user or a prior answer conflicts with the TELUS guideline, follow the gui
 - Web Images Single Side Image Satisfaction, image side-by-side, image flags, host page flags, near duplicates, or image OPR: use `web-images-satisfaction-evaluator` (read `../web-images-satisfaction-evaluator/SKILL.md`).
 - Search Ads Relevance, iOS App Store ad relevance, ad-to-query grading, or Excellent/Good/Acceptable/Bad ad ratings: use `search-ads-relevance` (read `../search-ads-relevance/SKILL.md`).
 - Close Variants, query-variant similarity, spelling/abbreviation/transliteration/synonym evaluation, or Good/Acceptable/Bad variant ratings: use `close-variants-evaluator` (read `../close-variants-evaluator/SKILL.md`).
+- Maps Search Evaluation, Search 2.0, Search Relevance, map search results with pins, Navigational/Excellent/Good/Acceptable/Bad relevance, Name/Category Accuracy, Address Accuracy, Pin Accuracy, viewport age (fresh/stale), PERMANENT_CLOSURE, or result-level distance/prominence demotion: use `maps-search-evaluator` (read `../maps-search-evaluator/SKILL.md`).
 
 ## Known TELUS Task Types Without A Dedicated Skill Yet
 

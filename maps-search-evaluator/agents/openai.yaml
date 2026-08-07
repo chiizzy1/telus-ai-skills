@@ -1,0 +1,4 @@
+interface:
+  display_name: "TELUS Maps Search Evaluator"
+  short_description: "Evaluate map relevance and location data accuracy"
+  default_prompt: "Use $maps-search-evaluator to evaluate this TELUS Maps Search task using the official location-intent and data-accuracy rubric."

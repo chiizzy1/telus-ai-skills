@@ -103,6 +103,26 @@ Guideline source: `TELUS-TASKS/Close Variants/Telus - Close Variants.pdf`.
 
 Do not confuse this with Search Ads Relevance. Close Variants compares a query to a variant query, not a query to an ad.
 
+### Maps Search Evaluation
+
+Use `maps-search-evaluator` (read `../../maps-search-evaluator/SKILL.md`).
+
+Signals:
+
+- Map search results with numbered pins on a map.
+- Query with viewport (fresh/stale), user location, and locale.
+- Relevance rating scale: `Navigational`, `Excellent`, `Good`, `Acceptable`, `Bad`.
+- Demotion checkboxes: User Intent, Distance/Prominence.
+- Data accuracy ratings: Name/Category Accuracy, Address Accuracy, Pin Accuracy.
+- Task type label "Search 2.0" or "Search Relevance."
+- Result status `PERMANENT_CLOSURE`.
+- Navigational result question (Yes/No) asked per query.
+- Checkboxes for "Result name/title in unexpected language" or "Business/POI is closed or does not exist."
+
+Guideline source: `TELUS-TASKS/Maps Search Evaluation/telus - Maps Search Evaluation Guidelines.pdf` (searchable extraction: `TELUS-TASKS/maps-extracted/text.md`).
+
+Do not use Search SBS `HS/S/SS/NS` labels here. Maps Search Evaluation has its own relevance scale.
+
 ## TELUS Families Without A Dedicated Skill
 
 The workspace contains guidelines for these TELUS task types, but no separate installed skill has been built yet:

@@ -15,6 +15,7 @@ Included skills:
 - `web-images-satisfaction-evaluator`
 - `close-variants-evaluator`
 - `search-ads-relevance`
+- `maps-search-evaluator`
 
 ## Daily Update
 
