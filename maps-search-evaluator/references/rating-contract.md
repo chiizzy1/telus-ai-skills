@@ -167,7 +167,17 @@ Rated on its own evidence. A pin can be correct while the address is wrong.
 | Answer | When |
 |---|---|
 | `Yes` | The best available evidence pins down the precise location |
-| `No` | It does not — e.g. a parcel with several rooftops and no way to tell which, or a shared rooftop with several POIs and no way to tell where under it |
+| `No` | A shared rooftop is identified, but there is no strong evidence of where under it the result sits |
+
+**Do not answer `No` when you cannot tell which *building* the result occupies — that is `Can't Verify`, not `Perfect`.** The guideline escalates in three steps (§9.2.2):
+
+| What evidence establishes | Rating |
+|---|---|
+| The result's specific spot under a shared rooftop | `Perfect`, follow-up `Yes` |
+| The right rooftop, but not the position under it | `Perfect`, follow-up `No` |
+| Neither — several rooftops share the address and nothing says which one the result is under | **`Can't Verify`** |
+
+The exception is a result whose type *is* the shared address — an apartment complex queried as `12112 Sugarloaf Key St`, where every building genuinely carries that address (§10.1). There is no "which building" question to answer, so a pin on any of those rooftops is `Perfect`. That exception applies to address-type results, **not** to a business or POI that occupies one building among several.
 
 **Two hard rules:**
 

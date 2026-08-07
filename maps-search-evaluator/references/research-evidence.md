@@ -83,8 +83,9 @@ Evidence strength determines how precise the pin must be to earn `Perfect`: the 
 | Specific location under a shared rooftop identified by strong evidence | Only that location is `Perfect` → follow-up `Yes` |
 | Shared rooftop identified, specific location within it unconfirmed | The whole rooftop is `Perfect` → follow-up `No` |
 | Several rooftops share the address, no strong evidence which one | `Can't Verify` |
+| The result *is* the shared address (address-type, e.g. an apartment complex where every building carries it, §10.1) | `Perfect` — no "which building" question exists |
 
-> **Source tension worth knowing.** The prose at §9.2.2 sends "several rooftops share an address, no strong evidence" to `Can't Verify`, while the options table at §9.1.1.1 lists "a parcel with multiple rooftops, unclear which" as a `Perfect` + `No` case. The audit records that extracted tables lose cells and context, so the prose is treated as primary here. Check the rendered PDF pages 116 and 119 before relying on this edge case, and say in the comment which reading you applied.
+> **The distinction that decides this.** Uncertainty *within* one identified rooftop is `Perfect` + follow-up `No`. Uncertainty about *which* rooftop is `Can't Verify`. The §9.1.1.1 options table reads as if a multi-rooftop parcel is a `Perfect` + `No` case; the §9.2.2 prose and the escalation above are the governing reading, and the §10.1 apartment-complex example is an address-type exception rather than a contradiction of it. Blind testing confirmed a rater will otherwise answer `No` to escape a "which building?" problem and wrongly award `Perfect`. Confirm against rendered pages 116, 119 and 179 if a task turns on it.
 
 Leave a comment with coordinates and resource links whenever the pin was difficult to judge or could not be verified.
 

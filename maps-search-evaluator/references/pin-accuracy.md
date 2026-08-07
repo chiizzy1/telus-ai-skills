@@ -31,6 +31,20 @@ If you rate **Perfect**, you may be asked: *"Does the available evidence indicat
 - **Yes** → Strong evidence (street imagery, official maps) confirms the exact spot.
 - **No** → The rooftop is identified but the result's specific position under a shared rooftop cannot be pinpointed. The entire rooftop is still Perfect.
 
+### Which rooftop vs. where under it — do not confuse these
+
+§9.2.2 escalates in three steps. The middle step is `Perfect` + `No`; the last is **not** Perfect at all:
+
+| What the evidence establishes | Rating |
+|---|---|
+| The result's specific spot under a shared rooftop | `Perfect`, follow-up `Yes` |
+| The correct rooftop, but not the position under it | `Perfect`, follow-up `No` |
+| Neither — several rooftops share the address, nothing says which one the result occupies | **`Can't Verify`** |
+
+**Do not answer `No` to escape a "which building?" problem.** The follow-up `No` is for uncertainty *within* one identified rooftop. Uncertainty about *which* rooftop is `Can't Verify`.
+
+**Exception — address-type results.** When the result *is* the shared address (an apartment complex queried as `12112 Sugarloaf Key St`, where every building genuinely carries that address, §10.1), there is no "which building" question to answer, so a pin on any of those rooftops is `Perfect`. This exception does **not** extend to a business or POI that occupies one building among several sharing an address — that is the `Can't Verify` row above.
+
 ---
 
 ## Boundaries of the Feature
