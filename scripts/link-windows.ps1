@@ -9,15 +9,13 @@ param(
     [switch]$Force
 )
 
-$skillNames = @(
-    "telus-evaluator",
-    "search-sbs-evaluator",
-    "telus-bot-reply-validator",
-    "text-response-evaluator",
-    "web-images-satisfaction-evaluator",
-    "close-variants-evaluator",
-    "search-ads-relevance"
-)
+$skillDirs = Get-ChildItem -LiteralPath $RepoRoot -Directory |
+    Where-Object { Test-Path -LiteralPath (Join-Path $_.FullName "SKILL.md") } |
+    Sort-Object Name
+
+if (!$skillDirs) {
+    throw "No skill folders with SKILL.md found in $RepoRoot"
+}
 
 switch ($Target) {
     "Agents" { $destRoot = Join-Path $env:USERPROFILE ".agents\skills" }
@@ -34,12 +32,29 @@ switch ($Target) {
 New-Item -ItemType Directory -Path $destRoot -Force | Out-Null
 $backupRoot = Join-Path $destRoot ("_backup_before_junction_" + (Get-Date -Format "yyyyMMdd-HHmmss"))
 
-foreach ($skill in $skillNames) {
-    $source = Join-Path $RepoRoot $skill
-    $dest = Join-Path $destRoot $skill
+foreach ($skillDir in $skillDirs) {
+    $source = $skillDir.FullName
+    $dest = Join-Path $destRoot $skillDir.Name
+    $legacyDest = Join-Path $destRoot ("ai-training-" + $skillDir.Name)
 
-    if (!(Test-Path -LiteralPath $source)) {
-        throw "Missing source skill: $source"
+    if ($legacyDest -ne $dest -and (Test-Path -LiteralPath $legacyDest)) {
+        $legacyItem = Get-Item -LiteralPath $legacyDest
+        $resolvedLegacy = (Resolve-Path -LiteralPath $legacyDest).Path
+
+        if ($legacyItem.LinkType -eq "Junction" -and $legacyItem.Target -contains $source) {
+            Write-Host "Legacy path already linked $legacyDest -> $source"
+        } elseif ($Force) {
+            if ($resolvedLegacy -notlike "$destRoot*") {
+                throw "Refusing to move path outside destination root: $resolvedLegacy"
+            }
+
+            New-Item -ItemType Directory -Path $backupRoot -Force | Out-Null
+            $legacyBackupDest = Join-Path $backupRoot ("ai-training-" + $skillDir.Name)
+            Move-Item -LiteralPath $legacyDest -Destination $legacyBackupDest
+            Write-Host "Backed up legacy path $legacyDest -> $legacyBackupDest"
+        } else {
+            Write-Host "Legacy path exists, use -Force to back it up: $legacyDest"
+        }
     }
 
     if (Test-Path -LiteralPath $dest) {
@@ -61,11 +76,18 @@ foreach ($skill in $skillNames) {
         }
 
         New-Item -ItemType Directory -Path $backupRoot -Force | Out-Null
-        $backupDest = Join-Path $backupRoot $skill
+        $backupDest = Join-Path $backupRoot $skillDir.Name
         Move-Item -LiteralPath $dest -Destination $backupDest
         Write-Host "Backed up $dest -> $backupDest"
     }
 
     New-Item -ItemType Junction -Path $dest -Target $source | Out-Null
+
+    # New-Item -ItemType Junction is a silent no-op on macOS/Linux: it returns null,
+    # raises no error, and creates nothing. Verify rather than trust the call.
+    if (!(Test-Path -LiteralPath $dest)) {
+        throw "Failed to create junction: $dest -> $source. Junctions are Windows-only; on macOS/Linux use scripts/link-macos.sh instead."
+    }
+
     Write-Host "Linked $dest -> $source"
 }
