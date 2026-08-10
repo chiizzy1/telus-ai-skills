@@ -153,6 +153,8 @@ The farther a result is from the area of expected results, the less desirable it
 
 ## Distance by Viewport Position
 
+> These ladders are restated from the guideline's worked examples. `decided-cases.md` holds them **verbatim with the guideline's own wording** and is the authority if the two ever differ.
+
 ### Many Possible Results (e.g., `[starbucks]`)
 
 **User INSIDE fresh viewport:**

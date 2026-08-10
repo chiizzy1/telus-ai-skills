@@ -1,0 +1,4 @@
+interface:
+  display_name: "TELUS Search Ads Relevance"
+  short_description: "Grade App Store ad relevance to a search query"
+  default_prompt: "Use $search-ads-relevance to grade this App Store ad against the user query."

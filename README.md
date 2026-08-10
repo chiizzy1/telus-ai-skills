@@ -22,7 +22,7 @@ Included skills:
 Users with read access should update before TELUS task work:
 
 ```powershell
-git -C "C:\Users\$env:USERNAME\skills-source\telus-ai-skills" pull --ff-only
+git -C "C:\Users\$env:USERNAME\Desktop\projects\train-ai\telus-ai-skills" pull --ff-only
 ```
 
 Or run:

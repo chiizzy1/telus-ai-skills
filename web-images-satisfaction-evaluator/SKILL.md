@@ -91,6 +91,12 @@ python3 telus-ai-skills/tools/check_urls.py --query "<image query>" --run-id "<r
 
 The script writes its report to `TELUS-TASKS/url_content/<run-id>/report.json`, alongside the extracted page text for each URL. Inspect both. If the checker fails because of bot-blocking, CAPTCHA, JavaScript-only pages, or connection issues, treat it as manual-review needed, not an automatic grade. If normal/manual access confirms the host page does not load, flag `Did not load`.
 
+Verify full-size image and host page links whenever the task or UI asks for them.
+
+**When a link is inaccessible but the image is fine.** An inaccessible host page does not by itself downgrade a visible, correct image — only downgrade if the guideline or UI says the image itself failed to load. Note a dead full-size image link, and apply a flag only where the guideline or UI actually provides one.
+
+**When the UI offers nowhere to record a link problem**, rate the visible image on its own merits and report the link issue separately in your output rather than folding it into the image rating.
+
 ## Overall Preference
 
 Prefer the side with:

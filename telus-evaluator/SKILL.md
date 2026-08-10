@@ -33,6 +33,20 @@ Before routing a task, read `references/task-router.md`.
 7. Re-read the skill's output examples before writing a comment, and match the pattern they teach.
 8. When challenged, re-verify against the guideline and answer with evidence. Change a rating only if the guideline supports it, never to be agreeable.
 
+## One Task Type Per Chat
+
+Handle each TELUS task type in its own chat. Rubrics from different task types compete with each other — `HS/S/SS/NS` leaking into a Maps task, or Search SBS flags into a Bot Reply task, is the most common way a rating goes wrong. A fresh chat per task type keeps the loaded rules clean.
+
+Starting a fresh chat, this is enough:
+
+```text
+Follow the official guideline as the single source of truth. Do not be agreeable. Confirm the task
+type first, read the full task, and only rate what can be verified from the task content or
+accessible pages. Keep comments brief and natural.
+```
+
+Then paste the task. This skill routes it to the right evaluator, and that skill carries the rubric.
+
 ## Source Hierarchy
 
 1. The current TELUS task UI and matching official TELUS guideline/PDF.

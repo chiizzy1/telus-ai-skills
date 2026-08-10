@@ -1,0 +1,44 @@
+{
+  "_comment": "Build this from the result cards. Every BUSINESS result needs its own `url` (its listing or operator page) or a `url_unavailable` reason — a brand locator index does not stand in for one. ADDRESS-type results are exempt.",
+
+  "query": "Breakfast",
+  "viewport_age": "FRESH",
+  "user": "41.06689453125,-82.72705078125",
+  "user_in_viewport": true,
+  "explicit_location": null,
+  "intent_coords": null,
+  "viewport_coords": null,
+  "sweep_degrees": 0.15,
+  "candidate_terms": ["diner", "cafe", "restaurant"],
+  "extra_urls": [],
+
+  "results": [
+    {
+      "n": 1,
+      "name": "Track's End",
+      "address": "1112 Castalia St, Bellevue, OH 44811",
+      "coords": "41.289385,-82.835455",
+      "category": "Sandwich Shop",
+      "type": "BUSINESS",
+      "url": "https://www.restaurant.com/locations/tracks-end-restaurant-bellevue-1112-castalia-st"
+    },
+    {
+      "n": 2,
+      "name": "IHOP",
+      "address": "2190 Walker Lake Rd, Ontario, OH 44903",
+      "coords": "40.787842,-82.593048",
+      "category": "Breakfast and Brunch Restaurant",
+      "type": "BUSINESS",
+      "url": "https://restaurants.ihop.com/en-us/oh/ontario/breakfast-2190-walker-lake-rd-3572"
+    },
+    {
+      "n": 3,
+      "name": "Wired Coffee Bar",
+      "address": "421 E Walton St, Willard, OH 44890",
+      "coords": "41.043031,-82.719039",
+      "category": "Coffee Shop",
+      "type": "BUSINESS",
+      "url_unavailable": "no operator site; wiredcoffeebar.com is a hijacked domain serving spam"
+    }
+  ]
+}

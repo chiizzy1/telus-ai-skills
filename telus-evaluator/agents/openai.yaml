@@ -1,4 +1,4 @@
 interface:
   display_name: "TELUS Evaluator"
   short_description: "Route TELUS tasks to the right rubric skill."
-  default_prompt: "Use TELUS Evaluator to identify the TELUS task type, apply the correct source guideline, and route to the matching task-specific evaluator without mixing platforms."
+  default_prompt: "Use $telus-evaluator to route this TELUS task to the correct evaluator."

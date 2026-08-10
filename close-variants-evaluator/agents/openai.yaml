@@ -1,0 +1,4 @@
+interface:
+  display_name: "TELUS Close Variants Evaluator"
+  short_description: "Rate query-variant similarity as Good, Acceptable or Bad"
+  default_prompt: "Use $close-variants-evaluator to rate this query pair against the TELUS Close Variants guidelines."

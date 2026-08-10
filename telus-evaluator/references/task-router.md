@@ -2,6 +2,15 @@
 
 Use this before routing any TELUS task.
 
+## Contents
+
+- [Non-Negotiables](#non-negotiables)
+- [Strict Routing Protocol](#strict-routing-protocol)
+- [Task Families](#task-families)
+- [TELUS Families Without A Dedicated Skill](#telus-families-without-a-dedicated-skill)
+- [Source Hierarchy](#source-hierarchy)
+- [Comment Style](#comment-style)
+
 ## Non-Negotiables
 
 - TELUS is its own platform. Do not import Handshake, Outlier, or Data Annotation Tech rules.

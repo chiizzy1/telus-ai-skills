@@ -2,6 +2,19 @@
 
 Use this reference before scoring TELUS AI Assistant / Bot Reply Validation tasks. The PDF in `TELUS-TASKS/AI Assistant — Human Evaluation Guidelines/` remains the source of truth; this file is a compact working guide.
 
+## Contents
+
+- [Task Inputs](#task-inputs)
+- [Verification Workflow](#verification-workflow)
+- [Accuracy](#accuracy)
+- [Relevancy](#relevancy)
+- [Compliance](#compliance)
+- [Fluency](#fluency)
+- [Safety](#safety)
+- [Overall Quality](#overall-quality)
+- [Comment Examples](#comment-examples)
+- [Compact Output Template](#compact-output-template)
+
 ## Task Inputs
 
 Each item normally includes:

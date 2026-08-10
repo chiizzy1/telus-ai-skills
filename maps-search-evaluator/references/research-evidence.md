@@ -4,6 +4,8 @@ What counts as proof for each rating dimension, and what to do when proof is not
 
 The governing rule comes from the shared TELUS quality gate: **never report a verification you did not perform.** Saying a page could not be read is always better than implying you read it.
 
+> **This file says what counts as proof. `research-workflow.md` says how to go and get it** — the phase order, the exact commands for `check_urls.py`, reverse-geocoding and distance ranking, and the fallback ladder for when a source returns 403, a captcha, or an empty JavaScript shell. Run the workflow; use this file to judge what it brings back.
+
 ## Contents
 
 - [Absolute rules](#absolute-rules)
@@ -51,6 +53,25 @@ Establish what the user wanted **before** looking at results. Research the query
 
 Always research the real-world state, whatever the status field claims.
 
+**Batch the page fetches first.** Each result's pop-up carries a URL. Collect them and run one parallel pass before reading anything:
+
+```bash
+python3 telus-ai-skills/tools/check_urls.py --query "<the map query>" --run-id "<task-id>" <url1> <url2> ...
+```
+
+It fetches concurrently (default 4 workers, `--workers N` to change), falls back to a browser for JavaScript-heavy or bot-protected pages, and writes the extracted text plus `report.json` to `TELUS-TASKS/url_content/<run-id>/`. One run settles the page-based half of existence, official name, and address for every result at once, instead of fetching them one at a time.
+
+Read the saved content, not just the status codes. A `200` on a chain locator that no longer lists the branch is evidence of closure; a `200` on a parked domain is not evidence of anything.
+
+What the checker cannot do here, so do not wait on it for these:
+
+- **Pin accuracy** — needs map imagery, not page text. That comes from the screenshot.
+- **Distance** — from coordinates via `../../tools/maps_distance.py`.
+- **Address-type results** — a street, locality or postal code has no business URL to fetch.
+- **Results whose pop-up has no URL** — fall back to searching for the official site by name.
+
+A checker failure (403, CAPTCHA, timeout, empty extraction) is **manual review**, not proof of closure. Treat it as evidence not yet gathered, and say so.
+
 - Evidence **for** closure: an official page or claimed social account saying so; a primary publication reporting it; recent street imagery showing the premises vacant or rebranded; removal from an official chain locator.
 - Evidence **against**: current opening hours on the official site, recent managed-account posts, a current chain-locator listing.
 - A temporary closure announced by the business is **open**, with no limit on duration.
@@ -75,6 +96,8 @@ Confirm against the official website first, then government/postal registries. F
 ### Pin location
 
 Build **consensus** across map resources, aerial views, hybrid views, street imagery, and official venue maps. Then reconcile with the task's own map layers — that reconciliation is mandatory, not optional.
+
+**In practice that reconciliation happens through a screenshot.** An agent cannot open the rating tool, so the user supplies a zoomed satellite or hybrid frame per result, plus one Show All frame for the task. Those images are the tool's map layer; judge them rather than asking the user to pre-judge them. Full method in `pin-accuracy.md` → *Judging a pin from a screenshot*. Two rules carry over here: an image has **no scale**, so distance still comes from coordinates via `../../tools/maps_distance.py`; and `Can't Verify` is for evidence that does not exist, not for a frame you were not sent — ask for a better frame first.
 
 Evidence strength determines how precise the pin must be to earn `Perfect`: the more evidence available for the location, the tighter the Perfect area becomes.
 
@@ -117,13 +140,22 @@ Say so, then apply the rubric's own fallback — do not invent a rating and do n
 
 `Can't Verify` is a finding, not an escape hatch. Use it only where the rubric permits it, and never to avoid a judgement the evidence actually supports.
 
+### Two checks you must run before rating `Can't Verify`
+
+Both are cheap, and skipping either has produced a wrong `Can't Verify` on a real task:
+
+1. **Forward-geocode the claimed address and measure the pin against it.** The recon does this automatically and prints *pin sits N m from the claimed address*. A reverse lookup only says what is *nearest* — it will happily name the neighbouring door. Two unit numbers 4 m apart in one building read as "different feature" and are not. The pin-to-claimed distance is the actual question.
+2. **Run one targeted search for another source.** If a rating turns on a source count — the back-office rule needs the operator's site or a consensus of three — go and look for the third before giving up. **A host on the recon's walled list still counts.** The script cannot fetch Yelp or MapQuest; you can reach both through search, and what they show is evidence.
+
+`Can't Verify` means the evidence does not exist. It does not mean the script could not fetch it.
+
 ## Disclosing evidence in the output
 
-Every non-obvious rating names the evidence type behind it, or states plainly why verification was impossible. Keep it to a phrase:
+Every non-obvious rating names the evidence type behind it, or states plainly why verification was impossible. These phrases are the **floor**:
 
 - `official site — hours listed, open`
 - `chain locator — branch absent; primary publication confirms closure`
 - `aerial + street imagery agree; reconciled with task map`
 - `no official page, no street imagery — Can't Verify`
 
-The task-facing comment carries the correct information and a direct source link; the chat output additionally records what you checked, so a reviewer can tell verified findings from assumed ones.
+**The working standard is one clause per dimension the source supports, with the numbers included — see `output-style.md`.** The task-facing comment stays bare so it pastes cleanly; the chat output carries the distances, coordinates, source tiers and reasoning, so the rater can audit each rating and overrule you where the evidence is thin.

@@ -13,6 +13,7 @@ Pin accuracy rates how correctly a result's pin is placed on the map. The pin sh
 - [Map View Layers](#map-view-layers)
 - [Pin Display Issues](#pin-display-issues)
 - [Research Resources for Pin Accuracy](#research-resources-for-pin-accuracy)
+- [Judging a pin from a screenshot](#judging-a-pin-from-a-screenshot)
 
 ---
 
@@ -44,6 +45,34 @@ If you rate **Perfect**, you may be asked: *"Does the available evidence indicat
 **Do not answer `No` to escape a "which building?" problem.** The follow-up `No` is for uncertainty *within* one identified rooftop. Uncertainty about *which* rooftop is `Can't Verify`.
 
 **Exception — address-type results.** When the result *is* the shared address (an apartment complex queried as `12112 Sugarloaf Key St`, where every building genuinely carries that address, §10.1), there is no "which building" question to answer, so a pin on any of those rooftops is `Perfect`. This exception does **not** extend to a business or POI that occupies one building among several sharing an address — that is the `Can't Verify` row above.
+
+### Judging a pin from a screenshot
+
+An agent cannot open the rating tool, so the user supplies a zoomed screenshot per result. That image **is** the tool's map layer — the surface §9.2.1 requires the pin to be reconciled against. Judge it directly rather than asking the user to pre-judge it.
+
+Read the frame in this order:
+
+1. **Find the pin tip.** The head is only an indicator. A tall pin head can sit over a neighbouring roof while the tip is on the correct one.
+2. **Identify the result's building**, using the address, the street layout, and any labels in frame.
+3. **Trace the property boundary.** Fences, walls, hedges, water, and kerb lines are boundaries; a parcel includes half the road where a road is present. With no visible divider, drop an imaginary 90° line to the road or apply the Half 'n Half rule.
+4. **Place the tip** against that boundary: on the rooftop → `Perfect`; inside the boundary but off the rooftop, same side of the street and same block → `Approximate`; on the first property to either side, same street name and side and block → `Next Door`; beyond the result's property and its neighbours → `Wrong`.
+
+What a frame must contain to be usable:
+
+| Requirement | Why |
+|---|---|
+| Satellite or hybrid layer | The vector layer renders no rooftops, so nothing above can be judged |
+| The result's building **and** its neighbours on both sides | `Next Door` and `Wrong` are relative judgements — a cropped frame cannot distinguish them |
+| Visible pin tip | The rating is about the tip |
+| Scale bar, only if the frame supports a distance claim | Distance otherwise comes from coordinates |
+
+Hard limits, and what to do about them:
+
+- **No scale in an image.** Never infer distance from apparent pixel gaps. Use `../../tools/maps_distance.py` on the coordinates.
+- **One fixed frame.** You cannot zoom, pan, or change layer. If the frame is ambiguous, wrongly zoomed, or vector-only, **ask for another**. Do not guess, and do not retreat to `Can't Verify` when a better frame would settle it — `Can't Verify` is for evidence that does not exist, not for evidence you were not sent.
+- **Say what you did.** The evidence line reads "pin judged from the supplied screenshot", never anything implying the live map was explored.
+
+If the user corrects what is in the frame — that is a car park not a rooftop, those are two buildings not one — accept it at once; they can zoom and switch layers and you cannot. If they dispute the **rating**, re-check it against the rules above and change it only if the guideline supports the change.
 
 ---
 

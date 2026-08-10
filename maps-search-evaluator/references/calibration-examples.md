@@ -2,6 +2,8 @@
 
 Worked examples for **checking your calibration when a rating is genuinely uncertain**. Read the branch in `query-family-playbook.md` first — it decides which rating applies. Come here to sanity-check a borderline call against a fully worked case.
 
+> **`decided-cases.md` outranks this file.** Where the guideline has already ruled on a shape — lack of connection, the distance ladders — that file quotes the ruling verbatim and is the authority. Use these examples for calibration on shapes it does not cover.
+
 For the complete set of roughly 90 official examples, see `TELUS-TASKS/maps-extracted/text.md` Section 10, "How to Rate Results" (pages 179–272).
 
 Release Survey rules live in `rating-contract.md`, which is the single authority for them.

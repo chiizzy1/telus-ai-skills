@@ -17,6 +17,8 @@ Use `TELUS-TASKS/Text Response Evaluation/telus - Text_Response_Evaluation.pdf` 
 
 Read `references/rubric.md` when doing an actual rating or when unsure about a rejection reason.
 
+Read the full conversation before answering anything. Never infer from a dropdown option that is already selected in the task — a pre-selected value is not evidence, and treating it as one means grading the tool's default rather than the transcript.
+
 > **Output goes in the chat response only.** Task files and every other file in the workspace are READ-ONLY input. Never edit, overwrite, or write your answer into them, and never create scratch or working files. Present the complete result in chat using the Output Format template below.
 
 ## Workflow

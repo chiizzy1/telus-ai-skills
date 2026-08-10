@@ -4,6 +4,14 @@ Every example from the official Telus Close Variants Rating Guidelines (Septembe
 
 Use this file as lookup precedent, not as a replacement for the rules in `../SKILL.md`. If an example appears to conflict with the rules, re-read the rule and apply it.
 
+## Contents
+
+- [Reading Direction](#reading-direction)
+- [Good Examples](#good-examples)
+- [Acceptable Examples](#acceptable-examples)
+- [Bad Examples](#bad-examples)
+- [China-Specific Examples](#china-specific-examples)
+
 ## Reading Direction
 
 Pairs are shown as **query → variant**. Some tables deliberately include the reversed direction of a pair that appears elsewhere (for example both `utube → youtube` and `youtube → utube`, and the guideline's own changelog reversed `baby games → infant games` to `infant games → baby games`). Judge the similarity of the pair: direction does not change the rating. The exception is a rule that is itself about direction or specificity, such as intent broadened/narrowed or a former app name, where the rule text tells you which side is which.

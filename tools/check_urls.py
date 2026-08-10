@@ -154,6 +154,23 @@ MAX_RETRY_DELAY = 10.0
 # Domains that are open access; a login/paywall match on them is a false positive.
 OPEN_ACCESS_DOMAINS = ("wikipedia.org", "wiktionary.org", "nih.gov")
 
+# Crowdsourced review sites that sit behind commercial anti-bot services
+# (DataDome, PerimeterX and similar). A block here is the normal outcome, not a
+# finding: these fingerprint headless browsers directly, so the Playwright
+# fallback does not get through either.
+#
+# This changes reporting only. The result still needs manual review, because a
+# block says nothing about whether the business is open. It exists so a routine
+# 403 on a tier-9 source reads as expected rather than as a problem — and so it
+# is never mistaken for evidence of closure.
+BOT_WALLED_REVIEW_DOMAINS = (
+    "yelp.com",
+    "tripadvisor.com",
+    "trustpilot.com",
+    "glassdoor.com",
+    "indeed.com",
+)
+
 
 def _retry_delay(response: Any, attempt: int) -> float:
     """Honor Retry-After when the server sends it, else back off exponentially."""
@@ -930,6 +947,15 @@ def _assess(extracted: ExtractedContent) -> dict[str, Any]:
     if weak_content:
         manual_review_reasons.append("weak_content")
 
+    # A block on a known bot-walled review site is routine. Annotate it so the
+    # reader is not hunting for a fault, while leaving the manual-review verdict
+    # untouched — the page still was not read, and that is what matters.
+    bot_walled_expected = bool(
+        manual_review_reasons and _domain_matches(domain, BOT_WALLED_REVIEW_DOMAINS)
+    )
+    if bot_walled_expected:
+        manual_review_reasons.append("expected_bot_wall_tier9_source")
+
     manual_review = bool(
         manual_review_reasons
         or security_warning
@@ -1367,7 +1393,19 @@ def _print_record(record: dict[str, Any]) -> None:
         print(f"    FLAG CU: likely ({reasons})")
     if record["manual_review_required"]:
         reasons = ", ".join(record["manual_review_reasons"]) or "automation could not confirm"
-        print(f"    MANUAL REVIEW REQUIRED ({reasons}) - do not flag CU from automation alone")
+        if "expected_bot_wall_tier9_source" in record["manual_review_reasons"]:
+            print(f"    MANUAL REVIEW REQUIRED ({reasons})")
+            print(
+                "    EXPECTED: crowdsourced review site behind commercial anti-bot protection. "
+                "This is routine, not a finding."
+            )
+            print(
+                "    Tier-9 source: supporting evidence only, never the sole basis for a rating. "
+                "A block is not evidence of closure. Open it manually only if a higher-tier source "
+                "left something genuinely unresolved."
+            )
+        else:
+            print(f"    MANUAL REVIEW REQUIRED ({reasons}) - do not flag CU from automation alone")
     if record["error"]:
         print(f"    Error: {record['error']}")
 

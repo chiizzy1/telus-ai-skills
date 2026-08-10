@@ -50,19 +50,19 @@ https://github.com/chiizzy1/telus-ai-skills
 1. Create a folder for skill source repos:
 
 ```powershell
-New-Item -ItemType Directory -Path "C:\Users\$env:USERNAME\skills-source" -Force
+New-Item -ItemType Directory -Path "C:\Users\$env:USERNAME\Desktop\projects\train-ai" -Force
 ```
 
 2. Clone the repo:
 
 ```powershell
-git clone https://github.com/chiizzy1/telus-ai-skills.git "C:\Users\$env:USERNAME\skills-source\telus-ai-skills"
+git clone https://github.com/chiizzy1/telus-ai-skills.git "C:\Users\$env:USERNAME\Desktop\projects\train-ai\telus-ai-skills"
 ```
 
 3. Open the repo folder:
 
 ```powershell
-cd "C:\Users\$env:USERNAME\skills-source\telus-ai-skills"
+cd "C:\Users\$env:USERNAME\Desktop\projects\train-ai\telus-ai-skills"
 ```
 
 ## Link Your Agent Skills
@@ -155,7 +155,7 @@ Restart the agent after linking so it can discover the skills.
 Before TELUS task work, pull the latest owner-approved version:
 
 ```powershell
-git -C "C:\Users\$env:USERNAME\skills-source\telus-ai-skills" pull --ff-only
+git -C "C:\Users\$env:USERNAME\Desktop\projects\train-ai\telus-ai-skills" pull --ff-only
 ```
 
 Or run this from the repo folder:
@@ -207,9 +207,9 @@ If you edit local files, future updates may fail or your changes may be overwrit
 If you accidentally edit files, discard the local changes before updating:
 
 ```powershell
-git -C "C:\Users\$env:USERNAME\skills-source\telus-ai-skills" status
-git -C "C:\Users\$env:USERNAME\skills-source\telus-ai-skills" restore .
-git -C "C:\Users\$env:USERNAME\skills-source\telus-ai-skills" pull --ff-only
+git -C "C:\Users\$env:USERNAME\Desktop\projects\train-ai\telus-ai-skills" status
+git -C "C:\Users\$env:USERNAME\Desktop\projects\train-ai\telus-ai-skills" restore .
+git -C "C:\Users\$env:USERNAME\Desktop\projects\train-ai\telus-ai-skills" pull --ff-only
 ```
 
 ## Troubleshooting

@@ -1,0 +1,4 @@
+interface:
+  display_name: "TELUS Search SBS Evaluator"
+  short_description: "Rate search satisfaction and overall preference"
+  default_prompt: "Use $search-sbs-evaluator to rate this side-by-side search result set."

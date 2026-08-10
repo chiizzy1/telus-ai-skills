@@ -2,6 +2,18 @@
 
 Use this reference before rating a live TELUS Search SBS task. The main `SKILL.md` contains the execution workflow and compact rules; this file contains the guardrails and examples that prevent common grading mistakes.
 
+## Contents
+
+- [Non-Negotiables](#non-negotiables)
+- [Intent Analysis](#intent-analysis)
+- [Flag Rules](#flag-rules)
+- [Grade Anchors](#grade-anchors)
+- [Result-Type Examples](#result-type-examples)
+- [Common Mistakes Checklist](#common-mistakes-checklist)
+- [OPR Rules](#opr-rules)
+- [OPR Comment Rules](#opr-comment-rules)
+- [Compact Chat Output](#compact-chat-output)
+
 ## Non-Negotiables
 
 - Research the query before touching results, even when the query looks obvious.

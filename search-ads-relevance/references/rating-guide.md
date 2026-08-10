@@ -2,6 +2,14 @@
 
 Use this reference before rating a live TELUS Search Ads Relevance task. The main `SKILL.md` contains the workflow and compact rules; this file contains the detailed decision framework, examples, and game-specific evaluation criteria.
 
+## Contents
+
+- [App Query Decision Framework](#app-query-decision-framework)
+- [Game Query Decision Framework](#game-query-decision-framework)
+- [Intent Range Quick Reference](#intent-range-quick-reference)
+- [Comment Examples](#comment-examples)
+- [Decision Checklist](#decision-checklist)
+
 ## App Query Decision Framework
 
 Rate based on how the ad relates to the user intent conveyed by the query, considering **functionality** and **target audience**.

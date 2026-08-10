@@ -5,6 +5,16 @@ Use with `../SKILL.md`. This file is the authoritative source for how the submis
 > [!CAUTION]
 > **PUNCTUATION RULE:** Always use American English formatting. You MUST place all periods and commas INSIDE the quotation marks (e.g., "like this," not "like this",).
 
+## Contents
+
+- [Golden Rule: Brief, Precise, Human](#golden-rule-brief-precise-human)
+- [Required Flow](#required-flow)
+- [Required Shared-Result Check](#required-shared-result-check)
+- [OPR Comment Structure](#opr-comment-structure)
+- [Examples](#examples)
+- [Anti-Pattern (NEVER do this)](#anti-pattern-never-do-this)
+- [Good Pattern (Write like this instead)](#good-pattern-write-like-this-instead)
+
 ## Golden Rule: Brief, Precise, Human
 
 - **1-3 sentences.** That's it. Don't write a paragraph when a sentence will do, and don't pad a clear call into three sentences just to fill the range.

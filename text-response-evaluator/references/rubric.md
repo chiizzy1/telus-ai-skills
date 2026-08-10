@@ -2,6 +2,14 @@
 
 Use this reference when applying `telus - Text_Response_Evaluation.pdf`.
 
+## Contents
+
+- [Task Shape](#task-shape)
+- [Summary Rules](#summary-rules)
+- [Rejection Reasons](#rejection-reasons)
+- [Response Selection Rules](#response-selection-rules)
+- [Multiple-Choice Rule](#multiple-choice-rule)
+
 ## Task Shape
 
 Each task has a text-message transcript between two people. The evaluator must:

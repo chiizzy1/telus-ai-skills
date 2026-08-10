@@ -1,4 +1,4 @@
 interface:
   display_name: "Text Response Evaluator"
   short_description: "Evaluate TELUS text response transcripts and replies"
-  default_prompt: "Evaluate this TELUS Text Response Evaluation task using the transcript pass/reject rules, response selection guidance, and multiple-choice question rules."
+  default_prompt: "Use $text-response-evaluator to evaluate TELUS Text Response Evaluation tasks from transcript-based conversations."

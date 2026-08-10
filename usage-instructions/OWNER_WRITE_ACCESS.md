@@ -9,7 +9,7 @@ The GitHub repo is the source of truth. Make TELUS skill changes in the canonica
 Canonical repo folder on this machine:
 
 ```powershell
-C:\Users\DELL\Downloads\train-ai\telus-skills-canonical
+C:\Users\$env:USERNAME\Desktop\projects\train-ai\telus-ai-skills
 ```
 
 Private GitHub repo:
@@ -23,7 +23,7 @@ https://github.com/chiizzy1/telus-ai-skills
 Before editing, pull the latest version:
 
 ```powershell
-git -C "C:\Users\DELL\Downloads\train-ai\telus-skills-canonical" pull --ff-only
+git -C "C:\Users\$env:USERNAME\Desktop\projects\train-ai\telus-ai-skills" pull --ff-only
 ```
 
 Edit the skill files in the canonical repo folder.
@@ -31,16 +31,16 @@ Edit the skill files in the canonical repo folder.
 Check what changed:
 
 ```powershell
-git -C "C:\Users\DELL\Downloads\train-ai\telus-skills-canonical" status
-git -C "C:\Users\DELL\Downloads\train-ai\telus-skills-canonical" diff
+git -C "C:\Users\$env:USERNAME\Desktop\projects\train-ai\telus-ai-skills" status
+git -C "C:\Users\$env:USERNAME\Desktop\projects\train-ai\telus-ai-skills" diff
 ```
 
 Commit and push:
 
 ```powershell
-git -C "C:\Users\DELL\Downloads\train-ai\telus-skills-canonical" add .
-git -C "C:\Users\DELL\Downloads\train-ai\telus-skills-canonical" commit -m "Improve TELUS skill guidance"
-git -C "C:\Users\DELL\Downloads\train-ai\telus-skills-canonical" push
+git -C "C:\Users\$env:USERNAME\Desktop\projects\train-ai\telus-ai-skills" add .
+git -C "C:\Users\$env:USERNAME\Desktop\projects\train-ai\telus-ai-skills" commit -m "Improve TELUS skill guidance"
+git -C "C:\Users\$env:USERNAME\Desktop\projects\train-ai\telus-ai-skills" push
 ```
 
 ## Adding Users
@@ -109,9 +109,9 @@ Do not keep manually copying skill folders between agents.
 Do not treat these paths as separate sources of truth:
 
 ```text
-C:\Users\DELL\.codex\skills
-C:\Users\DELL\.gemini\antigravity-ide\skills
-C:\Users\DELL\Downloads\train-ai\train-ai\TELUS-TASKS\skills
+C:\Users\$env:USERNAME\.codex\skills
+C:\Users\$env:USERNAME\.gemini\antigravity-ide\skills
+C:\Users\$env:USERNAME\Desktop\projects\train-ai\TELUS-TASKS\skills
 ```
 
 After linking, those folders should point back to this canonical repo.
