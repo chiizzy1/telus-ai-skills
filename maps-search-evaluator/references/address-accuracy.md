@@ -216,6 +216,11 @@ Addresses pointing to a different location (P.O. boxes, management offices, shar
 
 ### Address Type Results
 
+> **US tasks: `us-address-verification.md` supersedes this table.** It carries the
+> Business/POI row this one omits, the rule that Country is optional inside the test
+> locale and mandatory outside it, and the USPS gate — a result that disagrees with the
+> official website is often still `Correct`.
+
 | Result Type | Mandatory Components |
 |-------------|---------------------|
 | **Full address** | Street number, street name, locality, state, postal code (country if outside test locale) |

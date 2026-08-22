@@ -85,6 +85,18 @@ If you find yourself explaining why a decided case should not apply here, stop. 
 
 > **Searching the source needs care.** `TELUS-TASKS/maps-extracted/text.md` uses non-breaking spaces, so `grep "Rate Bad"` returns **zero hits** despite seven Bad rulings. Use the normalising recipe in `decided-cases.md`.
 
+### US addresses — check USPS before demoting
+
+On a US task, a result address that disagrees with the operator's official website is
+**not** by itself a fault. USPS routinely recognises both forms. When the difference is
+the **locality, postal code, cardinal direction (E/W/N/S) or street type (Blvd/St, Rd/Dr)**,
+you must check USPS and rate on what it returns for the *result* address — not on the
+website. In the guideline's own five worked cases, **three rate `Correct` despite
+contradicting the official site.**
+
+Any other kind of difference is `Incorrect` + component, with no USPS check needed. Full
+rules, the component matrix and the US addressing systems: `references/us-address-verification.md`.
+
 ### Category fit for product and service queries
 
 `[breakfast]`, `[salads]`, `[bubble tea]` name a thing to buy, not a business type. The guideline puts an **affirmative burden** on you: confirm the result offers it *in a meaningful way*.
@@ -349,6 +361,8 @@ Load these deliberately rather than all at once.
 | `references/relevance.md` | Working out a relevance demotion — connection types, prominence, distance, viewport, rural areas, transit, parking, service-level mismatch |
 | `references/name-category-accuracy.md` | Name/Category is requested — name sources, misspelling severity, location modifiers, category rules |
 | `references/address-accuracy.md` | Address is requested — components, result-type expectations, features without addresses |
+| `references/us-address-verification.md` | **Any US address rating.** The USPS gate, city/postal/cardinal/street-type rules, DPV and ZIP+4, the two validation flowcharts, and the Utah/Queens/Milwaukee/County addressing systems |
+| `references/unsupported-locales.md` | The task country has no guideline of its own — address format discovery, diacritics, cadastral maps for pins, prominence in an unfamiliar market |
 | `references/pin-accuracy.md` | Pin is requested — rooftops, property boundaries, campus, entrance polygons, transit, parking, shared spaces |
 | `references/calibration-examples.md` | Only when a call is genuinely borderline and you want a worked case to check against |
 

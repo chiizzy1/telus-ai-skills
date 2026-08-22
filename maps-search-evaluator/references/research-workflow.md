@@ -153,6 +153,35 @@ Aggregator and directory listings **persist for years after a store closes** and
 
 Then apply `result-level-issues.md`. The distinction that changes the rating: with **no `PERMANENT_CLOSURE` status shown**, a researched closure means check the box and rate relevance *as if open, with no demotion for closure*. The −2 demotion applies only when the tool actually displays `PERMANENT_CLOSURE`.
 
+## Choosing per-result URLs — measured, not guessed
+
+Phase 1 needs one URL per business result, and **which host you pick decides whether it
+works.** These verdicts come from fetching a real page on each host and checking what came
+back, not from assumption:
+
+| Host | Result | Use it? |
+|---|---|---|
+| The operator's **own website** | varies; JS-heavy ones need the browser, which is now on by default | **First choice** |
+| **facebook.com** | 200, real content — **only via the browser** | **Yes.** Claimed pages are OFFICIAL-tier |
+| **mapquest.com** | 202, ~1.7 kB incl. closure status | **Yes** |
+| **chamberofcommerce.com** | 200, ~2.8 kB | **Yes** |
+| yelp.com | **403 even with headless Chromium + stealth** | No — WebSearch only |
+| tripadvisor.com | 403 | No — WebSearch only |
+| yellowpages.com · loc8nearme.com · doordash.com · opentable.com · restaurantji.com · zmenu.com | 403 | No |
+| instagram.com | 200 but 44 chars of JS shell | No |
+| allmenus.com | geo-blocked | No |
+| simon.com | 307 | No |
+
+The script skips the "No" hosts before fetching, so supplying one costs nothing — but it
+also gains nothing. **Prefer a host from the top of the table**, and reach for the brand's
+own store page whenever the URL pattern is guessable, since a 404 there is positive
+closure evidence that no other source gives you.
+
+Being on the skip list does **not** make a source worthless. Yelp's structured CLOSED
+banner and MapQuest's address are real evidence — they are simply reachable through
+`WebSearch` and a human's browser rather than through this script, and they still count
+toward a source-consensus threshold.
+
 ## The fallback ladder
 
 Blocking is normal — expect it on Yelp, Cloudflare-fronted brand sites, Simon mall directories and search engines under load. A blocked source is **evidence not yet gathered**, never proof of closure and never an excuse for `Can't Verify`. Work down the ladder until something answers:

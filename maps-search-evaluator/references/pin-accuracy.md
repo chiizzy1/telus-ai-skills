@@ -88,6 +88,19 @@ Boundaries can be:
 - Property boundaries confirmed by official sources
 - If no divider exists → draw an imaginary 90-degree line to the road
 
+### Parking lots are never split
+
+**Always treat a parking lot or parking structure as belonging entirely to the feature.**
+Do **not** apply the Half 'n Half rule to it, even when the lot is shared and plainly does
+not belong to the feature alone. The shared lot is the feature's `Approximate` area, and it
+extends to the public road.
+
+Where a structure can be verified as parking from satellite imagery — parked cars or
+parking-lot striping — treat the **whole structure** as a parking lot, on the assumption
+that it holds no businesses other than parking-related ones.
+
+Half 'n Half still applies to the **street** and to qualifying **internal access roads**.
+
 ### Half 'n Half Rule
 Extend the feature's boundaries to the **middle of the road**. This defines the outer limits of the Approximate area.
 
@@ -109,6 +122,21 @@ Standard buildings (homes, standalone businesses):
 | Within the property boundaries but not on rooftop | **Approximate** |
 | On the immediate next-door property (same street, same side, same block) | **Next Door** |
 | Outside property boundaries and next-door | **Wrong** |
+
+### Residential property with more than one building
+
+Where a home shares its parcel with a garage, shed or other outbuilding, the buildings are
+**not** equal:
+
+| Pin Position | Rating |
+|---|---|
+| On the rooftop of **the house** (any of them, if several houses share the parcel) | **Perfect** |
+| Within the parcel, **including on a support or auxiliary building** — a detached garage, a shed | **Approximate** |
+| The next-door property | **Next Door** |
+| Outside the parcel and outside next door | **Wrong** |
+
+The trap: a garage has a rooftop, so "pin is on a rooftop" reads as Perfect. It is
+**Approximate**. Only the dwelling's rooftop is Perfect.
 
 ---
 
@@ -160,7 +188,11 @@ Internal access roads within the parcel can only be used as boundaries if ALL TH
 If any condition is not met → the internal road is NOT a boundary.
 
 ### Campus Results (University, Hospital Complex)
-When the **entire campus** is the result → the entire parcel (all buildings, lots, structures) = **Perfect**.
+
+**When the campus itself is the result, there is no `Approximate` and no `Next Door`** —
+Perfect or Wrong only. Perfect is the entire campus or business-complex boundary as
+established by research: every building, lot and structure inside it. Wrong is anything
+outside that boundary.
 
 When a **specific building/POI within the campus** is the result → only that building's area is Perfect; rest of campus is Approximate (until you hit a through road boundary).
 
@@ -168,24 +200,65 @@ When a **specific building/POI within the campus** is the result → only that b
 
 ## Features Without Rooftops
 
+> ### Which bands exist for which feature type
+>
+> The guideline switches `Approximate` and `Next Door` **off** for several feature types.
+> Awarding a band that does not exist is a rating error, and it is the commonest mistake in
+> this chapter. Check here before rating anything that is not an ordinary building.
+>
+> | Feature type | Perfect | Approximate | Next Door |
+> |---|---|---|---|
+> | Single rooftop / ordinary building | yes | yes | yes |
+> | Residential property, multiple buildings | yes | yes | yes |
+> | **Street** | yes | **N/A** | **N/A** |
+> | **Administrative division** (neighbourhood, locality, state, country) | yes | **N/A** | **N/A** |
+> | **Campus / business complex, when the campus IS the result** | yes | **N/A** | **N/A** |
+> | **Natural feature** | yes | sometimes — see below | **N/A** |
+> | **Transit POI** | yes | yes | **N/A** |
+> | Shared space (strip mall, shopping centre) | yes | yes | **N/A** |
+
 ### Natural Features (Mountains, Rivers, Parks)
-- Pin should fall within the feature's natural boundaries.
-- **Perfect** = pin is on/within the feature.
-- **Approximate** = pin is on immediately adjacent land/water still associated with the feature.
-- **Wrong** = pin is clearly outside the feature.
+
+Turns on the feature's **defining feature** — the water for a river or ocean, the cliffs or
+peak for a mountain, the sand for a beach. Features bounded arbitrarily instead (parks,
+national forests) use their polygon, or where the polygon would be if the data existed.
+
+| Rating | When |
+|---|---|
+| **Perfect** | On the defining feature, or inside the polygon for an arbitrarily bounded feature. Answers **Yes** to the precise-location follow-up |
+| **Approximate** | Outside the defining feature but **still on the feature** — the slope of a mountain rather than its peak, the shore of a river or lake rather than the water |
+| **Next Door** | **N/A** |
+| **Wrong** | Anything meeting neither |
+
+Two qualifiers: **not every natural feature has an Approximate area** — judge each one
+individually — and where the feature sits in an urban or suburban area you may apply the
+Half 'n Half rule.
+
+Note the difference from the old reading: Approximate is land **still part of the feature**,
+not adjacent land outside it.
 
 ### Transit POIs
 
-#### Bus Stops
-- Pin should be at the stop location (bench, sign, shelter).
-- **Perfect** = pin on the stop's physical location.
-- **Approximate** = pin on the correct street segment near the stop.
-- **Wrong** = pin on wrong street or far from the stop.
+Transit is the one feature type with an explicit **50-metre** threshold. There is **no
+Next Door** for any transit POI.
+
+| Rating | When |
+|---|---|
+| **Perfect** | On the transit POI's polygon, on the spot where a user would **wait** for transit, or inside the **entrance polygon** of an underground station. Answers **Yes** to the follow-up |
+| **Approximate** | Within **50 m** of the waiting spot, or within station **parking lots and surrounding property** as far as Half 'n Half allows |
+| **Next Door** | **N/A** |
+| **Wrong** | Farther than **50 m** from the ideal location · within 50 m but **on a non-associated rooftop** · outside the Half 'n Half boundary |
+
+The middle Wrong case is the one that catches people: being close enough is not sufficient
+if the pin lands on a building that has nothing to do with the stop.
+
+#### Bus, Tram and Streetcar Stops
+Usually at the roadside with a single boarding spot. **Perfect** = the waiting spot itself.
+**Approximate** = within 50 m of it and inside Half 'n Half.
 
 #### Underground/Subway Stations
-- Station has multiple entrances. The entrance area = the **entrance polygon**.
-- **Perfect** = pin on any entrance or on the station structure.
-- **Approximate** = pin within the property boundary of the station complex.
+Multiple entrances, each with an **entrance polygon**. **Perfect** = any entrance polygon or
+the station structure.
 
 #### Airports, Ferry Ports, Large Transit Hubs
 - These are large facilities with clear boundaries.
@@ -199,13 +272,37 @@ When a **specific building/POI within the campus** is the result → only that b
 - **Perfect** = pin on the structure's rooftop.
 
 ### Streets
-- Pin should fall on the street.
-- **Perfect** = pin on the street.
-- **Approximate** = pin near the street but not on it.
 
-### Localities, States, Countries
-- Pin should fall within the administrative boundary.
-- **Perfect** = pin anywhere within the boundary.
+**There is no `Approximate` and no `Next Door` for a street result.** The scale is Perfect
+or Wrong. A pin *near* the street but not on it is **Wrong**, not Approximate.
+
+| Rating | When |
+|---|---|
+| **Perfect** | Anywhere on the street — including **medians**, **physical road dividers**, **bridges that are part of the street**, and **intersections the street passes completely through** |
+| **Approximate** | **N/A** |
+| **Next Door** | **N/A** |
+| **Wrong** | Everything else — including **sidewalks** and **intersections the street does not pass through** |
+
+Three details that decide real cases:
+
+- **Sidewalks are not part of the street.** A pin on the pavement is Wrong.
+- **Intersections only count where the street passes completely through.** For Jersey St in
+  NYC, the Lafayette St intersection is Perfect because Jersey passes through it; the
+  Mulberry St and Crosby St intersections are **Wrong**, because Jersey does not.
+- **A divider still counts even in water.** A pin on the physical divider of a bridge —
+  Highway 92 on the San Mateo–Hayward Bridge — is Perfect even though it falls over water.
+
+If the satellite view and the vector map disagree on where the street edge is, **use the
+most favourable layer**. A `Perfect` street pin answers **Yes** to the precise-location
+follow-up.
+
+### Administrative Divisions (neighbourhood, locality, state, country)
+
+**No `Approximate`, no `Next Door`.** Perfect or Wrong only.
+
+- **Perfect** = anywhere inside the division's boundary or polygon. Answers **Yes** to the
+  precise-location follow-up.
+- **Wrong** = anywhere outside it.
 
 ---
 

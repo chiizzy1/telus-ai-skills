@@ -27,21 +27,50 @@ The governing rule comes from the shared TELUS quality gate: **never report a ve
 
 ## Source priority
 
-Strongest first. A lower source never overturns a higher one.
+The guideline sorts sources into **three buckets, not a ranked list**. Use an Official
+Resource first. Only when none exists do you fall back to consensus among multiple
+Reliable Resources. Unreliable resources are never used at all.
 
-| Tier | Source | Use for |
-|---|---|---|
-| 1 | The entity's **official website** — About/About Us, storefront signage shown on the site | Name, address, category, closure |
-| 2 | **Official chain locator** page | Chain branch names, addresses, which branches exist |
-| 3 | **Government and postal** sources — business and property registries, land registry/cadastre, official GIS maps | Address existence, property boundaries |
-| 4 | **Official venue maps and directories** — malls, campuses, airports, stations | Unit-level location inside a complex; often carries what street imagery cannot show |
-| 5 | **Reliable online map resources**, including vector and hybrid views | Pin placement, boundaries, street layout |
-| 6 | **Aerial and street-level imagery** | Rooftops, boundaries, signage, whether premises still operate |
-| 7 | **Claimed and recently managed social accounts** | Closure announcements, current name, signage |
-| 8 | **Primary publications** — outlets doing their own reporting | Closure, renaming, relocation |
-| 9 | **Crowdsourced review sites and user photos** | **Supporting evidence only.** May corroborate a higher tier; never the sole basis for a rating |
+### Official — always try these first
 
-Official restaurant menus, including scanned or user-photographed ones, are acceptable supporting evidence for a business name.
+| Source | Use for |
+|---|---|
+| The entity's **official website** — About/About Us, storefront signage shown on it | Name, address, category, closure |
+| **Official chain locator** page | Chain branch names, addresses, which branches exist. A 404 is positive closure evidence |
+| **Claimed social media pages** — Facebook, Instagram, X | Name, address, closure announcements, current signage |
+| **Street-level imagery** | Signage, whether the premises still operate, which unit a business occupies |
+| **Postal authorities** — USPS in the US | Address existence and component accuracy. See `us-address-verification.md` |
+| **Official government maps and business registries**, land registry / cadastral maps | Address existence, property boundaries, which rooftop |
+| **Official venue maps and directories** — malls, campuses, airports, stations | Unit-level location inside a complex |
+
+> **Claimed social media is OFFICIAL, not a fallback.** Many markets use a Facebook page
+> instead of a website, and the guideline says so explicitly. Treat a claimed, recently
+> managed account as equal to the operator's own site — go there *before* directory
+> listings, not after. A name demoted on directory consensus while the operator's own
+> page said otherwise is a wrong rating.
+
+### Reliable — consensus among several, when no official source exists
+
+| Source | Use for |
+|---|---|
+| **Crowdsourced review sites** — Yelp, TripAdvisor, Yellow Pages | Name, address, hours, and structured status flags such as a CLOSED banner |
+| **Articles in primary publications** — outlets doing their own reporting | Closure, renaming, relocation |
+| **Local newspaper and media reporting** | Same |
+| **Reliable online map resources** — Google, Bing, MapQuest, HERE WeGo, in multiple views | Pin placement, boundaries, street layout |
+| **Wikipedia** | Coordinates for well-known landmarks, parks and major POIs |
+
+These are **usable**, not merely corroborating. Where no official source exists, a
+consensus across several of them supports a rating on its own.
+
+### Unreliable — never use
+
+Data aggregators, spammy directory sources, unverified listing scrapers. **Consensus
+between unreliable sources is to be disregarded entirely** — three aggregators agreeing
+is worth nothing. This is also why an aggregator listing that persists years after a
+closure proves nothing.
+
+Official restaurant menus, including scanned or user-photographed ones, are acceptable
+supporting evidence for a business name.
 
 ## Research by dimension
 

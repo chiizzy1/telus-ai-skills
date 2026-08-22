@@ -62,17 +62,24 @@ OVERPASS = "https://overpass-api.de/api/interpreter"
 UA = "telus-maps-recon/3.0"
 PAUSE = 1.1  # Nominatim asks for <=1 req/sec. Do not lower this.
 
-# Hosts observed to bot-wall every request. Fetching them burns the timeout and
-# returns a captcha page that looks like content.
+# Hosts MEASURED to bot-wall every request, browser included. Calibrated by
+# fetching a real page on each and checking what came back — not guessed.
 #
-# Skipped here means "unfetchable by this script", NOT "worthless". These are
-# often the best sources available — a Yelp closure banner, a MapQuest address —
-# and they are reachable via WebSearch and readable by a human. They still COUNT
-# toward a source-consensus threshold. Do not rate Can't Verify on the grounds
-# that the only sources were on this list.
-WALLED = ("yelp.com", "tripadvisor.", "facebook.com", "instagram.com",
-          "zmenu.com", "allmenus.com", "restaurantji.com", "doordash.com",
-          "grubhub.com", "opentable.com", "simon.com", "trulia.com")
+#   walled : yelp 403 (403 even with headless Chromium + stealth), tripadvisor 403,
+#            yellowpages 403, loc8nearme 403, doordash 403, opentable 403,
+#            restaurantji 403, zmenu 403, allmenus geo-blocked, simon 307,
+#            instagram 200 but 44 chars of JS shell
+#   USABLE : mapquest 202/1.7kB, chamberofcommerce 200/2.8kB,
+#            facebook 200/654B **but only via Playwright**
+#
+# Skipped here means "unfetchable by this script", NOT "worthless". These remain
+# reachable via WebSearch and readable by a human, and they still COUNT toward a
+# source-consensus threshold. Do not rate Can't Verify because the only sources
+# were on this list.
+WALLED = ("yelp.com", "tripadvisor.", "instagram.com", "zmenu.com",
+          "allmenus.com", "restaurantji.com", "doordash.com", "grubhub.com",
+          "opentable.com", "simon.com", "trulia.com", "yellowpages.com",
+          "loc8nearme.com")
 
 # Multi-word only. Bare "closed" matches every opening-hours table.
 CLOSURE_PATTERNS = [
@@ -264,7 +271,16 @@ def phase0(task: dict) -> dict:
 # Phase 1 — batched page fetches, one URL per business result
 # --------------------------------------------------------------------------
 
-def phase1(task: dict, run_id: str, deep: bool) -> tuple[dict, Path | None, list[Path]]:
+def phase1(task: dict, run_id: str, fast: bool) -> tuple[dict, Path | None, list[Path]]:
+    """Fetch the per-result pages.
+
+    The browser fallback is ON by default. It was previously off for speed, on the
+    assumption it could not rescue a blocked host. Measurement showed that is true
+    only for the WALLED hosts, which are now filtered out before we fetch. What it
+    DOES rescue is JS-rendered pages and Facebook, which returns nothing without it
+    and is an OFFICIAL-tier source under the claimed-social-media rule.
+    --fast skips it.
+    """
     urls, missing = [], []
     for r in task["results"]:
         if (r.get("type") or "BUSINESS").upper() == "ADDRESS":
@@ -300,9 +316,7 @@ def phase1(task: dict, run_id: str, deep: bool) -> tuple[dict, Path | None, list
     cmd = [sys.executable, str(TOOLS_DIR / "check_urls.py"),
            "--query", task.get("query", ""), "--run-id", run_id,
            "--output-dir", str(OUT_ROOT), "--workers", "8"]
-    if not deep:
-        # The browser fallback costs 30-60s per blocked host and almost never
-        # rescues a site that already refused the fast pass. --deep re-enables it.
+    if fast:
         cmd += ["--no-playwright", "--timeout", "15"]
     proc = subprocess.run(cmd + urls, capture_output=True, text=True, check=False)
 
@@ -619,8 +633,9 @@ def main(argv: list[str]) -> int:
     ap = argparse.ArgumentParser(description="Maps Search recon (Phases 0-4).")
     ap.add_argument("task", help="Path to the task JSON file.")
     ap.add_argument("--run-id", default=None)
-    ap.add_argument("--deep", action="store_true",
-                    help="Re-enable the browser fallback for blocked pages. Slow.")
+    ap.add_argument("--fast", action="store_true",
+                    help="Skip the browser fallback. Faster, but loses Facebook and "
+                         "any JS-rendered official site.")
     args = ap.parse_args(argv)
 
     task = json.loads(Path(args.task).read_text(encoding="utf-8"))
@@ -631,7 +646,7 @@ def main(argv: list[str]) -> int:
     run_id = args.run_id or f"maps-{slug.strip('-')}-{datetime.now():%Y%m%d-%H%M%S}"
 
     p0 = phase0(task)
-    p1, run_dir, pages = phase1(task, run_id, args.deep)
+    p1, run_dir, pages = phase1(task, run_id, args.fast)
     if run_dir is None:
         run_dir = OUT_ROOT / run_id
         run_dir.mkdir(parents=True, exist_ok=True)
