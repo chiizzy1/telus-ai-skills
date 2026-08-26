@@ -9,6 +9,7 @@ description: Strict Close Variants evaluator following Telus Close Variants Rati
 
 - `references/...` paths are inside this skill's folder.
 - `TELUS-TASKS/...` is a sibling folder of this skills repo in the workspace root (e.g. `<workspace>/train-ai/TELUS-TASKS/`).
+- Blank task template: `TELUS-TASKS/task-templates/close-variants.md`. Every TELUS task type has one there; the live task the user is working on is `TELUS-TASKS/task.md`.
 - Source of truth: `TELUS-TASKS/Close Variants/Telus - Close Variants.pdf` (extracted text: `TELUS-TASKS/Close Variants/close_variants_full.txt`).
 - If a referenced external file cannot be found, use this skill's reference files as the operative rubric and state that the source was unavailable.
 
@@ -34,7 +35,7 @@ description: Strict Close Variants evaluator following Telus Close Variants Rati
 
 ## 1. How to Read the Input
 
-The user provides `TELUS-TASKS/task.md` (or pastes its content). A Close Variants task template also ships at `TELUS-TASKS/Close Variants/task.md`; if the task file is not where you expect, check both. It contains N tasks in this structure:
+The user provides `TELUS-TASKS/task.md` (or pastes its content). The blank Close Variants template it is filled in from is `TELUS-TASKS/task-templates/close-variants.md`; if the task file is not where you expect, check both. It contains N tasks in this structure:
 
 ```
 # CLOSE VARIANTS Task [N]:

@@ -10,6 +10,7 @@ description: Evaluate TELUS Maps Search Evaluation tasks. Use when rating map se
 - `references/...` paths are inside this skill's folder.
 - Sibling TELUS skills are reached with `../<skill>/SKILL.md`.
 - `TELUS-TASKS/...` is a sibling folder of this skills repo in the workspace root (e.g. `<workspace>/train-ai/TELUS-TASKS/`).
+- Blank task template: `TELUS-TASKS/task-templates/maps-search-evaluation.md`. Every TELUS task type has one there; the live task the user is working on is `TELUS-TASKS/task.md`.
 - If a referenced external file cannot be found, use this skill's reference files as the operative rubric and say plainly that the official source was unavailable.
 
 ## Source Hierarchy

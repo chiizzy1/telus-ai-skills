@@ -16,6 +16,7 @@ Included skills:
 - `close-variants-evaluator`
 - `search-ads-relevance`
 - `maps-search-evaluator`
+- `related-results-evaluation-evaluator`
 
 ## Daily Update
 

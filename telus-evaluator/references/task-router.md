@@ -8,6 +8,7 @@ Use this before routing any TELUS task.
 - [Strict Routing Protocol](#strict-routing-protocol)
 - [Task Families](#task-families)
 - [TELUS Families Without A Dedicated Skill](#telus-families-without-a-dedicated-skill)
+- [Task Templates](#task-templates)
 - [Source Hierarchy](#source-hierarchy)
 - [Comment Style](#comment-style)
 
@@ -34,6 +35,8 @@ Use this before routing any TELUS task.
 
 Use `search-sbs-evaluator` (read `../../search-sbs-evaluator/SKILL.md`).
 
+Task template: `TELUS-TASKS/task-templates/search-sbs.md`.
+
 Signals:
 
 - Side-by-side search results.
@@ -47,6 +50,8 @@ Do not route Web Images or Search Ads here unless the task UI is clearly Search 
 
 Use `telus-bot-reply-validator` (read `../../telus-bot-reply-validator/SKILL.md`).
 
+Task template: `TELUS-TASKS/task-templates/ai-assistant-human-evaluation.md`.
+
 Signals:
 
 - Apple assistant response validation.
@@ -58,6 +63,8 @@ Do not use Search SBS satisfaction labels here.
 ### Text Response Evaluation
 
 Use `text-response-evaluator` (read `../../text-response-evaluator/SKILL.md`).
+
+Task template: `TELUS-TASKS/task-templates/text-response-evaluation.md`.
 
 Signals:
 
@@ -74,6 +81,8 @@ Judge response options only after transcript pass/reject rules are applied.
 
 Use `web-images-satisfaction-evaluator` (read `../../web-images-satisfaction-evaluator/SKILL.md`).
 
+Task template: `TELUS-TASKS/task-templates/web-images-satisfaction.md`.
+
 Signals:
 
 - Image result rating.
@@ -86,6 +95,8 @@ Do not use Search SBS `HS/S/SS/NS` here.
 ### Search Ads Relevance
 
 Use `search-ads-relevance` (read `../../search-ads-relevance/SKILL.md`).
+
+Task template: `TELUS-TASKS/task-templates/search-ads-relevance.md`.
 
 Signals:
 
@@ -102,6 +113,8 @@ Do not use Search SBS `HS/S/SS/NS` here.
 
 Use `close-variants-evaluator` (read `../../close-variants-evaluator/SKILL.md`).
 
+Task template: `TELUS-TASKS/task-templates/close-variants.md`.
+
 Signals:
 
 - An original query paired with a query variant.
@@ -112,9 +125,31 @@ Guideline source: `TELUS-TASKS/Close Variants/Telus - Close Variants.pdf`.
 
 Do not confuse this with Search Ads Relevance. Close Variants compares a query to a variant query, not a query to an ad.
 
+### Related Results Evaluation
+
+Use `related-results-evaluation-evaluator` (read `../../related-results-evaluation-evaluator/SKILL.md`).
+
+Task template: `TELUS-TASKS/task-templates/related-results-evaluation.md`.
+
+Signals:
+
+- One query paired with one maps POI result, rated on Relevance alone.
+- A result card showing a name, a category line, a Maps Result link with a red pin icon, and a Website link.
+- Rating labels `Excellent`, `Good`, `Acceptable`, `Bad`, with a mandatory comment on every rating.
+- Four web-search links for the query: Bing, DuckDuckGo, Google, Yahoo.
+- No map, no numbered pins, no viewport, no user location.
+
+Guideline source: `TELUS-TASKS/Related Results evaluation/Related Results evaluation.pdf` (extracted: `TELUS-TASKS/Related Results evaluation/extracted/Related-Results-Guidelines.md`).
+
+Do not route this to `maps-search-evaluator`. Both are maps tasks and three of the four labels overlap, but Related Results has no `Navigational` tier, no viewport or user location, no demotion checkboxes, and no Name/Category, Address or Pin Accuracy. If the task shows numbered pins on a map, it is Maps Search Evaluation; if it shows one result card and one Relevance control, it is Related Results.
+
+Do not route this to `search-ads-relevance` either. The four labels are the same words, but that task rates an App Store ad against an App Store query.
+
 ### Maps Search Evaluation
 
 Use `maps-search-evaluator` (read `../../maps-search-evaluator/SKILL.md`).
+
+Task template: `TELUS-TASKS/task-templates/maps-search-evaluation.md`.
 
 Signals:
 
@@ -132,6 +167,8 @@ Guideline source: `TELUS-TASKS/Maps Search Evaluation/telus - Maps Search Evalua
 
 Do not use Search SBS `HS/S/SS/NS` labels here. Maps Search Evaluation has its own relevance scale.
 
+Do not confuse this with Related Results Evaluation, which rates a single query-result pair on Relevance alone with no pins, viewport or accuracy fields.
+
 ## TELUS Families Without A Dedicated Skill
 
 The workspace contains guidelines for these TELUS task types, but no separate installed skill has been built yet:
@@ -140,6 +177,10 @@ The workspace contains guidelines for these TELUS task types, but no separate in
 - Image Themes Rating: `TELUS-TASKS/Image-Themes-Rating/telus-Image_Themes_Rating.pdf`
 
 If one appears, read its official guideline directly and tell the user no dedicated TELUS skill exists yet. Do not force it through a different TELUS skill.
+
+## Task Templates
+
+Blank templates for every TELUS task type live in `TELUS-TASKS/task-templates/`, one file per type, named after the task. The user fills one into `TELUS-TASKS/task.md`, which is the live working file and is read-only input. Each family above names its template.
 
 ## Source Hierarchy
 

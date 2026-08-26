@@ -9,6 +9,7 @@ description: Evaluate TELUS Text Response Evaluation tasks from transcript-based
 
 - `references/...` paths are inside this skill's folder.
 - `TELUS-TASKS/...` is a sibling folder of this skills repo in the workspace root (e.g. `<workspace>/train-ai/TELUS-TASKS/`).
+- Blank task template: `TELUS-TASKS/task-templates/text-response-evaluation.md`. Every TELUS task type has one there; the live task the user is working on is `TELUS-TASKS/task.md`.
 - If a referenced external file cannot be found, use this skill's reference files as the operative rubric and state that the source was unavailable.
 
 ## Source Of Truth

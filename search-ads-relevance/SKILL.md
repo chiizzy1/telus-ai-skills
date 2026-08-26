@@ -9,6 +9,7 @@ description: Strict Search Ads Relevance evaluator following Telus Search Ads Ra
 
 - `references/...` paths are inside this skill's folder.
 - `TELUS-TASKS/...` is a sibling folder of this skills repo in the workspace root (e.g. `<workspace>/train-ai/TELUS-TASKS/`).
+- Blank task template: `TELUS-TASKS/task-templates/search-ads-relevance.md`. Every TELUS task type has one there; the live task the user is working on is `TELUS-TASKS/task.md`.
 - Two tools ship with this repo, both run from the workspace root:
   - `telus-ai-skills/tools/fetch_app_meta.py` for App Store metadata (the five research-table fields).
   - `telus-ai-skills/tools/check_urls.py` for full page text and liveness.
@@ -59,7 +60,7 @@ Extract from each task:
 
 That's it. The search links in the template are reference helpers for the user. You perform your own research using the tools described in Phase 1.
 
-`task.md` normally means `TELUS-TASKS/task.md`. If the user points to a different file, use that path instead.
+`task.md` normally means `TELUS-TASKS/task.md`, filled in from `TELUS-TASKS/task-templates/search-ads-relevance.md`. If the user points to a different file, use that path instead.
 
 ---
 

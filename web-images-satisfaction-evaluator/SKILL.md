@@ -9,6 +9,7 @@ description: Evaluate TELUS Web Images Single Side Image Satisfaction and image 
 
 - `references/...` paths are inside this skill's folder.
 - `TELUS-TASKS/...` is a sibling folder of this skills repo in the workspace root (e.g. `<workspace>/train-ai/TELUS-TASKS/`).
+- Blank task template: `TELUS-TASKS/task-templates/web-images-satisfaction.md`. Every TELUS task type has one there; the live task the user is working on is `TELUS-TASKS/task.md`.
 - The URL checker ships with this repo at `telus-ai-skills/tools/check_urls.py`; run it from the workspace root.
 - If a referenced external file cannot be found, use this skill's reference files as the operative rubric and state that the source was unavailable.
 

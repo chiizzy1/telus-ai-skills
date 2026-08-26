@@ -10,6 +10,7 @@ description: Router and source-of-truth controller for TELUS task work. Use when
 - `references/...` paths are inside this skill's folder.
 - Sibling skills are reached with `../<skill>/SKILL.md`.
 - `TELUS-TASKS/...` is a sibling folder of this skills repo in the workspace root (e.g. `<workspace>/train-ai/TELUS-TASKS/`).
+- Blank task templates live in `TELUS-TASKS/task-templates/`, one file per TELUS task type. The live task the user is working on is `TELUS-TASKS/task.md`.
 - If a referenced external file cannot be found, use this skill's reference files as the operative rubric and state that the source was unavailable.
 
 ## Core Rule
@@ -74,6 +75,7 @@ If the user or a prior answer conflicts with the TELUS guideline, follow the gui
 - Web Images Single Side Image Satisfaction, image side-by-side, image flags, host page flags, near duplicates, or image OPR: use `web-images-satisfaction-evaluator` (read `../web-images-satisfaction-evaluator/SKILL.md`).
 - Search Ads Relevance, iOS App Store ad relevance, ad-to-query grading, or Excellent/Good/Acceptable/Bad ad ratings: use `search-ads-relevance` (read `../search-ads-relevance/SKILL.md`).
 - Close Variants, query-variant similarity, spelling/abbreviation/transliteration/synonym evaluation, or Good/Acceptable/Bad variant ratings: use `close-variants-evaluator` (read `../close-variants-evaluator/SKILL.md`).
+- Related Results evaluation, one maps query paired with one POI result, Relevance rated Excellent/Good/Acceptable/Bad with a mandatory comment, a result card with a Maps Result pin link and a Website link, and no map pins or accuracy fields: use `related-results-evaluation-evaluator` (read `../related-results-evaluation-evaluator/SKILL.md`).
 - Maps Search Evaluation, Search 2.0, Search Relevance, map search results with pins, Navigational/Excellent/Good/Acceptable/Bad relevance, Name/Category Accuracy, Address Accuracy, Pin Accuracy, viewport age (fresh/stale), PERMANENT_CLOSURE, or result-level distance/prominence demotion: use `maps-search-evaluator` (read `../maps-search-evaluator/SKILL.md`).
 
 ## Known TELUS Task Types Without A Dedicated Skill Yet
@@ -100,7 +102,7 @@ Do not force these into Search SBS, Bot Reply, Text Response, Web Images, Search
 If the TELUS task type is unclear:
 
 1. Read the visible task title, instructions, labels, and rating controls.
-2. Read `TELUS-TASKS/task.md` if the task is stored there.
+2. Read `TELUS-TASKS/task.md` if the task is stored there. The blank template it came from is in `TELUS-TASKS/task-templates/`, and its filename names the task type.
 3. Search only inside `TELUS-TASKS/` for the matching guideline.
 4. State plainly if no task-specific skill exists yet.
 5. Apply the matching official TELUS guideline directly rather than borrowing another task's rubric.

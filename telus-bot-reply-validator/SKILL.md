@@ -9,6 +9,7 @@ description: Evaluate TELUS AI Assistant/Bot Reply Validation tasks for Apple as
 
 - `references/...` paths are inside this skill's folder.
 - `TELUS-TASKS/...` is a sibling folder of this skills repo in the workspace root (e.g. `<workspace>/train-ai/TELUS-TASKS/`).
+- Blank task template: `TELUS-TASKS/task-templates/ai-assistant-human-evaluation.md`. Every TELUS task type has one there; the live task the user is working on is `TELUS-TASKS/task.md`.
 - The source PDF path contains spaces and an em dash (`AI Assistant — Human Evaluation Guidelines`). If exact-path access fails, list the folder and match by title.
 - If a referenced external file cannot be found, use this skill's reference files as the operative rubric and state that the source was unavailable.
 

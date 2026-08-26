@@ -1,0 +1,4 @@
+interface:
+  display_name: "TELUS Related Results Evaluator"
+  short_description: "Rate a maps query-result relationship as Excellent, Good, Acceptable or Bad"
+  default_prompt: "Use $related-results-evaluation-evaluator to rate this query and result against the TELUS Related Results guidelines."

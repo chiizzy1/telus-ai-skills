@@ -9,13 +9,14 @@ description: Strict Search SBS (Search Satisfaction) evaluator following Telus D
 
 - `references/...` paths are inside this skill's folder.
 - `TELUS-TASKS/...` is a sibling folder of this skills repo in the workspace root (e.g. `<workspace>/train-ai/TELUS-TASKS/`).
+- Blank task template: `TELUS-TASKS/task-templates/search-sbs.md`. Every TELUS task type has one there; the live task the user is working on is `TELUS-TASKS/task.md`.
 - Source of truth: the PDFs in `TELUS-TASKS/SBS-GUIDELINES/` (`telus-SBS.pdf`, `telus-SBS-LEARNING-AID.pdf`, `telus-SBS-COMMON-MISTAKES.pdf`).
 - The URL checker ships with this repo at `telus-ai-skills/tools/check_urls.py`; run it from the workspace root.
 - If a referenced external file cannot be found, use this skill's reference files as the operative rubric and state that the source was unavailable.
 
 ## Quick Contract
 
-1. Read `TELUS-TASKS/task.md` in full with your file-reading tool. Never work from the chat snippet alone.
+1. Read `TELUS-TASKS/task.md` in full with your file-reading tool. Never work from the chat snippet alone. It is filled in from `TELUS-TASKS/task-templates/search-sbs.md`.
 2. Run `telus-ai-skills/tools/check_urls.py` on every unique URL from both sides.
 3. Research the query with your web-search tool and review the Google and Bing SERP links the script prints.
 4. Locate query terms inside the saved content files, then read the surrounding paragraphs before judging anything.
