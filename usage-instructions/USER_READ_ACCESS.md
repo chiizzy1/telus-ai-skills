@@ -15,6 +15,8 @@ Each skill can include:
 
 Your agent reads the skills from your local clone. The local clone stays current by pulling owner-approved updates from GitHub.
 
+The skills are the method. The guidelines they apply are separate, and arrive as a `TELUS-TASKS` zip from the owner. You need both, sitting side by side. See Unpack The Task Material below.
+
 ## Access Model
 
 You can:
@@ -28,7 +30,8 @@ You cannot:
 
 - push changes to the official repo;
 - edit the official skill source;
-- share the private repo or its contents with people who do not have permission.
+- share the private repo or its contents with people who do not have permission;
+- share the `TELUS-TASKS` guideline material, which is TELUS's own and carries the same restriction as this repo.
 
 ## Prerequisites
 
@@ -36,8 +39,9 @@ Before setup:
 
 1. Accept the GitHub repository invite from the owner.
 2. Install Git for Windows if it is not already installed.
-3. Sign in to GitHub with the account the owner invited.
-4. Use PowerShell on Windows.
+3. Install Python 3.9 or newer from python.org. Several skills call a URL checker that ships with this repo. On Windows the command is usually `python`, not `python3`.
+4. Sign in to GitHub with the account the owner invited.
+5. Use PowerShell on Windows.
 
 Private repo:
 
@@ -64,6 +68,61 @@ git clone https://github.com/chiizzy1/telus-ai-skills.git "C:\Users\$env:USERNAM
 ```powershell
 cd "C:\Users\$env:USERNAME\Desktop\projects\train-ai\telus-ai-skills"
 ```
+
+## Unpack The Task Material
+
+The skills are only half of what you need. The official TELUS guidelines, the extracted page renders, and the blank task templates live in a separate folder called `TELUS-TASKS`, which the owner sends you as a zip. It is not in this repo, because it is large binary material that changes rarely.
+
+**It has to unzip as a sibling of this repo, not inside it:**
+
+```text
+C:\Users\<you>\Desktop\projects\train-ai\
+    telus-ai-skills\        <- the clone
+    TELUS-TASKS\            <- the unzipped folder
+```
+
+```powershell
+Expand-Archive -Path "$env:USERPROFILE\Downloads\TELUS-TASKS-<date>.zip" -DestinationPath "C:\Users\$env:USERNAME\Desktop\projects\train-ai"
+```
+
+This matters more than it looks. Every skill resolves its guideline as `TELUS-TASKS/...` relative to the workspace root. Put the folder anywhere else and the skills still load, still run, and still produce ratings, but every source-of-truth path silently misses and the agent falls back to its own reference files. Nothing announces the problem.
+
+Check it landed correctly:
+
+```powershell
+Test-Path "C:\Users\$env:USERNAME\Desktop\projects\train-ai\TELUS-TASKS\task-templates"
+```
+
+Expected: `True`.
+
+What is inside:
+
+- One folder per TELUS task type, holding that task's official guideline PDF and any extracted text or page renders.
+- `task-templates\` - a blank template per task type. Copy the one you need into `TELUS-TASKS\task.md`, fill it in, and give that to the agent.
+- `task.md` - the live working file. This is the only file you edit.
+
+You will not have a `url_content` folder at first. The URL checker creates it the first time it runs and writes its evidence there. That folder is yours, is regenerated as you work, and is never shared back.
+
+## Install The URL Checker Dependencies
+
+Several skills call `tools\check_urls.py`. It runs with no setup at all, but without its packages it falls back to the standard library, prints `DEGRADED MODE`, and extracts less text, which pushes more results into manual review.
+
+For full quality, run from the repo folder:
+
+```powershell
+python -m pip install --user -r tools\requirements.txt
+python -m playwright install chromium
+```
+
+The chromium download is about 90 MB. It is what lets the checker read JavaScript-heavy or bot-protected pages.
+
+Confirm it worked:
+
+```powershell
+python tools\check_urls.py --check-deps
+```
+
+Expected: `All core dependencies present.`
 
 ## Link Your Agent Skills
 
@@ -122,22 +181,24 @@ After linking, check that the skill folders exist at the target location.
 For `.agents`:
 
 ```powershell
-Get-ChildItem "$env:USERPROFILE\.agents\skills" | Where-Object { $_.Name -like "telus-*" -or $_.Name -in @("search-sbs-evaluator","search-ads-relevance","close-variants-evaluator","text-response-evaluator","web-images-satisfaction-evaluator","maps-search-evaluator") }
+Get-ChildItem "$env:USERPROFILE\.agents\skills" | Where-Object { $_.Target -like "*telus-ai-skills*" } | Select-Object Name, LinkType
 ```
 
 For Codex:
 
 ```powershell
-Get-ChildItem "$env:USERPROFILE\.codex\skills" | Where-Object { $_.Name -like "telus-*" -or $_.Name -in @("search-sbs-evaluator","search-ads-relevance","close-variants-evaluator","text-response-evaluator","web-images-satisfaction-evaluator","maps-search-evaluator") }
+Get-ChildItem "$env:USERPROFILE\.codex\skills" | Where-Object { $_.Target -like "*telus-ai-skills*" } | Select-Object Name, LinkType
 ```
 
 For Gemini / Antigravity:
 
 ```powershell
-Get-ChildItem "$env:USERPROFILE\.gemini\antigravity-ide\skills" | Where-Object { $_.Name -like "telus-*" -or $_.Name -in @("search-sbs-evaluator","search-ads-relevance","close-variants-evaluator","text-response-evaluator","web-images-satisfaction-evaluator","maps-search-evaluator") }
+Get-ChildItem "$env:USERPROFILE\.gemini\antigravity-ide\skills" | Where-Object { $_.Target -like "*telus-ai-skills*" } | Select-Object Name, LinkType
 ```
 
-You should see folders such as:
+These commands match on the link target rather than on a list of names, so they keep working as skills are added or renamed. Every row should show `LinkType` of `Junction`. A plain directory instead of a junction means the link step did not work; run the link command again with `-Force`.
+
+You should see all nine skills:
 
 - `telus-evaluator`
 - `search-sbs-evaluator`
@@ -147,6 +208,9 @@ You should see folders such as:
 - `close-variants-evaluator`
 - `search-ads-relevance`
 - `maps-search-evaluator`
+- `related-results-evaluation-evaluator`
+
+If you see eight, your clone is behind. Run the daily update below and check again.
 
 Restart the agent after linking so it can discover the skills.
 
@@ -186,6 +250,10 @@ Use the TELUS Close Variants evaluator for this query pair.
 
 ```text
 Use the TELUS Maps Search evaluator for this Search 2.0 task.
+```
+
+```text
+Use the TELUS Related Results evaluator for this query and result.
 ```
 
 Expected routing flow:
@@ -231,6 +299,16 @@ If the agent still uses old skill behavior:
 If the link script says a path already exists:
 
 - run the command again with `-Force` only if you are okay with backing up the existing folder and replacing it with a junction.
+
+If the agent rates a task but never quotes the official guideline, or says a guideline file could not be found:
+
+- check `TELUS-TASKS` sits beside `telus-ai-skills`, not inside it;
+- run the `Test-Path` check in Unpack The Task Material.
+
+If the checker prints `DEGRADED MODE`:
+
+- it still works, with coarser text extraction;
+- run the two install commands in Install The URL Checker Dependencies for full quality.
 
 If you are unsure which target to use:
 
