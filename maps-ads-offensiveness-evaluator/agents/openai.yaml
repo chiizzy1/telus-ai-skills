@@ -1,0 +1,4 @@
+interface:
+  display_name: "TELUS Maps Ads Offensiveness Evaluator"
+  short_description: "Rate a Maps query and ad pair as Majority, Some, or Not Offensive"
+  default_prompt: "Use $maps-ads-offensiveness-evaluator to rate this query and ad pair against the TELUS Maps Ads Offensiveness guidelines."

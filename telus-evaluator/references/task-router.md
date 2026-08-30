@@ -125,6 +125,27 @@ Guideline source: `TELUS-TASKS/Close Variants/Telus - Close Variants.pdf`.
 
 Do not confuse this with Search Ads Relevance. Close Variants compares a query to a variant query, not a query to an ad.
 
+### Maps Ads Offensiveness
+
+Use `maps-ads-offensiveness-evaluator` (read `../../maps-ads-offensiveness-evaluator/SKILL.md`).
+
+Task template: `TELUS-TASKS/task-templates/maps-ads-offensiveness.md`.
+
+Signals:
+
+- A Maps search query on the left and a promoted Brand or POI ad on the right.
+- Rating labels `Majority may find the pair Offensive`, `Some may find the pair Offensive`, `Not Offensive`.
+- A comment required on every rating, including Not Offensive.
+- Task titled Ads Quality, or instructions saying the pair is judged on offensiveness rather than relevance.
+
+Guideline source: `TELUS-TASKS/apple map adds offensiveness/apple map adds offensiveness.pdf`.
+
+This is the only TELUS task that does not rate relevance. Its guideline says so twice in bold. An irrelevant pair is Not Offensive.
+
+Do not route this to `related-results-evaluation-evaluator`. Both show one Maps query and one POI with a single rating and a mandatory comment, so the layouts are nearly identical; the rating labels are what separate them. The rubrics genuinely disagree: `McDonald's` with a Burger King ad is Good relevance and Not Offensive, and `veterinary hospital` with a paint store ad is Bad relevance and Not Offensive. Routing one to the other produces confident wrong answers on every pair.
+
+Do not route this to `search-ads-relevance` either. That task rates App Store ads against App Store queries, on relevance.
+
 ### Related Results Evaluation
 
 Use `related-results-evaluation-evaluator` (read `../../related-results-evaluation-evaluator/SKILL.md`).
@@ -144,6 +165,8 @@ Guideline source: `TELUS-TASKS/Related Results evaluation/Related Results evalua
 Do not route this to `maps-search-evaluator`. Both are maps tasks and three of the four labels overlap, but Related Results has no `Navigational` tier, no viewport or user location, no demotion checkboxes, and no Name/Category, Address or Pin Accuracy. If the task shows numbered pins on a map, it is Maps Search Evaluation; if it shows one result card and one Relevance control, it is Related Results.
 
 Do not route this to `search-ads-relevance` either. The four labels are the same words, but that task rates an App Store ad against an App Store query.
+
+Do not confuse this with Maps Ads Offensiveness, which shows the same one-query-one-POI layout but rates offensiveness on a Majority / Some / Not Offensive scale and never rates relevance.
 
 ### Maps Search Evaluation
 

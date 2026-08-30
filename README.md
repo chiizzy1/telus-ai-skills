@@ -17,6 +17,7 @@ Included skills:
 - `search-ads-relevance`
 - `maps-search-evaluator`
 - `related-results-evaluation-evaluator`
+- `maps-ads-offensiveness-evaluator`
 
 ## Daily Update
 
