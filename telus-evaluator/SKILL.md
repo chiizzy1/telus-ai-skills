@@ -74,6 +74,7 @@ If the user or a prior answer conflicts with the TELUS guideline, follow the gui
 - Text Response Evaluation, text-message transcript pass/reject, transcript summary, best reply, or transcript MCQ: use `text-response-evaluator` (read `../text-response-evaluator/SKILL.md`).
 - Web Images Single Side Image Satisfaction, image side-by-side, image flags, host page flags, near duplicates, or image OPR: use `web-images-satisfaction-evaluator` (read `../web-images-satisfaction-evaluator/SKILL.md`).
 - Search Ads Relevance, iOS App Store ad relevance, ad-to-query grading, or Excellent/Good/Acceptable/Bad ad ratings: use `search-ads-relevance` (read `../search-ads-relevance/SKILL.md`).
+- Broad Match, an advertiser Keyword paired with the Expansion it produced, rated Good/Acceptable/Bad with a named category, and more permissive than Close Variants since translations and former app names are Good: use `broad-match-evaluator` (read `../broad-match-evaluator/SKILL.md`).
 - Close Variants, query-variant similarity, spelling/abbreviation/transliteration/synonym evaluation, or Good/Acceptable/Bad variant ratings: use `close-variants-evaluator` (read `../close-variants-evaluator/SKILL.md`).
 - Maps Ads Offensiveness, Ads Quality, a Maps query paired with a promoted Brand or POI ad, rated Majority may find the pair Offensive / Some may find the pair Offensive / Not Offensive with a mandatory comment, and explicitly not a relevance test: use `maps-ads-offensiveness-evaluator` (read `../maps-ads-offensiveness-evaluator/SKILL.md`).
 - Related Results evaluation, one maps query paired with one POI result, Relevance rated Excellent/Good/Acceptable/Bad with a mandatory comment, a result card with a Maps Result pin link and a Website link, and no map pins or accuracy fields: use `related-results-evaluation-evaluator` (read `../related-results-evaluation-evaluator/SKILL.md`).
@@ -83,7 +84,6 @@ If the user or a prior answer conflicts with the TELUS guideline, follow the gui
 
 These are TELUS task families in the workspace, but they do not yet have installed task-specific skills:
 
-- Broad Match: read `TELUS-TASKS/BROAD-MATCH/telus-Broad_Match.pdf`.
 - Image Themes Rating: read `TELUS-TASKS/Image-Themes-Rating/telus-Image_Themes_Rating.pdf`.
 
 Do not force these into Search SBS, Bot Reply, Text Response, Web Images, Search Ads, or Close Variants. If the user repeatedly needs one of these, create a separate TELUS task skill for it.

@@ -109,6 +109,24 @@ Guideline source: `TELUS-TASKS/SEARCH-ADS-RELEVANCE/guidelines.txt` and `TELUS-T
 
 Do not use Search SBS `HS/S/SS/NS` here.
 
+### Broad Match
+
+Use `broad-match-evaluator` (read `../../broad-match-evaluator/SKILL.md`).
+
+Task template: `TELUS-TASKS/task-templates/broad-match.md`.
+
+Signals:
+
+- Two columns named **Keyword** and **Expansion**.
+- The keyword is what an advertiser targeted; the expansion is the query it expanded to.
+- Rating labels `Good`, `Acceptable`, `Bad`, each with a named category.
+- Categories such as spell correction, space, reordering, transliteration, singular/plural, abbreviations, former app name, translation, competitors, same functionality.
+- App Store and web search links for both the keyword and the expansion.
+
+Guideline source: `TELUS-TASKS/BROAD-MATCH/telus-Broad_Match.pdf` (August 2024).
+
+Do not route this to `close-variants-evaluator`, and do not carry its rules across. The two tasks share their labels, their research links and most of their category names, and they invert each other on nine rules. Translations, former app names and synonyms are always Bad in Close Variants and are Good, Good and Acceptable here; a spell correction is Acceptable there and Good here. The column names settle it: Keyword and Expansion is Broad Match, Query and Variant is Close Variants. The full inversion table is in `../../broad-match-evaluator/references/close-variants-boundary.md`.
+
 ### Close Variants
 
 Use `close-variants-evaluator` (read `../../close-variants-evaluator/SKILL.md`).
@@ -124,6 +142,8 @@ Signals:
 Guideline source: `TELUS-TASKS/Close Variants/Telus - Close Variants.pdf`.
 
 Do not confuse this with Search Ads Relevance. Close Variants compares a query to a variant query, not a query to an ad.
+
+Do not confuse this with Broad Match either. That task pairs an advertiser Keyword with an Expansion and is more permissive: translations and former app names are Good there and always Bad here. Check the column names before applying either rubric.
 
 ### Maps Ads Offensiveness
 
@@ -196,7 +216,6 @@ Do not confuse this with Related Results Evaluation, which rates a single query-
 
 The workspace contains guidelines for these TELUS task types, but no separate installed skill has been built yet:
 
-- Broad Match: `TELUS-TASKS/BROAD-MATCH/telus-Broad_Match.pdf`
 - Image Themes Rating: `TELUS-TASKS/Image-Themes-Rating/telus-Image_Themes_Rating.pdf`
 
 If one appears, read its official guideline directly and tell the user no dedicated TELUS skill exists yet. Do not force it through a different TELUS skill.

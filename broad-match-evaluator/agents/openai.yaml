@@ -1,0 +1,4 @@
+interface:
+  display_name: "TELUS Broad Match Evaluator"
+  short_description: "Rate advertiser keyword against query expansion as Good, Acceptable or Bad"
+  default_prompt: "Use $broad-match-evaluator to rate this keyword and expansion pair against the TELUS Broad Match guidelines."

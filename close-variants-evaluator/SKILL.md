@@ -28,7 +28,7 @@ description: Strict Close Variants evaluator following Telus Close Variants Rati
 7. **Transliterations ARE close variants.** If they sound the same phonetically across scripts, rate Good.
 8. **Locale matters.** Consider query meaning in the context of the test locale. A country name added to a brand is Acceptable only if the locale matches that country.
 9. **Former app names are Bad.** If the variant is a former/old name of the app that the query refers to, rate Bad.
-10. **Platform isolation.** Do not use Search Ads, Search SBS, Handshake, or Outlier rubrics for this task.
+10. **Platform isolation.** Do not use Search Ads, Search SBS, Handshake, or Outlier rubrics for this task. **Check the column names first:** if the task says Keyword and Expansion rather than Query and Variant, it is Broad Match, not Close Variants, and these rules are wrong for it. Broad Match rates translations and former app names Good and synonyms Acceptable, all of which are always Bad here. Use `../broad-match-evaluator/SKILL.md`.
 11. **Pass the Pre-Submission Self-Audit before submitting any rating.** No rating reaches chat until the audit is answered in writing with evidence. The shared cross-skill standard is `../telus-evaluator/references/quality-gate.md`.
 
 ---
