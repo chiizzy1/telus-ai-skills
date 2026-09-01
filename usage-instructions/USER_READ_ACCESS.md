@@ -198,19 +198,15 @@ Get-ChildItem "$env:USERPROFILE\.gemini\antigravity-ide\skills" | Where-Object {
 
 These commands match on the link target rather than on a list of names, so they keep working as skills are added or renamed. Every row should show `LinkType` of `Junction`. A plain directory instead of a junction means the link step did not work; run the link command again with `-Force`.
 
-You should see all nine skills:
+You should see one row per skill folder in your clone. New skills are added over time, so rather than checking against a fixed list, compare the two counts:
 
-- `telus-evaluator`
-- `search-sbs-evaluator`
-- `telus-bot-reply-validator`
-- `text-response-evaluator`
-- `web-images-satisfaction-evaluator`
-- `close-variants-evaluator`
-- `search-ads-relevance`
-- `maps-search-evaluator`
-- `related-results-evaluation-evaluator`
+```powershell
+$linked = (Get-ChildItem "$env:USERPROFILE\.agents\skills" | Where-Object { $_.Target -like "*telus-ai-skills*" }).Count
+$inRepo = (Get-ChildItem "C:\Users\$env:USERNAME\Desktop\projects\train-ai\telus-ai-skills" -Directory | Where-Object { Test-Path "$($_.FullName)\SKILL.md" }).Count
+"linked: $linked  in repo: $inRepo"
+```
 
-If you see eight, your clone is behind. Run the daily update below and check again.
+The two numbers should match. If `linked` is lower, run the link command again. If you think `inRepo` is lower than it should be, your clone is behind: run the daily update below and check again.
 
 Restart the agent after linking so it can discover the skills.
 
