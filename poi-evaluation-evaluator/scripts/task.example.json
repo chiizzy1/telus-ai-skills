@@ -1,0 +1,23 @@
+{
+  "_comment": "One POI listing, transcribed from the rating interface exactly as shown. `coords` and `name` are required; `address` is required unless `address_absent` gives the reason it is genuinely absent. `candidate_urls` is where you put the official site, chain locator page, and claimed social page you want fetched in the same pass.",
+
+  "name": "Silver Sands Cafe",
+  "address": "937 Locklayer St, Suite #5, Nashville, TN 37208",
+  "coords": "36.171690,-86.795830",
+  "url": "https://www.silversandscafe.com/",
+  "phone": "+16152488589",
+  "category": "dining ➡ restaurant ➡ american cuisine ➡ southern restaurant",
+  "hours": {
+    "MONDAY": "09:00-14:00",
+    "TUESDAY": "09:00-14:00",
+    "WEDNESDAY": "09:00-14:00",
+    "THURSDAY": "09:00-14:00",
+    "FRIDAY": "09:00-14:00"
+  },
+
+  "candidate_urls": [
+    "https://www.eatokra.com/businesses/silver-sands-cafe"
+  ],
+
+  "address_absent": null
+}

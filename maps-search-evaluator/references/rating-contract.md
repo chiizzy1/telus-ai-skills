@@ -201,6 +201,33 @@ Every comment: state the user intent, name the guideline section behind the demo
 
 Never release because the call is hard, because the query looks unrelated to maps (rate every result `Bad`), because the query or results sit outside your market, because the query returned no results (answer the navigational question and submit), or because the query is in a foreign language (research or translate it).
 
+## An unknown label means the wrong rubric — stop
+
+This file is the complete list of labels the Maps Search UI offers. So the inverse is a
+**detector**, and it is mechanical:
+
+> **If the task UI offers an option that is not in this file, you are not on a Maps Search
+> task.** Stop and get the right guideline. It is not a distractor, not a trick question,
+> and not a UI quirk.
+
+Worked case. A task headed *"POI Evaluation Assessment (en_US)"* offered Category ratings of
+`Correct | Approximate | Incorrect`. `Approximate` is a **Pin** label here and appears
+nowhere under Category. The right reading was "this is a different rubric". The wrong
+reading — taken, and wrong — was "`Approximate` must be a distractor", which produced a
+confidently argued answer from the wrong book. POI Evaluation §9.1 rates an overly broad
+category **Approximate**, where Maps Search §6.3.1 rates it **Correct**.
+
+Noticing the anomaly is not enough. Explaining it away is the failure.
+
+**And hedging is not enough either.** On a later question in the same assessment the wrong
+rubric was applied *again*, this time with an explicit caveat naming the exact risk —
+"if POI states a flat precedence here, my answer is wrong, I put it at 75/25". It did, and
+it was. A confidence estimate does not substitute for the governing document.
+
+> Once you know you may be on the wrong rubric, **stop and ask for the right one.** Do not
+> answer with a disclaimer attached. Two wrong answers in one assessment came from treating
+> "stop" as advice rather than an instruction.
+
 ## Labels that do not exist
 
 Guard against these. Each is a plausible-sounding invention, not a UI option:

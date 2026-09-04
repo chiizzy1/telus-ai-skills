@@ -28,6 +28,21 @@ The extraction loses table cells, labels, and layout in places. It locates conte
 - Maps rules apply to TELUS Maps tasks only. Do not import Handshake or Outlier rubrics.
 - Do not use Search SBS `HS/S/SS/NS` labels here. Maps has its own relevance scale.
 - Do not borrow another TELUS task's scale, flags, or comment style.
+- **And the reverse: never apply these rules to another TELUS family.** POI Evaluation,
+  Related Results, SBS and Ads Relevance have their own guidelines with their own
+  numbering, and a shared dimension name does **not** mean a shared scale. Two measured
+  divergences, both of which produced wrong answers when Maps rules were applied to a POI
+  Evaluation task:
+
+  | Question | Maps Search | POI Evaluation |
+  |---|---|---|
+  | Overly broad category | `Correct` (§6.3.1) | **`Approximate`** (§9.1) — a band Maps lacks |
+  | Official website vs claimed social account disagree | peers; prefer the more recent | **website wins** (§10.1.1.2) |
+
+  POI Evaluation also rates **Hours**, a dimension Maps Search does not have at all.
+  If the task in front of you is a single listing with no query, stop and use
+  `../poi-evaluation-evaluator/SKILL.md` — it carries POI's own scales, and its
+  `references/maps-vs-poi.md` maps every divergence between the two families.
 
 > **Output goes in the chat response only.** Task files and every other file in the workspace are READ-ONLY input. Never edit them, never write results into them, and never create scratch or working files. Present the complete result in chat using the Output Template below.
 
@@ -155,6 +170,9 @@ Work these in order. Each step says what to do next, including when to stop.
 **Query level — once per task**
 
 1. **Confirm the platform and task.** TELUS Maps Search Evaluation, not Handshake, Outlier, or another TELUS family. If it is not Maps, stop and route via `../telus-evaluator/SKILL.md`.
+   **A task header naming a different family is enough to stop** — "POI Evaluation
+   Assessment", "Related Results", "Close Variants". Do not proceed on the assumption
+   that the rubrics overlap, and do not rate while asking for the right guideline.
 2. **Determine the task type.** Search Relevance rates relevance only. Search 2.0 also rates Name and Category Accuracy, Address Accuracy, and Pin Accuracy.
 3. **Inventory the fields the UI actually requests.** For any result you may be asked for all ratings, some, one, or none. Rate only what is shown. Never invent a rating for a field the UI does not offer.
 4. **Read the query inputs.** Query, locale, user location, viewport, viewport age — per the table above.
