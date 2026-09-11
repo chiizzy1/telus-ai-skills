@@ -1,0 +1,4 @@
+interface:
+  display_name: "TELUS Phrase Match Evaluator"
+  short_description: "Rate whether a query contains a phrase-match keyword's intent as Good, Acceptable or Bad"
+  default_prompt: "Use $phrase-match-evaluator to rate this keyword and query pair against the TELUS Phrase Match guidelines."

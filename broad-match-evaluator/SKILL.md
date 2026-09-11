@@ -27,6 +27,7 @@ If the user or a prior answer conflicts with the guideline, follow the guideline
 > **Read `references/close-variants-boundary.md` before your first rating.** Broad Match and Close Variants share their labels, their research links and most of their category names, and they invert each other on nine rules. Three of those, translations, former app names and synonyms, are *always Bad* in Close Variants and *never Bad* here. Carrying Close Variants instincts into this task produces wrong answers on its most common categories.
 
 - **The columns are the tell.** `Keyword` and `Expansion` means Broad Match. `Query` and `Variant` means Close Variants, and you should be in `../close-variants-evaluator/SKILL.md` instead.
+- **`Keyword` and `Query` means Phrase Match**, a third family sharing these labels — use `../phrase-match-evaluator/SKILL.md`. It rates transliterations Bad where this task rates them Good, and it makes abbreviation direction decisive: `mcdonalds` to `mcd` is Good there, `mcd` to `mcdonalds` is Bad.
 - **This is not Search Ads Relevance.** That task rates an App Store ad against an App Store query on relevance, using Excellent / Good / Acceptable / Bad. Broad Match has no Excellent.
 - Do not use Search SBS `HS/S/SS/NS`. Do not import Handshake or Outlier rubrics.
 

@@ -127,6 +127,26 @@ Guideline source: `TELUS-TASKS/BROAD-MATCH/telus-Broad_Match.pdf` (August 2024).
 
 Do not route this to `close-variants-evaluator`, and do not carry its rules across. The two tasks share their labels, their research links and most of their category names, and they invert each other on nine rules. Translations, former app names and synonyms are always Bad in Close Variants and are Good, Good and Acceptable here; a spell correction is Acceptable there and Good here. The column names settle it: Keyword and Expansion is Broad Match, Query and Variant is Close Variants. The full inversion table is in `../../broad-match-evaluator/references/close-variants-boundary.md`.
 
+Do not route it to `phrase-match-evaluator` either. That task's columns are Keyword and **Query**, and it inverts Broad Match on transliterations (Bad there, Good here) and on abbreviation direction.
+
+### Phrase Match
+
+Use `phrase-match-evaluator` (read `../../phrase-match-evaluator/SKILL.md`).
+
+Task template: `TELUS-TASKS/task-templates/phrase-match.md`.
+
+Signals:
+
+- Two columns named **Keyword** and **Query**.
+- The keyword is what an advertiser bought; the query is what a user typed.
+- Rating labels `Good`, `Acceptable`, `Bad`, with no named category required.
+- The stated primary question: "Does this user query clearly and completely contain the intent that the advertiser expressed in the phrase-match keyword?"
+- No App Store links. This family is web and local-business oriented (restaurants, pharmacies, plumbers, brands), not iOS apps.
+
+Guideline source: `TELUS-TASKS/phrase match human rating evaluation/phrase match human rating evaluation.pdf` (July 2026). Searchable extraction: `TELUS-TASKS/phrase-match-extracted/text.md`.
+
+Do not route this to `broad-match-evaluator` or `close-variants-evaluator`. All three pair two short strings and grade them Good / Acceptable / Bad, so the output of a mis-route looks entirely well-formed. The column names settle it: Keyword and **Query** is Phrase Match, Keyword and Expansion is Broad Match, Query and Variant is Close Variants. The rubrics genuinely disagree — transliterations are Bad in Phrase Match and Good in both siblings; clear synonyms are Good in Phrase Match and always Bad in Close Variants; and abbreviation direction is decisive only in Phrase Match, where `mcdonalds` to `mcd` is Good and `mcd` to `mcdonalds` is Bad. The full table is in `../../phrase-match-evaluator/references/sibling-boundary.md`.
+
 ### Close Variants
 
 Use `close-variants-evaluator` (read `../../close-variants-evaluator/SKILL.md`).
@@ -144,6 +164,8 @@ Guideline source: `TELUS-TASKS/Close Variants/Telus - Close Variants.pdf`.
 Do not confuse this with Search Ads Relevance. Close Variants compares a query to a variant query, not a query to an ad.
 
 Do not confuse this with Broad Match either. That task pairs an advertiser Keyword with an Expansion and is more permissive: translations and former app names are Good there and always Bad here. Check the column names before applying either rubric.
+
+A third family shares these labels: Phrase Match, whose columns are Keyword and **Query**. It inverts Close Variants on transliterations (Good here, Bad there) and on synonyms (Bad here, Good there).
 
 ### Maps Ads Offensiveness
 

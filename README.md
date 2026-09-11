@@ -19,6 +19,7 @@ Included skills:
 - `related-results-evaluation-evaluator`
 - `maps-ads-offensiveness-evaluator`
 - `broad-match-evaluator`
+- `phrase-match-evaluator`
 - `poi-evaluation-evaluator`
 
 ## Daily Update
