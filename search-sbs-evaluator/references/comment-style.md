@@ -32,7 +32,8 @@ Use with `../SKILL.md`. This file is the authoritative source for how the submis
 - **Do NOT list individual sources by name.** Say "reputable sources" or "authoritative sources."
 - **Do NOT explain flags or 404s in detail.** The grading table already documents that.
 - **NEVER mention automated tools in OPR comments.** No "bot-blocked," "script," "check_urls," "403," "status code," or any language that reveals automated verification. Describe issues in human terms (e.g., "inaccessible page" instead of "bot-blocked 403").
-- At least 20 words when possible.
+- **At least 20 words. Required on TryRating, not a target.** Count before submitting; a short clear call still needs 20 words.
+- Explain the choice through what the guideline asks comments to cover: **relevance, diversity and presentation**. In practice that is which side's results are more satisfying, whether one side covers more useful result types or meanings, and whether the best results sit higher.
 
 ## Required Flow
 

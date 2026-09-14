@@ -39,12 +39,15 @@ Task template: `TELUS-TASKS/task-templates/search-sbs.md`.
 
 Signals:
 
-- Side-by-side search results.
-- Overall Preference Rating or OPR.
-- Result satisfaction labels `HS`, `S`, `SS`, `NS`.
+- Side-by-side search results from two search engines, on TryRating (header shows `Task Type: Search SBS`, Request ID, Release Survey / Submit Rating).
+- Overall Preference Rating or OPR, seven-point scale, with a required comment of at least 20 words.
+- Satisfaction slider `N/A · Not Satisfying · Somewhat Satisfying · Satisfying · Highly Satisfying`. v2.2.2 spells these out; older material abbreviated them HS / S / SS / NS.
+- A Query Context line such as "Please assume that an English (US) speaking user issued this query."
 - Search result flags such as Content Unavailable, Inappropriate, or Wrong Language.
 
-Do not route Web Images or Search Ads here unless the task UI is clearly Search SBS.
+Do not route Web Images or Search Ads here unless the task UI is clearly Search SBS. Web Images shares the words `Highly Satisfying` and `Not Satisfying`; its middle grades are `Moderately Satisfying` and `Slightly Satisfying`, where Search SBS has plain `Satisfying` and `Somewhat Satisfying`. Use the middle labels to tell them apart.
+
+Guideline source: `TELUS-TASKS/updated sbs guideline/updated SBS.pdf` (Search Satisfaction v2.2.2, September 1, 2026; extracted: `TELUS-TASKS/updated sbs guideline/extracted/text.md`). `TELUS-TASKS/SBS-GUIDELINES/telus-SBS.pdf` is the superseded v2.2.
 
 ### Bot Reply Validation / AI Assistant Human Evaluation
 
@@ -90,7 +93,7 @@ Signals:
 - Image flags such as Did not load, Unsafe, Near duplicate.
 - Host-page flags and image side-by-side preference.
 
-Do not use Search SBS `HS/S/SS/NS` here.
+Do not use the Search SBS labels (Highly Satisfying / Satisfying / Somewhat Satisfying / Not Satisfying) here.
 
 ### Search Ads Relevance
 
@@ -107,7 +110,7 @@ Signals:
 
 Guideline source: `TELUS-TASKS/SEARCH-ADS-RELEVANCE/guidelines.txt` and `TELUS-TASKS/SEARCH-ADS-RELEVANCE/telus- SEARCH-ADS-RELEVANCE.pdf`.
 
-Do not use Search SBS `HS/S/SS/NS` here.
+Do not use the Search SBS labels (Highly Satisfying / Satisfying / Somewhat Satisfying / Not Satisfying) here.
 
 ### Broad Match
 
@@ -230,7 +233,7 @@ Signals:
 
 Guideline source: `TELUS-TASKS/Maps Search Evaluation/telus - Maps Search Evaluation Guidelines.pdf` (searchable extraction: `TELUS-TASKS/maps-extracted/text.md`).
 
-Do not use Search SBS `HS/S/SS/NS` labels here. Maps Search Evaluation has its own relevance scale.
+Do not use the Search SBS labels (Highly Satisfying / Satisfying / Somewhat Satisfying / Not Satisfying) here. Maps Search Evaluation has its own relevance scale.
 
 Do not confuse this with Related Results Evaluation, which rates a single query-result pair on Relevance alone with no pins, viewport or accuracy fields.
 
@@ -260,7 +263,7 @@ If sources conflict, use the higher source.
 Use plain wording:
 
 - Good: `The response answers the question, but the camera claim is wrong based on Apple's specs page.`
-- Good: `This is Search SBS, so use HS/S/SS/NS and OPR. It is not a Web Images task.`
+- Good: `This is Search SBS, so use Highly Satisfying through Not Satisfying and OPR. It is not a Web Images task.`
 - Bad: `The answer demonstrates strong multimodal rubric alignment.`
 
 For final platform comments, follow the task-specific skill's comment format.

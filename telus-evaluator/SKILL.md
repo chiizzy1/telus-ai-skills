@@ -36,7 +36,7 @@ Before routing a task, read `references/task-router.md`.
 
 ## One Task Type Per Chat
 
-Handle each TELUS task type in its own chat. Rubrics from different task types compete with each other — `HS/S/SS/NS` leaking into a Maps task, or Search SBS flags into a Bot Reply task, is the most common way a rating goes wrong. A fresh chat per task type keeps the loaded rules clean.
+Handle each TELUS task type in its own chat. Rubrics from different task types compete with each other — Search SBS satisfaction grades leaking into a Maps task, or Search SBS flags into a Bot Reply task, is the most common way a rating goes wrong. A fresh chat per task type keeps the loaded rules clean.
 
 Starting a fresh chat, this is enough:
 
@@ -69,7 +69,7 @@ If the user or a prior answer conflicts with the TELUS guideline, follow the gui
 
 ## Task Type Map
 
-- Search SBS, Search Satisfaction, side-by-side web search, OPR, or `HS/S/SS/NS`: use `search-sbs-evaluator` (read `../search-sbs-evaluator/SKILL.md`).
+- Search SBS, Search Satisfaction, side-by-side web search, OPR, or the satisfaction slider (Highly Satisfying / Satisfying / Somewhat Satisfying / Not Satisfying, formerly abbreviated HS/S/SS/NS): use `search-sbs-evaluator` (read `../search-sbs-evaluator/SKILL.md`).
 - TELUS AI Assistant, Bot Reply Validation, Apple assistant Human Evaluation, or Accuracy/Relevancy/Compliance/Fluency/Safety/Overall Quality: use `telus-bot-reply-validator` (read `../telus-bot-reply-validator/SKILL.md`).
 - Text Response Evaluation, text-message transcript pass/reject, transcript summary, best reply, or transcript MCQ: use `text-response-evaluator` (read `../text-response-evaluator/SKILL.md`).
 - Web Images Single Side Image Satisfaction, image side-by-side, image flags, host page flags, near duplicates, or image OPR: use `web-images-satisfaction-evaluator` (read `../web-images-satisfaction-evaluator/SKILL.md`).
@@ -93,7 +93,7 @@ Do not force these into Search SBS, Bot Reply, Text Response, Web Images, Search
 
 - Do not use Handshake or Outlier rubrics for TELUS.
 - Do not use TELUS rubrics for Handshake or Outlier.
-- Do not mix TELUS task scales. `HS/S/SS/NS` belongs to Search SBS only.
+- Do not mix TELUS task scales. Highly Satisfying / Satisfying / Somewhat Satisfying / Not Satisfying belongs to Search SBS only; Web Images uses Moderately and Slightly Satisfying.
 - Do not use Search SBS flags for Bot Reply or Text Response tasks.
 - Do not use Bot Reply metrics for TI2T, Handshake, or other text tasks.
 - Do not be agreeable. Verify against the visible task and the official TELUS guideline.

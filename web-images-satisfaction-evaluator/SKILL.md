@@ -34,7 +34,7 @@ Use the user as the visual judge when they prefer to inspect images themselves:
 
 ## Rating Scales
 
-Do not use Search SBS `HS/S/SS/NS` labels for this task type.
+Do not use the Search SBS scale for this task type. Its middle grades are `Satisfying` and `Somewhat Satisfying`; this task's are `Moderately Satisfying` and `Slightly Satisfying`.
 
 Image satisfaction:
 
@@ -80,7 +80,7 @@ RIGHT:
 
 State the side with the label when you report the rating, for example `Left Slightly better` or `About the same`.
 
-Never import the Search SBS scale or its `HS/S/SS/NS` grades into this task.
+Never import the Search SBS scale (Highly Satisfying / Satisfying / Somewhat Satisfying / Not Satisfying) into this task.
 
 ## Host Page Verification
 
